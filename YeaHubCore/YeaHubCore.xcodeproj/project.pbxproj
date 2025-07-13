@@ -6,143 +6,117 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		24AD72A02E23E33000A32E39 /* YeaHubCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AD729F2E23E33000A32E39 /* YeaHubCore.framework */; };
-		24AD72A12E23E33000A32E39 /* YeaHubCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AD729F2E23E33000A32E39 /* YeaHubCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		24AD72A32E23E33400A32E39 /* CommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AD72A22E23E33400A32E39 /* CommonUI.framework */; };
-		24AD72A42E23E33400A32E39 /* CommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AD72A22E23E33400A32E39 /* CommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-/* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		24AD725C2E23DFE900A32E39 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				24AD72A12E23E33000A32E39 /* YeaHubCore.framework in Embed Frameworks */,
-				24AD72A42E23E33400A32E39 /* CommonUI.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		24AD729F2E23E33000A32E39 /* YeaHubCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YeaHubCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		24AD72A22E23E33400A32E39 /* CommonUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommonUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C0E9A342E216BE600019606 /* YeaHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YeaHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24AD726A2E23E22000A32E39 /* YeaHubCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YeaHubCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6C0E9A362E216BE600019606 /* YeaHub */ = {
+		24AD726C2E23E22000A32E39 /* YeaHubCore */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = YeaHub;
+			path = YeaHubCore;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6C0E9A312E216BE600019606 /* Frameworks */ = {
+		24AD72672E23E22000A32E39 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24AD72A02E23E33000A32E39 /* YeaHubCore.framework in Frameworks */,
-				24AD72A32E23E33400A32E39 /* CommonUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		24AD729E2E23E33000A32E39 /* Frameworks */ = {
+		24AD72602E23E22000A32E39 = {
 			isa = PBXGroup;
 			children = (
-				24AD72A22E23E33400A32E39 /* CommonUI.framework */,
-				24AD729F2E23E33000A32E39 /* YeaHubCore.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6C0E9A2B2E216BE600019606 = {
-			isa = PBXGroup;
-			children = (
-				6C0E9A362E216BE600019606 /* YeaHub */,
-				24AD729E2E23E33000A32E39 /* Frameworks */,
-				6C0E9A352E216BE600019606 /* Products */,
+				24AD726C2E23E22000A32E39 /* YeaHubCore */,
+				24AD726B2E23E22000A32E39 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		6C0E9A352E216BE600019606 /* Products */ = {
+		24AD726B2E23E22000A32E39 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6C0E9A342E216BE600019606 /* YeaHub.app */,
+				24AD726A2E23E22000A32E39 /* YeaHubCore.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		24AD72652E23E22000A32E39 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		6C0E9A332E216BE600019606 /* YeaHub */ = {
+		24AD72692E23E22000A32E39 /* YeaHubCore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6C0E9A422E216BE800019606 /* Build configuration list for PBXNativeTarget "YeaHub" */;
+			buildConfigurationList = 24AD72712E23E22000A32E39 /* Build configuration list for PBXNativeTarget "YeaHubCore" */;
 			buildPhases = (
-				6C0E9A302E216BE600019606 /* Sources */,
-				6C0E9A312E216BE600019606 /* Frameworks */,
-				6C0E9A322E216BE600019606 /* Resources */,
-				24AD725C2E23DFE900A32E39 /* Embed Frameworks */,
+				24AD72652E23E22000A32E39 /* Headers */,
+				24AD72662E23E22000A32E39 /* Sources */,
+				24AD72672E23E22000A32E39 /* Frameworks */,
+				24AD72682E23E22000A32E39 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				6C0E9A362E216BE600019606 /* YeaHub */,
+				24AD726C2E23E22000A32E39 /* YeaHubCore */,
 			);
-			name = YeaHub;
+			name = YeaHubCore;
 			packageProductDependencies = (
 			);
-			productName = YeaHub;
-			productReference = 6C0E9A342E216BE600019606 /* YeaHub.app */;
-			productType = "com.apple.product-type.application";
+			productName = YeaHubCore;
+			productReference = 24AD726A2E23E22000A32E39 /* YeaHubCore.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6C0E9A2C2E216BE600019606 /* Project object */ = {
+		24AD72612E23E22000A32E39 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					6C0E9A332E216BE600019606 = {
-						CreatedOnToolsVersion = 16.2;
+					24AD72692E23E22000A32E39 = {
+						CreatedOnToolsVersion = 16.4;
 					};
 				};
 			};
-			buildConfigurationList = 6C0E9A2F2E216BE600019606 /* Build configuration list for PBXProject "YeaHub" */;
+			buildConfigurationList = 24AD72642E23E22000A32E39 /* Build configuration list for PBXProject "YeaHubCore" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 6C0E9A2B2E216BE600019606;
+			mainGroup = 24AD72602E23E22000A32E39;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 6C0E9A352E216BE600019606 /* Products */;
+			productRefGroup = 24AD726B2E23E22000A32E39 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6C0E9A332E216BE600019606 /* YeaHub */,
+				24AD72692E23E22000A32E39 /* YeaHubCore */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6C0E9A322E216BE600019606 /* Resources */ = {
+		24AD72682E23E22000A32E39 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -152,7 +126,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6C0E9A302E216BE600019606 /* Sources */ = {
+		24AD72662E23E22000A32E39 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -162,7 +136,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		6C0E9A402E216BE800019606 /* Debug */ = {
+		24AD726F2E23E22000A32E39 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -196,7 +170,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = J9UF5WCD9P;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -214,7 +190,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -222,10 +198,12 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		6C0E9A412E216BE800019606 /* Release */ = {
+		24AD72702E23E22000A32E39 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -259,7 +237,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = J9UF5WCD9P;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -271,71 +251,81 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		6C0E9A432E216BE800019606 /* Debug */ = {
+		24AD72722E23E22000A32E39 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"YeaHub/Preview Content\"";
-				DEVELOPMENT_TEAM = S2ULHFVMXF;
-				ENABLE_PREVIEWS = YES;
+				DEVELOPMENT_TEAM = J9UF5WCD9P;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.YeaHub;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = unknownkirya.YeaHubCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		6C0E9A442E216BE800019606 /* Release */ = {
+		24AD72732E23E22000A32E39 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"YeaHub/Preview Content\"";
-				DEVELOPMENT_TEAM = S2ULHFVMXF;
-				ENABLE_PREVIEWS = YES;
+				DEVELOPMENT_TEAM = J9UF5WCD9P;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.YeaHub;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = unknownkirya.YeaHubCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -344,25 +334,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6C0E9A2F2E216BE600019606 /* Build configuration list for PBXProject "YeaHub" */ = {
+		24AD72642E23E22000A32E39 /* Build configuration list for PBXProject "YeaHubCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6C0E9A402E216BE800019606 /* Debug */,
-				6C0E9A412E216BE800019606 /* Release */,
+				24AD726F2E23E22000A32E39 /* Debug */,
+				24AD72702E23E22000A32E39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6C0E9A422E216BE800019606 /* Build configuration list for PBXNativeTarget "YeaHub" */ = {
+		24AD72712E23E22000A32E39 /* Build configuration list for PBXNativeTarget "YeaHubCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6C0E9A432E216BE800019606 /* Debug */,
-				6C0E9A442E216BE800019606 /* Release */,
+				24AD72722E23E22000A32E39 /* Debug */,
+				24AD72732E23E22000A32E39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6C0E9A2C2E216BE600019606 /* Project object */;
+	rootObject = 24AD72612E23E22000A32E39 /* Project object */;
 }
