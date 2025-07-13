@@ -1,0 +1,67 @@
+disabled_rules:
+  - file_length          # Разрешаем длинные файлы (но лучше разбивать)
+  - type_body_length     # Разрешаем длинные тела типов
+  - function_body_length # Разрешаем длинные функции (но лучше разбивать)
+  - identifier_name      # Слишком строго для старта
+  - todo                 # Разрешаем TODO комментарии
+
+opt_in_rules:
+  - empty_count          # Лучший способ проверки empty
+  - closure_end_indentation # Читаемость замыканий
+  - implicit_return      # Поощряет явные return
+  - unused_optional_binding # Предупреждает о неиспользованных опционалах
+  - vertical_whitespace  # Убирает лишние пустые строки
+
+# Критические правила для стабильности (ошибки)
+strict: true
+error_rules:
+  - force_cast           # Запрет as!
+  - force_try            # Запрет try!
+  - force_unwrapping     # Запрет !
+  - prohibited_super_call # Контроль вызовов super
+  - fatal_error          # Запрет fatalError в продакшене
+  - discouraged_direct_init # Запрет прямого инстанцирования NS классов
+
+# Правила для читаемости (предупреждения)
+warning_rules:
+  - line_length
+  - large_tuple
+  - cyclomatic_complexity
+  - function_parameter_count
+  - trailing_whitespace
+
+# Настройки правил
+line_length:
+  warning: 120    # Предупреждение после 120 символов
+  ignores_urls: true
+  ignores_function_declarations: true
+  ignores_comments: true
+
+cyclomatic_complexity:
+  warning: 10     # Предупреждение при сложности > 10
+
+function_parameter_count:
+  warning: 7
+
+# Игнорируемые файлы и директории
+excluded:
+  - Pods
+  - Carthage
+  - DerivedData
+  - SwiftGen
+  - R.generated.swift
+  - Generated
+  - Localizable.strings
+  - .build
+
+# Дополнительные настройки
+reporter: "xcode"       # Формат вывода для Xcode
+only_rules:             # Включаем только эти группы правил
+  - nesting
+  - control_statement
+  - empty
+  - force_cast
+  - force_unwrapping
+  - trailing_whitespace
+  - closure_spacing
+  - vertical_whitespace

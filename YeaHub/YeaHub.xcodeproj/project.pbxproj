@@ -89,6 +89,7 @@
 			buildConfigurationList = 6C0E9A422E216BE800019606 /* Build configuration list for PBXNativeTarget "YeaHub" */;
 			buildPhases = (
 				6C0E9A302E216BE600019606 /* Sources */,
+				24EEE7AD2E23F08900769F04 /* SwiftLint */,
 				6C0E9A312E216BE600019606 /* Frameworks */,
 				6C0E9A322E216BE600019606 /* Resources */,
 				24AD725C2E23DFE900A32E39 /* Embed Frameworks */,
@@ -150,6 +151,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		24EEE7AD2E23F08900769F04 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Проверка архитектуры (для Apple Silicon)\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\n# Основной запуск SwiftLint\nif which swiftlint >/dev/null; then\n    swiftlint --config .swiftlint.yml  # Убедитесь что конфиг в корне проекта\nelse\n    echo \"warning: SwiftLint не установлен, скачайте с https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6C0E9A302E216BE600019606 /* Sources */ = {
