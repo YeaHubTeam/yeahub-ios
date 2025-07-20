@@ -1,7 +1,7 @@
 import SwiftUI
 
 class AppCoordinatorImpl: AppCoordinator, ObservableObject {
-    let appFactory: AppFactory
+    var appFactory: AppFactory
 
     init(appFactory: AppFactory) {
         self.appFactory = appFactory

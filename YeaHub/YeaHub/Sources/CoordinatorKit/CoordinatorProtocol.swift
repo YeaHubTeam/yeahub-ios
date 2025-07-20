@@ -1,4 +1,6 @@
-protocol CoordinatorProtocol: AnyObject {
+import NeedleFoundation
+
+protocol CoordinatorProtocol: AnyObject, Dependency {
     func start()
     func finish()
 }
