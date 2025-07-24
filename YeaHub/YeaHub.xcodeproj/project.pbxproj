@@ -11,6 +11,8 @@
 		24AD72A12E23E33000A32E39 /* YeaHubCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AD729F2E23E33000A32E39 /* YeaHubCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24AD72A32E23E33400A32E39 /* CommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AD72A22E23E33400A32E39 /* CommonUI.framework */; };
 		24AD72A42E23E33400A32E39 /* CommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AD72A22E23E33400A32E39 /* CommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		24F967CB2E2D7760000E37F2 /* NeedleFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 24F967CA2E2D7760000E37F2 /* NeedleFoundation */; };
+		24F967CD2E2D7760000E37F2 /* NeedleFoundationTest in Frameworks */ = {isa = PBXBuildFile; productRef = 24F967CC2E2D7760000E37F2 /* NeedleFoundationTest */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,7 +49,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24F967CD2E2D7760000E37F2 /* NeedleFoundationTest in Frameworks */,
 				24AD72A02E23E33000A32E39 /* YeaHubCore.framework in Frameworks */,
+				24F967CB2E2D7760000E37F2 /* NeedleFoundation in Frameworks */,
 				24AD72A32E23E33400A32E39 /* CommonUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,6 +107,8 @@
 			);
 			name = YeaHub;
 			packageProductDependencies = (
+				24F967CA2E2D7760000E37F2 /* NeedleFoundation */,
+				24F967CC2E2D7760000E37F2 /* NeedleFoundationTest */,
 			);
 			productName = YeaHub;
 			productReference = 6C0E9A342E216BE600019606 /* YeaHub.app */;
@@ -132,6 +138,9 @@
 			);
 			mainGroup = 6C0E9A2B2E216BE600019606;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				24F967C92E2D7760000E37F2 /* XCRemoteSwiftPackageReference "needle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6C0E9A352E216BE600019606 /* Products */;
 			projectDirPath = "";
@@ -385,6 +394,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		24F967C92E2D7760000E37F2 /* XCRemoteSwiftPackageReference "needle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uber/needle";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		24F967CA2E2D7760000E37F2 /* NeedleFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24F967C92E2D7760000E37F2 /* XCRemoteSwiftPackageReference "needle" */;
+			productName = NeedleFoundation;
+		};
+		24F967CC2E2D7760000E37F2 /* NeedleFoundationTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24F967C92E2D7760000E37F2 /* XCRemoteSwiftPackageReference "needle" */;
+			productName = NeedleFoundationTest;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6C0E9A2C2E216BE600019606 /* Project object */;
 }

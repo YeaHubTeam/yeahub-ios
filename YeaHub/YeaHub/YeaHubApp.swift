@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NeedleFoundation
 
 @main
 struct YeaHubApp: App {
