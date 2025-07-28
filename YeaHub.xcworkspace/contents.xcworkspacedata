@@ -5,9 +5,15 @@
       location = "group:YeaHub/YeaHub.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Home/Home.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:YeaHubCore/YeaHubCore.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:CommonUI/CommonUI.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:NavigationKit/NavigationKit.xcodeproj">
    </FileRef>
 </Workspace>
