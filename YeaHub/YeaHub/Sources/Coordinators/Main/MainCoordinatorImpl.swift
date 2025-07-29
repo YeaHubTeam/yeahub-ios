@@ -74,39 +74,24 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
                 selectedImage: UIImage(systemName: "house.fill")
             ),
             TabBarItem(
-                slug: "search",
-                page: "search",
-                name: "Поиск",
+                slug: "questions",
+                page: "questions",
+                name: "Вопросы",
                 image: UIImage(systemName: "magnifyingglass"),
                 selectedImage: UIImage(systemName: "magnifyingglass")
-            ),
-            TabBarItem(
-                slug: "favorites",
-                page: "favorites",
-                name: "Избранное",
-                image: UIImage(systemName: "heart"),
-                selectedImage: UIImage(systemName: "heart.fill")
-            ),
-            TabBarItem(
-                slug: "profile",
-                page: "profile",
-                name: "Профиль",
-                image: UIImage(systemName: "person"),
-                selectedImage: UIImage(systemName: "person.fill")
             )
         ]
 
-        // Создаем view controllers - используем HomeCoordinator для первого таба
+        // Создаем view controllers - используем соответствующие координаторы для табов
         let homeCoordinator = factory.makeHomeCoordinator(router: router)
+        let questionsOnboardingCoordinator = factory.makeQuestionsOnboardingCoordinator(router: router)
         homeCoordinator.start()
+        questionsOnboardingCoordinator.start()
 
         let homeViewController = homeCoordinator.getHomeScreen()
+        let questionsOnboardingViewController = questionsOnboardingCoordinator.getQuestionsOnboardingScreen()
 
-        let searchViewController = createSimpleViewController(title: "Поиск", backgroundColor: .systemBlue)
-        let favoritesViewController = createSimpleViewController(title: "Избранное", backgroundColor: .systemPurple)
-        let profileViewController = createSimpleViewController(title: "Профиль", backgroundColor: .systemGreen)
-
-        let viewControllers = [homeViewController, searchViewController, favoritesViewController, profileViewController]
+        let viewControllers = [homeViewController, questionsOnboardingViewController]
 
         // Устанавливаем tabBarItem для каждого view controller
         for (index, viewController) in viewControllers.enumerated() where index < tabBarItems.count {

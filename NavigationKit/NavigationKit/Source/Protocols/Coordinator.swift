@@ -1,6 +1,4 @@
-import NeedleFoundation
-
-public protocol Coordinator: AnyObject, Dependency {
+public protocol Coordinator: AnyObject {
     
     func start()
 }

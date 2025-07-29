@@ -6,7 +6,31 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6C356E882E38AFE300D0D881 /* CommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C356E872E38AFE300D0D881 /* CommonUI.framework */; };
+		6C356E892E38AFE300D0D881 /* CommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6C356E872E38AFE300D0D881 /* CommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6C356E8C2E38B25A00D0D881 /* NavigationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C356E8B2E38B25A00D0D881 /* NavigationKit.framework */; };
+		6C356E8D2E38B25A00D0D881 /* NavigationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6C356E8B2E38B25A00D0D881 /* NavigationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6C356E8A2E38AFE300D0D881 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6C356E892E38AFE300D0D881 /* CommonUI.framework in Embed Frameworks */,
+				6C356E8D2E38B25A00D0D881 /* NavigationKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		6C356E872E38AFE300D0D881 /* CommonUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommonUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C356E8B2E38B25A00D0D881 /* NavigationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NavigationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C4A54642E389F040060F61D /* Questions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Questions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -23,16 +47,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C356E882E38AFE300D0D881 /* CommonUI.framework in Frameworks */,
+				6C356E8C2E38B25A00D0D881 /* NavigationKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C356E862E38AFE300D0D881 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C356E8B2E38B25A00D0D881 /* NavigationKit.framework */,
+				6C356E872E38AFE300D0D881 /* CommonUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6C4A545A2E389F040060F61D = {
 			isa = PBXGroup;
 			children = (
 				6C4A54662E389F040060F61D /* Questions */,
+				6C356E862E38AFE300D0D881 /* Frameworks */,
 				6C4A54652E389F040060F61D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +102,7 @@
 				6C4A54602E389F040060F61D /* Sources */,
 				6C4A54612E389F040060F61D /* Frameworks */,
 				6C4A54622E389F040060F61D /* Resources */,
+				6C356E8A2E38AFE300D0D881 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

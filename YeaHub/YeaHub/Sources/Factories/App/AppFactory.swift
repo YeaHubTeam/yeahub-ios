@@ -1,7 +1,6 @@
-import NeedleFoundation
 import NavigationKit
 
-protocol AppFactory: Dependency {
+protocol AppFactory {
 
     func makeMainCoordinator(router: Router) -> MainCoordinator
 }

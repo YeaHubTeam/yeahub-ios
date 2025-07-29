@@ -202,7 +202,6 @@ private extension UITabBar {
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor = .clear
 
-        // Clear all colors that might affect transparency
         appearance.shadowColor = .clear
 
         // Make tab bar items transparent
