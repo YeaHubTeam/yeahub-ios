@@ -22,4 +22,7 @@
    <FileRef
       location = "group:SharedScreens/SharedScreens.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Networking/Networking.xcodeproj">
+   </FileRef>
 </Workspace>
