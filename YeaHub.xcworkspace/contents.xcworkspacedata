@@ -16,4 +16,10 @@
    <FileRef
       location = "group:NavigationKit/NavigationKit.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Questions/Questions.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SharedScreens/SharedScreens.xcodeproj">
+   </FileRef>
 </Workspace>
