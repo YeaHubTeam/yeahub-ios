@@ -1,6 +1,4 @@
-import NeedleFoundation
-
-protocol AppCoordinator: Dependency {
+protocol AppCoordinator {
     var appFactory: AppFactory { get }
     func start()
 }
