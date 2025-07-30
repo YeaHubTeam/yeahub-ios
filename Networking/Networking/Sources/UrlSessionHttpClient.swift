@@ -8,7 +8,7 @@ import Logging
 /// Default URLSession based implementation of the HttpClient protocol
 public struct UrlSessionHttpClient: HttpClient {
 
-    private let loggerLabel = "com.binarybirds.swift-http"
+    private let loggerLabel = "YEAHub_log"
 
     let session: URLSession
     let logger: Logger
