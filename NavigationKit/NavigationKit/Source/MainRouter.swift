@@ -426,13 +426,16 @@ public class MainRouter: Router {
     }
 
     public func setRoot(_ presentable: Presentable?, animated: Bool) {
-        guard
-            isEnabled,
-            let window,
-            let viewController = presentable?.toPresent()
-        else { return }
+        let window = UIApplication.shared.connectedScenes
+            .first { $0.activationState == .foregroundActive }
+            .flatMap { $0 as? UIWindowScene }?
+            .windows
+            .first { $0.isKeyWindow } ?? UIApplication.shared.windows.first { $0.isKeyWindow }
+
+        guard isEnabled, let window, let viewController = presentable?.toPresent() else { return }
 
         window.rootViewController = viewController
+        window.makeKeyAndVisible()
 
         if animated {
             UIView.transition(

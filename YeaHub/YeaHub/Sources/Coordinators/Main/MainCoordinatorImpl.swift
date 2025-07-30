@@ -1,12 +1,12 @@
 import SwiftUI
 import NavigationKit
+import CommonUI
 
 class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
 
     var factory: MainFactory
 
-    private var tabBarItems: [TabBarItem] = []
-    private weak var tabBarScreen: TabBarScreen?
+    private weak var tabBarController: UITabBarController?
     private let router: Router
 
     init(
@@ -23,127 +23,56 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
     }
 
     private func showTabBar() {
-        let screen = factory.makeTabBarScreen()
-        tabBarScreen = screen
+        let tabBarController = YHTabBarController() // Используем наш кастомный контроллер
+        self.tabBarController = tabBarController
 
-        tabBarScreen?.onAppear = { }
+        configureTabs(for: tabBarController)
 
-        tabBarScreen?.onChange = { _ in }
-
-        tabBarScreen?.onShouldSelect = { _, _ in
-            return true
-        }
-
-        configureTabs()
-
-        setTabBarAsRoot(screen)
+        router.setRoot(tabBarController, animated: true)
     }
 
-    private func setTabBarAsRoot(_ screen: TabBarScreen) {
-        // Получаем текущее key window
-        let window = UIApplication.shared.connectedScenes
-            .first { $0.activationState == .foregroundActive }
-            .flatMap { $0 as? UIWindowScene }?
-            .windows
-            .first { $0.isKeyWindow } ?? UIApplication.shared.windows.first { $0.isKeyWindow }
-
-        let tabBarController = screen.toPresent()
-
-        if let window = window,
-           let tabBarController = tabBarController {
-
-            // Устанавливаем TabBarController как root в наше рабочее окно
-            window.rootViewController = tabBarController
-
-            // Убеждаемся, что окно остается key
-            window.makeKeyAndVisible()
-        } else {
-            // Fallback к стандартному router, если по какой-то причине не найдем окно
-            router.setRoot(screen, animated: true)
-        }
-    }
-
-    private func configureTabs() {
-        // Создаем табы с правильными элементами
-        tabBarItems = [
-            TabBarItem(
-                slug: "home",
-                page: "home",
-                name: "Главная",
-                image: UIImage(systemName: "house"),
-                selectedImage: UIImage(systemName: "house.fill")
-            ),
-            TabBarItem(
-                slug: "questions",
-                page: "questions",
-                name: "Вопросы",
-                image: UIImage(systemName: "magnifyingglass"),
-                selectedImage: UIImage(systemName: "magnifyingglass")
-            )
-        ]
-
-        // Создаем view controllers - используем соответствующие координаторы для табов
+    private func configureTabs(for tabBarController: UITabBarController) {
+        // Создаем координаторы
         let homeCoordinator = factory.makeHomeCoordinator(router: router)
-        let questionsOnboardingCoordinator = factory.makeQuestionsOnboardingCoordinator(router: router)
+        let questionsCoordinator = factory.makeQuestionsOnboardingCoordinator(router: router)
+//        let collectionsCoordinator = factory.makeCollectionsCoordinator(router: router)
+
         homeCoordinator.start()
-        questionsOnboardingCoordinator.start()
+        questionsCoordinator.start()
+//        collectionsCoordinator.start()
 
-        let homeViewController = homeCoordinator.getHomeScreen()
-        let questionsOnboardingViewController = questionsOnboardingCoordinator.getQuestionsOnboardingScreen()
-
-        let viewControllers = [homeViewController, questionsOnboardingViewController]
-
-        // Устанавливаем tabBarItem для каждого view controller
-        for (index, viewController) in viewControllers.enumerated() where index < tabBarItems.count {
-            if let viewController {
-                viewController.tabBarItem = tabBarItems[index].tabBarItem()
-            }
-        }
-
-        tabBarScreen?.set(viewControllers.compactMap { $0 })
-        tabBarScreen?.select(tabIndex: 0)
-    }
-
-    // Нужно только для создания заглушек
-    private func createSimpleViewController(title: String, backgroundColor: UIColor) -> UIViewController {
-        let viewController = UIViewController()
-        viewController.title = title
-        viewController.view.backgroundColor = backgroundColor
-
-        let label = UILabel()
-        label.text = title
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        viewController.view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor)
-        ])
-
-        return viewController
-    }
-
-    private func handle(_ change: TabChange) {
-        guard tabBarItems[safe: change.currentIndex] != nil else {
+        let collectionsVC = UIViewController()
+        guard let homeVC = homeCoordinator.getHomeScreen()?.toPresent(),
+              let questionsVC = questionsCoordinator.getQuestionsOnboardingScreen()?.toPresent()
+//              let collectionsVC = collectionsCoordinator.toPresent()
+        else {
             return
         }
-        // обработка смены таба
+
+        // Настраиваем табы
+        homeVC.tabBarItem = UITabBarItem(
+            title: "Главная",
+            image: UIImage(systemName: "house"),
+            selectedImage: UIImage(systemName: "house.fill")
+        )
+
+        // Центральный таб - оставляем пустым, так как у нас кастомная кнопка
+        questionsVC.tabBarItem = UITabBarItem(
+            title: "Вопросы",
+            image: nil,
+            selectedImage: nil
+        )
+
+        collectionsVC.tabBarItem = UITabBarItem(
+            title: "Коллекции",
+            image: UIImage(systemName: "square.stack.3d.up"),
+            selectedImage: UIImage(systemName: "square.stack.3d.up.fill")
+        )
+
+        tabBarController.viewControllers = [homeVC, questionsVC, collectionsVC]
     }
 
-    func openFirstTab(function: String = #function) {
-        selectFirstTab(function: function)
-    }
-
-    @discardableResult
-    func selectFirstTab(function: String) -> String? {
-        guard let firstItem = tabBarItems.first else {
-            return nil
-        }
-
-        tabBarScreen?.select(tabIndex: .zero)
-        return firstItem.slug.value
+    func openFirstTab() {
+        tabBarController?.selectedIndex = 0
     }
 }
