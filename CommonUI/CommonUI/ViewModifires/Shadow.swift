@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-struct IconShadow: ViewModifier {
+struct Shadow: ViewModifier {
     func body(content: Content) -> some View {
         content
             .shadow(color: Color.gray700.opacity(0.1), radius: 10, x: 0, y: 4)
@@ -12,7 +12,7 @@ struct IconShadow: ViewModifier {
 }
 
 public extension View {
-    func iconShadow() -> some View {
-        modifier(IconShadow())
+    func shadow() -> some View {
+        modifier(Shadow())
     }
 }
