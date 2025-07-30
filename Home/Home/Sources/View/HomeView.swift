@@ -20,12 +20,14 @@ struct HomeView: View {
                     title: "База вопросов",
                     description: "Большая база вопросов по 50+ востребованных технологий: JavaScript, React, Python, SQL и другие"
                 )
-                
+                .iconShadow()
+
                 button(
                     type: .companies,
                     title: "Коллекции",
                     description: "Актуальные и востребованные вопросы с реальных технических собеседований"
                 )
+                .iconShadow()
 
                 Spacer()
             }
@@ -71,27 +73,27 @@ struct HomeView: View {
         return VStack(spacing: Constants.gridSpacing) {
             HStack(spacing: Constants.gridSpacing) {
                 icon(image: firstImage)
-                    // сменить на pureWhite, когда добавим тень
-                    .background(Color.red)
+                    .background(Color.pureWhite)
                     .cornerRadius(Constants.Icon.cornerRadius)
                     .aspectRatio(contentMode: .fill)
+                    .iconShadow()
                 icon(image: secondImage)
-                // сменить на pureWhite, когда добавим тень
-                    .background(Color.red)
+                    .background(Color.pureWhite)
                     .cornerRadius(Constants.Icon.cornerRadius)
                     .aspectRatio(contentMode: .fill)
+                    .iconShadow()
             }
             HStack(spacing: Constants.gridSpacing) {
                 icon(image: thirdImage)
-                // сменить на pureWhite, когда добавим тень
-                    .background(Color.red)
+                    .background(Color.pureWhite)
                     .cornerRadius(Constants.Icon.cornerRadius)
                     .aspectRatio(contentMode: .fill)
+                    .iconShadow()
                 icon(image: fourthImage)
-                // сменить на pureWhite, когда добавим тень
-                    .background(Color.red)
+                    .background(Color.pureWhite)
                     .cornerRadius(Constants.Icon.cornerRadius)
                     .aspectRatio(contentMode: .fill)
+                    .iconShadow()
             }
         }
     }
