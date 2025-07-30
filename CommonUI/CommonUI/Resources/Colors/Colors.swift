@@ -42,7 +42,7 @@ extension UIColor {
     }
 
     convenience init(_ color: Color, dynamicProvider: ((UITraitCollection) -> UIColor)? = nil) {
-        if let dynamicProvider = dynamicProvider {
+        if let dynamicProvider {
             self.init { trait in
                 dynamicProvider(trait)
             }
