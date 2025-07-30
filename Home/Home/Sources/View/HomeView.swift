@@ -20,14 +20,14 @@ struct HomeView: View {
                     title: "База вопросов",
                     description: "Большая база вопросов по 50+ востребованных технологий: JavaScript, React, Python, SQL и другие"
                 )
-                .shadow()
+                .defaultShadow()
 
                 button(
                     type: .companies,
                     title: "Коллекции",
                     description: "Актуальные и востребованные вопросы с реальных технических собеседований"
                 )
-                .shadow()
+                .defaultShadow()
 
                 Spacer()
             }
@@ -76,24 +76,24 @@ struct HomeView: View {
                     .background(Color.pureWhite)
                     .cornerRadius(Constants.Icon.cornerRadius)
                     .aspectRatio(contentMode: .fill)
-                    .shadow()
+                    .defaultShadow()
                 icon(image: secondImage)
                     .background(Color.pureWhite)
                     .cornerRadius(Constants.Icon.cornerRadius)
                     .aspectRatio(contentMode: .fill)
-                    .shadow()
+                    .defaultShadow()
             }
             HStack(spacing: Constants.gridSpacing) {
                 icon(image: thirdImage)
                     .background(Color.pureWhite)
                     .cornerRadius(Constants.Icon.cornerRadius)
                     .aspectRatio(contentMode: .fill)
-                    .shadow()
+                    .defaultShadow()
                 icon(image: fourthImage)
                     .background(Color.pureWhite)
                     .cornerRadius(Constants.Icon.cornerRadius)
                     .aspectRatio(contentMode: .fill)
-                    .shadow()
+                    .defaultShadow()
             }
         }
     }
