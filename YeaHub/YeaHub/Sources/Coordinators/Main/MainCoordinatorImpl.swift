@@ -23,12 +23,25 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
     }
 
     private func showTabBar() {
-        let tabBarController = YHTabBarController() // Используем наш кастомный контроллер
+        let tabBarController = YHTabBarController()
         self.tabBarController = tabBarController
 
         configureTabs(for: tabBarController)
 
         router.setRoot(tabBarController, animated: true)
+    }
+
+    private func wrapWithStatusBarController(_ viewController: UIViewController) -> UIViewController {
+        if let hostingController = viewController as? UIHostingController<AnyView> {
+            return StatusBarHostingController(
+                rootView: hostingController.rootView,
+                hideStatusBar: true
+            )
+        }
+        return StatusBarWrapperViewController(
+            wrappedViewController: viewController,
+            hideStatusBar: true
+        )
     }
 
     private func configureTabs(for tabBarController: UITabBarController) {
@@ -49,27 +62,32 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
             return
         }
 
+        // Простая обертка - все контроллеры со скрытым статус баром
+        let wrappedHomeVC = wrapWithStatusBarController(homeVC)
+        let wrappedQuestionsVC = wrapWithStatusBarController(questionsVC)
+        let wrappedCollectionsVC = wrapWithStatusBarController(collectionsVC)
+
         // Настраиваем табы
-        homeVC.tabBarItem = UITabBarItem(
+        wrappedHomeVC.tabBarItem = UITabBarItem(
             title: "Главная",
             image: UIImage(systemName: "house"),
             selectedImage: UIImage(systemName: "house.fill")
         )
 
         // Центральный таб - оставляем пустым, так как у нас кастомная кнопка
-        questionsVC.tabBarItem = UITabBarItem(
+        wrappedQuestionsVC.tabBarItem = UITabBarItem(
             title: "Вопросы",
             image: nil,
             selectedImage: nil
         )
 
-        collectionsVC.tabBarItem = UITabBarItem(
+        wrappedCollectionsVC.tabBarItem = UITabBarItem(
             title: "Коллекции",
             image: UIImage(systemName: "square.stack.3d.up"),
             selectedImage: UIImage(systemName: "square.stack.3d.up.fill")
         )
 
-        tabBarController.viewControllers = [homeVC, questionsVC, collectionsVC]
+        tabBarController.viewControllers = [wrappedHomeVC, wrappedQuestionsVC, wrappedCollectionsVC]
     }
 
     func openFirstTab() {

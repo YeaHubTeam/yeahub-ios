@@ -52,10 +52,10 @@ final class YHTabBarController: UITabBarController {
     private func positionFloatingButton() {
         let buttonSize: CGFloat = 60
         let tabBarHeight = tabBar.frame.height
-        let yPosition = view.bounds.height - tabBarHeight - buttonSize/2
+        let yPosition = view.bounds.height - tabBarHeight - buttonSize / 2
 
         floatingButton.frame = CGRect(
-            x: view.bounds.midX - buttonSize/2,
+            x: view.bounds.midX - buttonSize / 2,
             y: yPosition,
             width: buttonSize,
             height: buttonSize
@@ -66,7 +66,7 @@ final class YHTabBarController: UITabBarController {
 
     private func positionButtonLabel() {
         buttonLabel.frame = CGRect(
-            x: floatingButton.frame.midX - buttonLabel.bounds.width/2,
+            x: floatingButton.frame.midX - buttonLabel.bounds.width / 2,
             y: floatingButton.frame.maxY + 4,
             width: buttonLabel.bounds.width,
             height: buttonLabel.bounds.height
@@ -128,7 +128,7 @@ final class YHTabBarController: UITabBarController {
                        initialSpringVelocity: 0.5,
                        options: .curveEaseInOut,
                        animations: {
-            self.floatingButton.transform = CGAffineTransform(rotationAngle: -20)
+            self.floatingButton.transform = CGAffineTransform(rotationAngle: -20 * .pi / 180)
         }, completion: { _ in
             UIView.animate(withDuration: 0.5,
                            delay: 0,
@@ -140,12 +140,34 @@ final class YHTabBarController: UITabBarController {
             })
         })
     }
+
+    // MARK: - Status Bar Management
+
+    override var prefersStatusBarHidden: Bool {
+        return selectedViewController?.prefersStatusBarHidden ?? false
+    }
+
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return selectedViewController?.preferredStatusBarUpdateAnimation ?? .slide
+    }
+
+    override var childForStatusBarHidden: UIViewController? {
+        selectedViewController
+    }
+
+    override var childForStatusBarStyle: UIViewController? {
+        selectedViewController
+    }
 }
 
 // MARK: - UITabBarControllerDelegate
 
 extension YHTabBarController: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {}
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        // Принудительно обновляем статус бар при смене таба
+        setNeedsStatusBarAppearanceUpdate()
+    }
 
     func tabBarController(_ tabBarController: UITabBarController,
                           shouldSelect viewController: UIViewController) -> Bool {
