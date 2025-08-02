@@ -123,7 +123,7 @@ struct HomeView: View {
                 Text(description)
                     .foregroundStyle(Color.black900)
                     .font(.manrope(.medium, size: 16))
-                    .frame(maxWidth: Constants.Button.descriptionMaxWidth, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(.secondary)
             }
         }
@@ -140,8 +140,7 @@ extension HomeView {
 
         enum Button {
             static let horizontalInset: CGFloat = 12
-            static let verticalinset: CGFloat = 8
-            static let descriptionMaxWidth: CGFloat = 222
+            static let verticalinset: CGFloat = 4
             static let cornerRadius: CGFloat = 8
         }
 
@@ -152,7 +151,7 @@ extension HomeView {
             static let cornerRadius: CGFloat = 10
         }
 
-        static let gridSpacing: CGFloat = 8
+        static let gridSpacing: CGFloat = 4
         static let defaultInset: CGFloat = 16
         static let topInset: CGFloat = 24
         static let textsHeaderInset: CGFloat = 8
