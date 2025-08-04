@@ -42,7 +42,7 @@ final class YHTabBarController: UITabBarController {
 
     private func setupButtonLabel() {
         buttonLabel.text = "Вопросы"
-        buttonLabel.font = UIFont.manrope(.medium, size: 12)
+        buttonLabel.font = UIFont.manrope(.medium, size: Constants.buttonFontSize)
         buttonLabel.textAlignment = .center
         buttonLabel.textColor = UIColor(Color.purple700)
         buttonLabel.sizeToFit()
@@ -50,7 +50,7 @@ final class YHTabBarController: UITabBarController {
     }
 
     private func positionFloatingButton() {
-        let buttonSize: CGFloat = 60
+        let buttonSize: CGFloat = Constants.buttonSize
         let tabBarHeight = tabBar.frame.height
         let yPosition = view.bounds.height - tabBarHeight - buttonSize / 2
 
@@ -67,7 +67,7 @@ final class YHTabBarController: UITabBarController {
     private func positionButtonLabel() {
         buttonLabel.frame = CGRect(
             x: floatingButton.frame.midX - buttonLabel.bounds.width / 2,
-            y: floatingButton.frame.maxY + 4,
+            y: floatingButton.frame.maxY + Constants.buttonLabelOffset,
             width: buttonLabel.bounds.width,
             height: buttonLabel.bounds.height
         )
@@ -93,12 +93,12 @@ final class YHTabBarController: UITabBarController {
 
         normalItemAppearance.titleTextAttributes = [
             .foregroundColor: UIColor.secondaryLabel,
-            .font: UIFont.manrope(.medium, size: 12)
+            .font: UIFont.manrope(.medium, size: Constants.tabBarItemFontSize)
         ]
 
         selectedItemAppearance.titleTextAttributes = [
             .foregroundColor: UIColor(Color.purple700),
-            .font: UIFont.manrope(.medium, size: 12)
+            .font: UIFont.manrope(.medium, size: Constants.tabBarItemFontSize)
         ]
 
         normalItemAppearance.iconColor = .secondaryLabel
@@ -152,11 +152,11 @@ final class YHTabBarController: UITabBarController {
     }
 
     override var childForStatusBarHidden: UIViewController? {
-        selectedViewController
+        return selectedViewController
     }
 
     override var childForStatusBarStyle: UIViewController? {
-        selectedViewController
+        return selectedViewController
     }
 }
 
@@ -165,7 +165,6 @@ final class YHTabBarController: UITabBarController {
 extension YHTabBarController: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        // Принудительно обновляем статус бар при смене таба
         setNeedsStatusBarAppearanceUpdate()
     }
 
@@ -175,5 +174,17 @@ extension YHTabBarController: UITabBarControllerDelegate {
             floatingButton.isSelected = false
         }
         return true
+    }
+}
+
+extension YHTabBarController {
+
+    private enum Constants {
+
+        static let buttonSize: CGFloat = 60
+        static let buttonFontSize: CGFloat = 12
+        static let buttonLabelOffset: CGFloat = 4
+
+        static let tabBarItemFontSize: CGFloat = 12
     }
 }

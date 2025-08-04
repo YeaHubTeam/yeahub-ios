@@ -1,14 +1,13 @@
 import UIKit
-import SwiftUI
 
-final class StatusBarWrapperViewController: UIViewController {
+public final class StatusBarWrapperViewController: UIViewController {
 
     private let wrappedViewController: UIViewController
     private let hideStatusBar: Bool
 
     // MARK: Life Cycle
     
-    init(wrappedViewController: UIViewController, hideStatusBar: Bool) {
+   public init(wrappedViewController: UIViewController, hideStatusBar: Bool) {
         self.wrappedViewController = wrappedViewController
         self.hideStatusBar = hideStatusBar
         super.init(nibName: nil, bundle: nil)
@@ -18,7 +17,7 @@ final class StatusBarWrapperViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         addChild(wrappedViewController)
@@ -28,11 +27,11 @@ final class StatusBarWrapperViewController: UIViewController {
         wrappedViewController.didMove(toParent: self)
     }
 
-    override var prefersStatusBarHidden: Bool {
+    public override var prefersStatusBarHidden: Bool {
         return hideStatusBar
     }
 
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+    public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .slide
     }
 }

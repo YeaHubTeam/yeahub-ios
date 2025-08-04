@@ -1,6 +1,7 @@
 import SwiftUI
 import NavigationKit
 import CommonUI
+import SharedScreens
 
 class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
 

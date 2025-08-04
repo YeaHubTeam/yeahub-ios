@@ -73,24 +73,24 @@ struct HomeView: View {
                 icon(image: firstImage)
                     // сменить на pureWhite, когда добавим тень
                     .background(Color.red)
-                    .cornerRadius(Constants.Icon.cornerRadius)
+                    .cornerRadius(Constants.iconCornerRadius)
                     .aspectRatio(contentMode: .fill)
                 icon(image: secondImage)
                 // сменить на pureWhite, когда добавим тень
                     .background(Color.red)
-                    .cornerRadius(Constants.Icon.cornerRadius)
+                    .cornerRadius(Constants.iconCornerRadius)
                     .aspectRatio(contentMode: .fill)
             }
             HStack(spacing: Constants.gridSpacing) {
                 icon(image: thirdImage)
                 // сменить на pureWhite, когда добавим тень
                     .background(Color.red)
-                    .cornerRadius(Constants.Icon.cornerRadius)
+                    .cornerRadius(Constants.iconCornerRadius)
                     .aspectRatio(contentMode: .fill)
                 icon(image: fourthImage)
                 // сменить на pureWhite, когда добавим тень
                     .background(Color.red)
-                    .cornerRadius(Constants.Icon.cornerRadius)
+                    .cornerRadius(Constants.iconCornerRadius)
                     .aspectRatio(contentMode: .fill)
             }
         }
@@ -99,10 +99,10 @@ struct HomeView: View {
     private func icon(image: Image) -> some View {
         return ZStack {
             image
-                .frame(width: Constants.Icon.imageSize, height: Constants.Icon.imageSize)
-                .padding(Constants.Icon.imagePadding)
+                .frame(width: Constants.iconImageSize, height: Constants.iconImageSize)
+                .padding(Constants.iconImagePadding)
         }
-        .frame(width: Constants.Icon.size, height: Constants.Icon.size)
+        .frame(width: Constants.iconSize, height: Constants.iconSize)
         
     }
 
@@ -111,45 +111,41 @@ struct HomeView: View {
         title: String,
         description: String
     ) -> some View {
-        return HStack(alignment: .top, spacing: Constants.Button.horizontalInset) {
+        return HStack(alignment: .top, spacing: Constants.buttonHorizontalInset) {
             imagesGrid(type: type)
 
-            VStack(alignment: .leading, spacing: Constants.Button.verticalinset) {
+            VStack(alignment: .leading, spacing: Constants.buttonVerticalInset) {
                 Text(title)
                     .foregroundStyle(Color.black900)
                     .font(.manrope(.medium, size: 20))
                 Text(description)
                     .foregroundStyle(Color.black900)
                     .font(.manrope(.medium, size: 16))
-                    .frame(maxWidth: Constants.Button.descriptionMaxWidth, alignment: .leading)
+                    .frame(maxWidth: Constants.buttonDescriptionMaxWidth, alignment: .leading)
                     .foregroundColor(.secondary)
             }
         }
-        .padding(.horizontal, Constants.Button.horizontalInset)
+        .padding(.horizontal, Constants.buttonHorizontalInset)
         .padding(.vertical, Constants.defaultInset)
         .background(Color.white)
-        .cornerRadius(Constants.Button.cornerRadius)
+        .cornerRadius(Constants.buttonCornerRadius)
     }
 }
 
 extension HomeView {
 
-    enum Constants {
-
-        enum Button {
-            static let horizontalInset: CGFloat = 12
-            static let verticalinset: CGFloat = 8
-            static let descriptionMaxWidth: CGFloat = 222
-            static let cornerRadius: CGFloat = 8
-        }
-
-        enum Icon {
-            static let imageSize: CGFloat = 36
-            static let imagePadding: CGFloat = 8
-            static let size: CGFloat = 48
-            static let cornerRadius: CGFloat = 10
-        }
-
+    private enum Constants {
+        
+        static let buttonHorizontalInset: CGFloat = 12
+        static let buttonVerticalInset: CGFloat = 8
+        static let buttonDescriptionMaxWidth: CGFloat = 222
+        static let buttonCornerRadius: CGFloat = 8
+        
+        static let iconImageSize: CGFloat = 36
+        static let iconImagePadding: CGFloat = 8
+        static let iconSize: CGFloat = 48
+        static let iconCornerRadius: CGFloat = 10
+        
         static let gridSpacing: CGFloat = 8
         static let defaultInset: CGFloat = 16
         static let topInset: CGFloat = 24
