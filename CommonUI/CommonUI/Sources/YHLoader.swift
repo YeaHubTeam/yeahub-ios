@@ -1,19 +1,18 @@
 import SwiftUI
 
 public struct YHLoader: View {
-
-    var state: LoadingState = .loading
+    let state: LoadingState
 
     public var body: some View {
         switch state {
         case .success:
             YHSuccess()
 
-        case .loading:
-            YHLoading()
+        case .loading(let title):
+            YHLoading(title: title)
 
-        case .commonError(let error):
-            YHCommonError(title: error)
+        case .commonError(let errorDescription):
+            YHCommonError(title: errorDescription)
 
         case .error404:
             YHError404()
@@ -22,15 +21,15 @@ public struct YHLoader: View {
 }
 
 // MARK: - Error
-extension YHLoader {
+public extension YHLoader {
     enum LoadingState {
-        case success
-        case loading
+        case success(title: String)
+        case loading(title: String)
         case commonError(title: String)
-        case error404
+        case error404(title: String)
     }
 }
 
 #Preview {
-    YHLoader()
+    YHLoader(state: .success(title: "Успешный успех"))
 }

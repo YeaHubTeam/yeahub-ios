@@ -1,57 +1,54 @@
 import SwiftUI
 
-struct YHLoading: View {
+public struct YHLoading: View {
+
+    let title: String
 
     @State private var isAnimating = false
+    private let dotSize: CGFloat = 12
+    private let animationDuration: Double = 0.6
 
-    var body: some View {
-        VStack(spacing: Constants.spacing) {
-            Circle()
-                .trim(from: Constants.trimFrom, to: Constants.trimTo)
-                .stroke(Color.purple700, style: StrokeStyle(lineWidth: Constants.lineWidth, lineCap: .round))
-                .rotationEffect(.degrees(isAnimating ? Constants.rotationDegrees : Constants.zeroDegrees))
-                .frame(width: Constants.circleSize, height: Constants.circleSize)
-                .onAppear {
-                    withAnimation(Animation.linear(duration: Constants.duration).repeatForever(autoreverses: false)) {
-                        isAnimating = true
-                    }
+    public init(title: String, isAnimating: Bool = false) {
+        self.title = title
+        self.isAnimating = isAnimating
+    }
+
+    public var body: some View {
+        VStack(spacing: 16) {
+            HStack(spacing: 8) {
+                ForEach(0..<3, id: \.self) { index in
+                    Circle()
+                        .fill(Color.purple700)
+                        .frame(width: dotSize, height: dotSize)
+                        .scaleEffect(isAnimating ? 1.0 : 0.5)
+                        .animation(
+                            Animation.easeInOut(duration: animationDuration)
+                                .repeatForever()
+                                .delay(Double(index) * animationDuration / 3),
+                            value: isAnimating
+                        )
                 }
+            }
 
-            Text(Constants.title)
-                .font(.manrope(.medium, size: Constants.fontSize))
+            // Текст
+            Text(title)
+                .font(.manrope(.medium, size: 14))
                 .foregroundColor(.black900)
         }
-        .padding(Constants.inset)
+        .padding(24)
+        .frame(width: 156)
         .background(
-            RoundedRectangle(cornerRadius: Constants.cornerRadius)
+            RoundedRectangle(cornerRadius: 12)
                 .fill(Color.pureWhite)
-                .defaultShadow()
+                .shadow(
+                    color: Color(hex: "#6A6376").opacity(0.1),
+                    radius: 10,
+                    x: 0,
+                    y: 4
+                )
         )
+        .onAppear {
+            isAnimating = true
+        }
     }
-}
-
-// MARK: - Constants
-private extension YHLoading {
-    enum Constants {
-        static let spacing: CGFloat = 16
-        static let inset: CGFloat = 24
-        static let cornerRadius: CGFloat = 12
-
-        static let title = "Идет загрузка…"
-        static let fontSize: CGFloat = 14
-
-        static let trimFrom: CGFloat = 0
-        static let trimTo: CGFloat = 0.8
-        static let lineWidth: CGFloat = 6
-
-        static let rotationDegrees: CGFloat = 360
-        static let zeroDegrees: CGFloat = 0
-        static let duration: CGFloat = 1.2
-
-        static let circleSize: CGFloat = 48
-    }
-}
-
-#Preview {
-    YHLoading()
 }
