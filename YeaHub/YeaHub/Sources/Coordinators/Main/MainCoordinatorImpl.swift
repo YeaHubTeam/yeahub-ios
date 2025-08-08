@@ -52,8 +52,8 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         // Настраиваем табы
         homeVC.tabBarItem = UITabBarItem(
             title: "Главная",
-            image: UIImage(systemName: "house"),
-            selectedImage: UIImage(systemName: "house.fill")
+            image: UIImage(named: "HomeIcon"),
+            tag: 0
         )
 
         // Центральный таб - оставляем пустым, так как у нас кастомная кнопка
@@ -65,8 +65,8 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
 
         collectionsVC.tabBarItem = UITabBarItem(
             title: "Коллекции",
-            image: UIImage(systemName: "square.stack.3d.up"),
-            selectedImage: UIImage(systemName: "square.stack.3d.up.fill")
+            image: UIImage(named: "CollectionsIcon"),
+            tag: 0
         )
 
         tabBarController.viewControllers = [homeVC, questionsVC, collectionsVC]
