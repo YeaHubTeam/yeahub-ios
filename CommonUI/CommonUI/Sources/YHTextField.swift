@@ -1,5 +1,7 @@
 import SwiftUI
 
+/// [Документация по YHTextField](https://wiki.yandex.ru/homepage/ce33d84eb842/dizajjn-sistemacommonui/komponent-yhtextfield/)
+
 public struct YHTextField: View {
     private let title: String
     @Binding private var text: String
@@ -27,7 +29,7 @@ public struct YHTextField: View {
 
                 TextField(title, text: $text)
                     .focused($isFocused)
-                    .font(Font.manrope())
+                    .font(Constants.textFieldFont)
                     .submitLabel(.search)
             }
             .padding(Constants.hStackPadding)
@@ -43,5 +45,6 @@ private extension YHTextField {
         static let hStackSpacing: CGFloat = 16
         static let hStackPadding: CGFloat = 32
         static let imageName = "magnifer"
+        static let textFieldFont: Font = .manrope(.regular, size: 16)
     }
 }
