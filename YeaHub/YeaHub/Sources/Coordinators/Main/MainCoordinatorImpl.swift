@@ -52,7 +52,7 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         // Настраиваем табы
         homeVC.tabBarItem = UITabBarItem(
             title: "Главная",
-            image: .homeVCImageTabBarLogo,
+            image: CommonUIAssets.homeVCImageTabBarLogo,
             tag: 0
         )
 
@@ -65,7 +65,7 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
 
         collectionsVC.tabBarItem = UITabBarItem(
             title: "Коллекции",
-            image: .collectionsVCImageTabBarLogo,
+            image: CommonUIAssets.collectionsVCImageTabBarLogo,
             tag: 0
         )
 
