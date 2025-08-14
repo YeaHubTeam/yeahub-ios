@@ -9,6 +9,8 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
     private weak var tabBarController: UITabBarController?
     private let router: Router
 
+    private var childCoordinators: [Coordinator] = []
+
     init(
         router: Router,
         factory: MainFactory
@@ -37,6 +39,9 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         let questionsCoordinator = factory.makeQuestionsOnboardingCoordinator(router: router)
 //        let collectionsCoordinator = factory.makeCollectionsCoordinator(router: router)
 
+        childCoordinators.append(homeCoordinator)
+        childCoordinators.append(questionsCoordinator)
+
         homeCoordinator.start()
         questionsCoordinator.start()
 //        collectionsCoordinator.start()
@@ -49,15 +54,27 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
             return
         }
 
-        // Настраиваем табы
-        homeVC.tabBarItem = UITabBarItem(
+        let homeNav: UINavigationControllerType
+        if let nav = homeVC as? UINavigationController {
+            homeNav = nav
+        } else {
+            homeNav = UINavigationController(rootViewController: homeVC)
+        }
+
+        homeNav.tabBarItem = UITabBarItem(
             title: "Главная",
             image: UIImage(systemName: "house"),
             selectedImage: UIImage(systemName: "house.fill")
         )
 
-        // Центральный таб - оставляем пустым, так как у нас кастомная кнопка
-        questionsVC.tabBarItem = UITabBarItem(
+        let questionsNav: UINavigationControllerType
+        if let nav = questionsVC as? UINavigationController {
+            questionsNav = nav
+        } else {
+            questionsNav = UINavigationController(rootViewController: questionsVC)
+        }
+
+        questionsNav.tabBarItem = UITabBarItem(
             title: "Вопросы",
             image: nil,
             selectedImage: nil
@@ -69,7 +86,7 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
             selectedImage: UIImage(systemName: "square.stack.3d.up.fill")
         )
 
-        tabBarController.viewControllers = [homeVC, questionsVC, collectionsVC]
+        tabBarController.viewControllers = [homeNav, questionsNav, collectionsVC]
     }
 
     func openFirstTab() {

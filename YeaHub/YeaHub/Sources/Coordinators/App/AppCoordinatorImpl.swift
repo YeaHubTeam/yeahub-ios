@@ -5,7 +5,8 @@ class AppCoordinatorImpl: AppCoordinator, ObservableObject {
 
     var appFactory: AppFactory
     let router: Router
-    private weak var mainCoordinator: MainCoordinator?
+
+    private var mainCoordinator: MainCoordinator?
 
     init(router: Router, appFactory: AppFactory) {
         self.router = router
@@ -14,6 +15,7 @@ class AppCoordinatorImpl: AppCoordinator, ObservableObject {
 
     func start() {
         let coordinator = appFactory.makeMainCoordinator(router: router)
+        self.mainCoordinator = coordinator
         coordinator.start()
     }
 }

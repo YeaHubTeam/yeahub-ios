@@ -3,6 +3,12 @@ import CommonUI
 
 struct QuestionsOnboardingView: View {
 
+    public var onSelectSpecialty: () -> Void
+
+    public init(onSelectSpecialty: @escaping () -> Void = {} ) {
+        self.onSelectSpecialty = onSelectSpecialty
+    }
+
     var body: some View {
         ZStack {
             Color.black10
@@ -30,7 +36,7 @@ struct QuestionsOnboardingView: View {
                     .background(Color.white)
                     .cornerRadius(Constants.Button.cornerRadius)
                     
-                    YHButton(title: "Выбрать специальность", action: {})
+                    YHButton(title: "Выбрать специальность", action: onSelectSpecialty)
                     
                     Spacer()
                 }

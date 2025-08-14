@@ -17,6 +17,7 @@ public class QuestionsOnboardingCoordinatorImpl: QuestionsOnboardingCoordinator 
     public var router: Router
     public var factory: QuestionsOnboardingFactory
     private var questionsOnboardingScreen: QuestionsOnboardingViewController?
+    private var specialtyCoordinator: SpecialtyCoordinator?
 
     public init(
         router: Router,
@@ -27,7 +28,9 @@ public class QuestionsOnboardingCoordinatorImpl: QuestionsOnboardingCoordinator 
     }
 
     public func start() {
-        questionsOnboardingScreen = factory.makeQuestionsOnboardingScreen()
+        questionsOnboardingScreen = factory.makeQuestionsOnboardingScreen(onSelectSpecialty: { [weak self] in
+            self?.startSpecialtyFlow()
+        })
     }
 
     public func getQuestionsOnboardingScreen() -> QuestionsOnboardingViewController? {
@@ -35,5 +38,12 @@ public class QuestionsOnboardingCoordinatorImpl: QuestionsOnboardingCoordinator 
             start()
         }
         return questionsOnboardingScreen
+    }
+
+    private func startSpecialtyFlow() {
+        let specialFactory = SpecialtyFactoryImpl()
+        let coordinator = SpecialtyCoordinatorImpl(router: router, factory: specialFactory)
+        specialtyCoordinator = coordinator
+        coordinator.start()
     }
 }

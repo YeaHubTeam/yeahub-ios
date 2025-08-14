@@ -11,7 +11,7 @@ public class MainRouter: Router {
     // MARK: - Private Properties
 
     private var topNavigationController: UINavigationControllerType? {
-        UIApplication.topNavigationController()
+        return UIApplication.topNavigationController()
     }
     
     private var tabBarController: UITabBarController? {
