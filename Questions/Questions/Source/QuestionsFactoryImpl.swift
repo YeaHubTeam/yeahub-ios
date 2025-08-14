@@ -8,7 +8,7 @@ public class QuestionsOnboardingFactoryImpl: QuestionsOnboardingFactory {
         QuestionsOnboardingCoordinatorImpl(router: router, factory: self)
     }
 
-    public func makeQuestionsOnboardingScreen(onSelectSpecialty: @escaping () -> Void) -> QuestionsOnboardingViewController {
-        return QuestionsOnboardingViewController(onSelectSpecialty: onSelectSpecialty)
+    public func makeQuestionsOnboardingScreen() -> QuestionsOnboardingViewController {
+        QuestionsOnboardingViewController()
     }
 }
