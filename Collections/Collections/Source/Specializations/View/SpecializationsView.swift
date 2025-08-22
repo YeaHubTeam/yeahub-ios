@@ -5,43 +5,69 @@ struct SpecializationsView: View {
     @ObservedObject var viewModel: SpecializationsViewModel
 
     var body: some View {
-        Group {
+        VStack {
             if viewModel.isLoading {
-                ProgressView("Загрузка…")
+                ProgressView(Constants.progressViewText)
             } else if let error = viewModel.errorMessage {
-                Text("Ошибка: \(error)")
+                Text(Constants.errorDescription + error)
             } else {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("IT-специальность")
-                        .font(.manrope(.semibold, size: 20))
-                        .foregroundStyle(Color.black900)
-                        .padding(.horizontal, 16)
-                        .padding(.top, 24)
+                VStack(alignment: .leading, spacing: Constants.headerSpacing) {
+                    Text(Constants.header)
+                        .font(Constants.headerFont)
+                        .foregroundStyle(Constants.headerColor)
+                        .padding(.horizontal, Constants.headerHorizontalPadding)
+                        .padding(.top, Constants.headerTopPadding)
 
                     ScrollView {
-                        LazyVStack(spacing: 8) {
+                        LazyVStack(spacing: Constants.defaultSpacing) {
                             ForEach(viewModel.specializations) { specialization in
                                 ZStack {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .foregroundStyle(Color.white)
-                                        .frame(height: 64)
-                                        .padding(.horizontal, 16)
+                                    RoundedRectangle(cornerRadius: Constants.cornerRadius)
+                                        .foregroundStyle(Constants.roundedRectangleColor)
+                                        .frame(height: Constants.roundedRectangleHeight)
+                                        .padding(.horizontal, Constants.roundedRectangleHorizontalPadding)
                                         .defaultShadow()
 
                                     Text(specialization.title)
-                                        .font(.manrope(.medium, size: 16))
-                                        .foregroundStyle(Color.black900)
+                                        .font(Constants.specializationFont)
+                                        .foregroundStyle(Constants.specializationColor)
                                 }
                             }
                         }
-                        .padding(.vertical, 16)
+                        .padding(.vertical, Constants.defaultPadding)
                     }
                 }
-                .background(Color.black10)
+                .background(Constants.background)
             }
         }
         .task {
             await viewModel.load()
         }
+    }
+}
+
+private extension SpecializationsView {
+    enum Constants {
+        static let progressViewText = "Загрузка…"
+        static let errorDescription = "Ошибка: "
+        static let header = "IT-специальность"
+
+        static let headerSpacing: CGFloat = 10
+        static let headerFont: Font = .manrope(.semibold, size: 20)
+        static let headerColor: Color = .black900
+        static let headerHorizontalPadding: CGFloat = 16
+        static let headerTopPadding: CGFloat = 24
+
+        static let defaultSpacing: CGFloat = 8
+        static let defaultPadding: CGFloat = 16
+        static let background: Color = .black10
+
+        static let cornerRadius: CGFloat = 8
+        static let roundedRectangleColor: Color = .white
+        static let roundedRectangleHeight: CGFloat = 64
+        static let roundedRectangleHorizontalPadding: CGFloat = 16
+
+        static let specializationFont: Font = .manrope(.medium, size: 16)
+        static let specializationColor: Color = .black900
     }
 }

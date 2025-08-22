@@ -17,7 +17,7 @@ public final class SpecializationsCoordinatorImpl: SpecializationsCoordinator {
     public func start() {
         specializationsScreen = factory.makeSpecializationsScreen()
 
-        router.push(specializationsScreen)
+        router.push(specializationsScreen, animated: true)
     }
 
     public func getSpecializationsScreen() -> SpecializationsViewController? {
