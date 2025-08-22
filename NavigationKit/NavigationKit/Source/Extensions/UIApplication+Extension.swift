@@ -12,7 +12,12 @@ public extension UIApplication {
 
     /// Return the topmost navigation controller
     static func topNavigationController(
-        _ controller: UIViewController? = UIApplication.keyWindow?
+        _ controller: UIViewController? = UIApplication
+            .shared
+            .connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }?
             .rootViewController
     ) -> UINavigationControllerType? {
         let currentNavigation = controller as? UINavigationControllerType
