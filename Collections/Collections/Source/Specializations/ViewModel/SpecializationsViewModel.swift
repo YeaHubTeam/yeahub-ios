@@ -17,6 +17,7 @@ public final class SpecializationsViewModel: ObservableObject {
     func load() async {
         isLoading = true
         errorMessage = nil
+        
         do {
             let result = try await repository.fetchSpecializations()
             specializations = result

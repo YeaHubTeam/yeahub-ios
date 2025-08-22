@@ -14,6 +14,12 @@ public class SpecializationsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override public func loadView() {
+        let v = UIView()
+        v.backgroundColor = UIColor(Color.black10)
+        view = v
+    }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
