@@ -1,7 +1,7 @@
 import SwiftUI
 import UIKit
 
-public class CollectionsViewController: UIViewController {
+public final class CollectionsViewController: UIViewController {
     public let viewModel: CollectionsViewModel
     private let onSelectSpecializations: () -> Void
 

@@ -5,7 +5,14 @@ struct SpecializationsView: View {
     @ObservedObject var viewModel: SpecializationsViewModel
 
     var body: some View {
-        VStack {
+        getCurrentView()
+            .task {
+                await viewModel.loadSpecializations()
+            }
+    }
+
+    private func getCurrentView() -> some View {
+        return VStack {
             if viewModel.isLoading {
                 ProgressView(Constants.progressViewText)
             } else if let error = viewModel.errorMessage {
@@ -39,9 +46,6 @@ struct SpecializationsView: View {
                 }
                 .background(Constants.background)
             }
-        }
-        .task {
-            await viewModel.load()
         }
     }
 }
