@@ -14,7 +14,7 @@ public final class SpecializationsViewModel: ObservableObject {
     }
 
     @MainActor
-    func load() async {
+    func loadSpecializations() async {
         isLoading = true
         errorMessage = nil
         

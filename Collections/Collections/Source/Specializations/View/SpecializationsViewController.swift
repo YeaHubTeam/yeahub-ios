@@ -15,9 +15,9 @@ public class SpecializationsViewController: UIViewController {
     }
 
     override public func loadView() {
-        let v = UIView()
-        v.backgroundColor = UIColor(Color.black10)
-        view = v
+        let initialView = UIView()
+        initialView.backgroundColor = UIColor(Color.black10)
+        view = initialView
     }
 
     public override func viewDidLoad() {
