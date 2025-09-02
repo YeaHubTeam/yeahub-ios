@@ -5,55 +5,51 @@ struct SpecializationsView: View {
     @ObservedObject var viewModel: SpecializationsViewModel
 
     var body: some View {
-        getCurrentView()
-            .task {
-                await viewModel.loadSpecializations()
-            }
+        YHLoader(state: viewModel.viewState) {
+            getCurrentView()
+        }
+        .task {
+            viewModel.loadSpecializations()
+        }
+        .animation(.easeInOut, value: viewModel.viewState)
+        .onDisappear {
+            viewModel.cancelLoading()
+        }
     }
 
     private func getCurrentView() -> some View {
-        return VStack {
-            if viewModel.isLoading {
-                ProgressView(Constants.progressViewText)
-            } else if let error = viewModel.errorMessage {
-                Text(Constants.errorDescription + error)
-            } else {
-                VStack(alignment: .leading, spacing: Constants.headerSpacing) {
-                    Text(Constants.header)
-                        .font(Constants.headerFont)
-                        .foregroundStyle(Constants.headerColor)
-                        .padding(.horizontal, Constants.headerHorizontalPadding)
-                        .padding(.top, Constants.headerTopPadding)
+        return VStack(alignment: .leading, spacing: Constants.headerSpacing) {
+            Text(Constants.header)
+                .font(Constants.headerFont)
+                .foregroundStyle(Constants.headerColor)
+                .padding(.horizontal, Constants.headerHorizontalPadding)
+                .padding(.top, Constants.headerTopPadding)
 
-                    ScrollView {
-                        LazyVStack(spacing: Constants.defaultSpacing) {
-                            ForEach(viewModel.specializations) { specialization in
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                                        .foregroundStyle(Constants.roundedRectangleColor)
-                                        .frame(height: Constants.roundedRectangleHeight)
-                                        .padding(.horizontal, Constants.roundedRectangleHorizontalPadding)
-                                        .defaultShadow()
+            ScrollView {
+                LazyVStack(spacing: Constants.defaultSpacing) {
+                    ForEach(viewModel.specializations) { specialization in
+                        ZStack {
+                            RoundedRectangle(cornerRadius: Constants.cornerRadius)
+                                .foregroundStyle(Constants.roundedRectangleColor)
+                                .frame(height: Constants.roundedRectangleHeight)
+                                .padding(.horizontal, Constants.roundedRectangleHorizontalPadding)
+                                .defaultShadow()
 
-                                    Text(specialization.title)
-                                        .font(Constants.specializationFont)
-                                        .foregroundStyle(Constants.specializationColor)
-                                }
-                            }
+                            Text(specialization.title)
+                                .font(Constants.specializationFont)
+                                .foregroundStyle(Constants.specializationColor)
                         }
-                        .padding(.vertical, Constants.defaultPadding)
                     }
                 }
-                .background(Constants.background)
+                .padding(.vertical, Constants.defaultPadding)
             }
         }
+        .background(Constants.background)
     }
 }
 
 private extension SpecializationsView {
     enum Constants {
-        static let progressViewText = "Загрузка…"
-        static let errorDescription = "Ошибка: "
         static let header = "IT-специальность"
 
         static let headerSpacing: CGFloat = 10
