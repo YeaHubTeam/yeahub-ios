@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct YHError404: View {
-
     @Environment(\.dismiss) var dismiss
+    let title: String
 
     var body: some View {
         VStack {
@@ -19,7 +19,7 @@ struct YHError404: View {
             }
 
             VStack(spacing: Constants.vStackSpacing) {
-                Text(Constants.errorDescription)
+                Text(title)
                     .font(.manrope(.medium, size: Constants.errorTextFontSize))
                     .foregroundColor(.black700)
 
@@ -51,7 +51,6 @@ private extension YHError404 {
 
         static let errorTitle = "4"
         static let errorTitleFontSize: CGFloat = 72
-        static let errorDescription = "Страница не найдена"
         static let errorTextFontSize: CGFloat = 16
 
         static let buttonTitle = "Назад"
@@ -63,5 +62,5 @@ private extension YHError404 {
 }
 
 #Preview {
-    YHError404()
+    YHError404(title: "Страница не найдена")
 }
