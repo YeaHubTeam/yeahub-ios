@@ -51,15 +51,15 @@ public class MainRouter: Router {
     }
 
     public func present(_ presentable: Presentable?, style: UIModalPresentationStyle? = nil) {
-        guard let controller = presentable?.toPresent() else {
+        guard isEnabled, let controller = presentable?.toPresent() else {
             return
         }
         if let style {
             controller.modalPresentationStyle = style
         }
-        present(controller, animated: true, completion: nil)
+        topViewController?.present(controller, animated: true, completion: nil)
     }
-
+    
     public func present(_ presentable: Presentable?, style: UIModalPresentationStyle? = nil, animated: Bool, completion: (() -> Void)?) {
         guard isEnabled, let controller = presentable?.toPresent() else {
             completion?()

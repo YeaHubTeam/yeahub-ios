@@ -2,8 +2,12 @@ import UIKit
 
 public extension UIApplication {
     /// Return window from the first Scene of the Application. `SceneDelegate` must implement the `CustomSceneDelegate` protocol
+
     static var keyWindow: UIWindow? {
-        (UIApplication.shared.delegate as? HasWindow)?.window
+        UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }
     }
     
     static var openSettingsURL: URL {
