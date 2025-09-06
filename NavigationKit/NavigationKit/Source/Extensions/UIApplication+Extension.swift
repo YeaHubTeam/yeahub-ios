@@ -41,7 +41,15 @@ public extension UIApplication {
     /// Return the topmost view controller on the specified view controller.
     ///
     /// - Parameter controller: Specified controller to get topmost one.  If `nil`, the window's root view controller will be used.
-    static func topViewController(_ controller: UIViewController? = UIApplication.keyWindow?.rootViewController) -> UIViewController? {
+    static func topViewController(
+        _ controller: UIViewController? = UIApplication
+            .shared
+            .connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }?
+            .rootViewController
+    ) -> UIViewController? {
         if let container = controller as? TopViewControllerSource {
             if let containee = container.topViewController() {
                 return topViewController(containee)
