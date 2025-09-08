@@ -2,10 +2,12 @@ import SwiftUI
 
 public struct YHLoader<Content: View>: View {
     let state: LoadingState
+    let refresh: (() -> Void)?
     let successView: () -> Content
 
-    public init(state: LoadingState, @ViewBuilder successView: @escaping () -> Content) {
+    public init(state: LoadingState, refresh: (() -> Void)?, @ViewBuilder successView: @escaping () -> Content) {
         self.state = state
+        self.refresh = refresh
         self.successView = successView
     }
 
@@ -22,6 +24,9 @@ public struct YHLoader<Content: View>: View {
 
         case .error404(let title):
             YHError404(title: title)
+
+        case .requestTimedOut:
+            YHConnectionLost(refresh: refresh ?? {})
         }
     }
 }
@@ -32,10 +37,11 @@ public enum LoadingState: Equatable {
     case loading(title: String)
     case commonError(title: String)
     case error404(title: String)
+    case requestTimedOut
 }
 
 #Preview {
-    YHLoader(state: .success) {
+    YHLoader(state: .success) { } successView: {
         YHSuccess()
     }
 }

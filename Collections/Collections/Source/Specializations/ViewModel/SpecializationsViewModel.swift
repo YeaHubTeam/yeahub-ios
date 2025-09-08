@@ -37,6 +37,8 @@ public final class SpecializationsViewModel: ObservableObject {
                 default:
                     viewState = .commonError(title: error.localizedDescription)
                 }
+            } catch let error as URLError where error.code == .timedOut {
+                viewState = .requestTimedOut
             } catch {
                 viewState = .commonError(title: "Что-то пошло не так")
             }
