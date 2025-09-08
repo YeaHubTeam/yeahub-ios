@@ -5,9 +5,11 @@ struct SpecializationsView: View {
     @ObservedObject var viewModel: SpecializationsViewModel
 
     var body: some View {
-        YHLoader(state: viewModel.viewState) {
+        YHLoader(state: viewModel.viewState, refresh: {
+            viewModel.loadSpecializations()
+        }, successView: {
             getCurrentView()
-        }
+        })
         .task {
             viewModel.loadSpecializations()
         }
