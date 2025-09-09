@@ -16,14 +16,9 @@ public final class SpecializationsCoordinatorImpl: SpecializationsCoordinator {
         router.push(specializationsScreen, animated: true)
     }
 
-    public func getSpecializationsScreen() -> SpecializationsViewController? {
-        if specializationsScreen == nil {
-            start()
-        }
-        return specializationsScreen
-    }
-
-    public func startQuestionFlow(text: Int) {
-        router.push(QuestionsViewController(text: text), animated: true)
+    public func startQuestionFlow(id: Int) {
+        let factory = QuestionsFactoryImpl(id: id)
+        let coordinator = QuestionsCoordinatorImpl(router: router, factory: factory)
+        coordinator.start()
     }
 }

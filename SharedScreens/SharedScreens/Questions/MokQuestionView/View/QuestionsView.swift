@@ -2,13 +2,13 @@ import CommonUI
 import SwiftUI
 
 struct QuestionsView: View {
-    var text: Int
+    var id: Int
 
     var body: some View {
-        Text(String(text))
+        Text(String(id))
     }
 }
 
 #Preview {
-    QuestionsView(text: 123456)
+    QuestionsView(id: 123456)
 }
