@@ -1,11 +1,12 @@
-import UIKit
+import CommonUI
 import SwiftUI
+import UIKit
 
-public class QuestionsOnboardingViewController: UIViewController {
-    private let onSelectSpecializations: () -> Void
+public class QuestionsViewController: UIViewController {
+    var text: Int
 
-    public init(onSelectSpecializations: @escaping () -> Void) {
-        self.onSelectSpecializations = onSelectSpecializations
+    public init(text: Int) {
+        self.text = text
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -13,20 +14,42 @@ public class QuestionsOnboardingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override public func loadView() {
+        let initialView = UIView()
+        initialView.backgroundColor = UIColor(Color.black10)
+        view = initialView
+    }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         setupSwiftUIView()
     }
 
+    private func setupNavigationBar() {
+        title = "Выбор специальности"
+
+        let appearance = UINavigationBarAppearance()
+
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor(.black900),
+            .font: UIFont.manrope(.medium, size: 16)
+        ]
+
+        navigationController?.navigationBar.tintColor = UIColor(.purple700)
+
+    }
+
     private func setupSwiftUIView() {
-        let questionsOnboardingView = QuestionsOnboardingView(onSelectSpecializations: onSelectSpecializations)
-        let hostingController = UIHostingController(rootView: questionsOnboardingView)
+        let specializationsView = QuestionsView(text: text)
+        let hostingController = UIHostingController(rootView: specializationsView)
 
         addChild(hostingController)
         view.addSubview(hostingController.view)
         hostingController.didMove(toParent: self)
 
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
             hostingController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),

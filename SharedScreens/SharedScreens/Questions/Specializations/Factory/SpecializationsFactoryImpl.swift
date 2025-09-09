@@ -2,12 +2,16 @@ import NavigationKit
 import Networking
 
 public final class SpecializationsFactoryImpl: SpecializationsFactory {
-    public init() {}
+    let router: Router
+    public init(router: Router) {
+        self.router = router
+    }
 
     public func makeSpecializationsScreen() -> SpecializationsViewController {
         let client = UrlSessionHttpClient()
         let repositoty = SpecializationsRepository(client: client)
-        let viewModel = SpecializationsViewModel(repository: repositoty)
+        let coordinator = SpecializationsCoordinatorImpl(router: router, factory: self)
+        let viewModel = SpecializationsViewModel(repository: repositoty, coordinator: coordinator)
         return SpecializationsViewController(viewModel: viewModel)
     }
 }

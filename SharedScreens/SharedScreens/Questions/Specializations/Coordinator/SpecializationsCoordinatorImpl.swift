@@ -1,9 +1,5 @@
 import NavigationKit
 
-public func makeSpecializationsCoordinator(router: Router) -> SpecializationsCoordinator {
-    SpecializationsCoordinatorImpl(router: router, factory: SpecializationsFactoryImpl())
-}
-
 public final class SpecializationsCoordinatorImpl: SpecializationsCoordinator {
     public var router: Router
     public var factory: SpecializationsFactory
@@ -25,5 +21,9 @@ public final class SpecializationsCoordinatorImpl: SpecializationsCoordinator {
             start()
         }
         return specializationsScreen
+    }
+
+    public func startQuestionFlow(text: Int) {
+        router.push(QuestionsViewController(text: text), animated: true)
     }
 }
