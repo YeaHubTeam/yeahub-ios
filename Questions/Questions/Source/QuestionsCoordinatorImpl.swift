@@ -18,7 +18,6 @@ public class QuestionsOnboardingCoordinatorImpl: QuestionsOnboardingCoordinator 
     public var router: Router
     public var factory: QuestionsOnboardingFactory
     private var questionsOnboardingScreen: QuestionsOnboardingViewController?
-    private var specializationCoordinator: SpecializationsCoordinator?
 
     public init(
         router: Router,
@@ -44,7 +43,6 @@ public class QuestionsOnboardingCoordinatorImpl: QuestionsOnboardingCoordinator 
     private func startSpecializationsFlow() {
         let specializationsFactory = SpecializationsFactoryImpl(router: router)
         let coordinator = SpecializationsCoordinatorImpl(router: router, factory: specializationsFactory)
-        specializationCoordinator = coordinator
         coordinator.start()
     }
 }

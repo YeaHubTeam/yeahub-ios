@@ -3,10 +3,10 @@ import SwiftUI
 import UIKit
 
 public class QuestionsViewController: UIViewController {
-    var text: Int
+    var id: Int
 
-    public init(text: Int) {
-        self.text = text
+    public init(id: Int) {
+        self.id = id
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -41,7 +41,7 @@ public class QuestionsViewController: UIViewController {
     }
 
     private func setupSwiftUIView() {
-        let specializationsView = QuestionsView(text: text)
+        let specializationsView = QuestionsView(id: id)
         let hostingController = UIHostingController(rootView: specializationsView)
 
         addChild(hostingController)
