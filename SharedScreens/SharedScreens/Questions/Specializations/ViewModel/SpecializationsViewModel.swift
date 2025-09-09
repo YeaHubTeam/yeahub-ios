@@ -5,14 +5,16 @@ import Networking
 
 public final class SpecializationsViewModel: ObservableObject {
     private let repository: SpecializationsRepositoryProtocol
+    private let coordinator: SpecializationsCoordinator
 
     @Published var specializations: [Specialization] = []
     @Published var viewState: LoadingState = .loading(title: "Загрузка…")
 
     private var loadTask: Task<Void, Never>?
 
-    init(repository: SpecializationsRepositoryProtocol) {
+    init(repository: SpecializationsRepositoryProtocol, coordinator: SpecializationsCoordinator) {
         self.repository = repository
+        self.coordinator = coordinator
     }
 
     func cancelLoading() {
@@ -43,5 +45,9 @@ public final class SpecializationsViewModel: ObservableObject {
                 viewState = .commonError(title: "Что-то пошло не так")
             }
         }
+    }
+
+    func passQuestionID(_ id: Int) {
+        coordinator.startQuestionFlow(text: id)
     }
 }

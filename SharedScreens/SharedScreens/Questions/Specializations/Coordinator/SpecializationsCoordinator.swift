@@ -5,4 +5,5 @@ public protocol SpecializationsCoordinator: Coordinator {
 
     func start()
     func getSpecializationsScreen() -> SpecializationsViewController?
+    func startQuestionFlow(text: Int)
 }

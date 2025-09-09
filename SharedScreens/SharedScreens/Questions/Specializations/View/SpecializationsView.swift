@@ -30,16 +30,21 @@ struct SpecializationsView: View {
             ScrollView {
                 LazyVStack(spacing: Constants.defaultSpacing) {
                     ForEach(viewModel.specializations) { specialization in
-                        ZStack {
-                            RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                                .foregroundStyle(Constants.roundedRectangleColor)
-                                .frame(height: Constants.roundedRectangleHeight)
-                                .padding(.horizontal, Constants.roundedRectangleHorizontalPadding)
-                                .defaultShadow()
+                        Button {
+                            viewModel.passQuestionID(specialization.id)
+                            print(specialization.id)
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: Constants.cornerRadius)
+                                    .foregroundStyle(Constants.roundedRectangleColor)
+                                    .frame(height: Constants.roundedRectangleHeight)
+                                    .padding(.horizontal, Constants.roundedRectangleHorizontalPadding)
+                                    .defaultShadow()
 
-                            Text(specialization.title)
-                                .font(Constants.specializationFont)
-                                .foregroundStyle(Constants.specializationColor)
+                                Text(specialization.title)
+                                    .font(Constants.specializationFont)
+                                    .foregroundStyle(Constants.specializationColor)
+                            }
                         }
                     }
                 }
