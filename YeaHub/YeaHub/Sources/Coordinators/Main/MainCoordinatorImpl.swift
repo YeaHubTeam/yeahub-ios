@@ -1,6 +1,7 @@
 import SwiftUI
 import NavigationKit
 import CommonUI
+import SharedScreens
 
 class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
 
@@ -25,12 +26,25 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
     }
 
     private func showTabBar() {
-        let tabBarController = YHTabBarController() // Используем наш кастомный контроллер
+        let tabBarController = YHTabBarController()
         self.tabBarController = tabBarController
 
         configureTabs(for: tabBarController)
 
         router.setRoot(tabBarController, animated: true)
+    }
+
+    private func wrapWithStatusBarController(_ viewController: UIViewController) -> UIViewController {
+        if let hostingController = viewController as? UIHostingController<AnyView> {
+            return StatusBarHostingController(
+                rootView: hostingController.rootView,
+                hideStatusBar: true
+            )
+        }
+        return StatusBarWrapperViewController(
+            wrappedViewController: viewController,
+            hideStatusBar: true
+        )
     }
 
     private func configureTabs(for tabBarController: UITabBarController) {
@@ -54,39 +68,32 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
             return
         }
 
-        let homeNav: UINavigationControllerType
-        if let nav = homeVC as? UINavigationController {
-            homeNav = nav
-        } else {
-            homeNav = UINavigationController(rootViewController: homeVC)
-        }
+        // Простая обертка - все контроллеры со скрытым статус баром
+        let wrappedHomeVC = wrapWithStatusBarController(homeVC)
+        let wrappedQuestionsVC = wrapWithStatusBarController(questionsVC)
+        let wrappedCollectionsVC = wrapWithStatusBarController(collectionsVC)
 
-        homeNav.tabBarItem = UITabBarItem(
+        // Настраиваем табы
+        wrappedHomeVC.tabBarItem = UITabBarItem(
             title: "Главная",
             image: CommonUIAssets.homeVCImageTabBarLogo,
             tag: 0
         )
 
-        let questionsNav: UINavigationControllerType
-        if let nav = questionsVC as? UINavigationController {
-            questionsNav = nav
-        } else {
-            questionsNav = UINavigationController(rootViewController: questionsVC)
-        }
-
-        questionsNav.tabBarItem = UITabBarItem(
+        // Центральный таб - оставляем пустым, так как у нас кастомная кнопка
+        wrappedQuestionsVC.tabBarItem = UITabBarItem(
             title: "Вопросы",
             image: nil,
             selectedImage: nil
         )
 
-        collectionsVC.tabBarItem = UITabBarItem(
+        wrappedCollectionsVC.tabBarItem = UITabBarItem(
             title: "Коллекции",
             image: CommonUIAssets.collectionsVCImageTabBarLogo,
             tag: 0
         )
 
-        tabBarController.viewControllers = [homeNav, questionsNav, collectionsVC]
+        tabBarController.viewControllers = [wrappedHomeVC, wrappedQuestionsVC, wrappedCollectionsVC]
     }
 
     func openFirstTab() {
