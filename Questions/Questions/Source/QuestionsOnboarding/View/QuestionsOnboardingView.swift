@@ -2,6 +2,7 @@ import SwiftUI
 import CommonUI
 
 struct QuestionsOnboardingView: View {
+    public var onSelectSpecializations: () -> Void
 
     var body: some View {
         ZStack {
@@ -30,7 +31,7 @@ struct QuestionsOnboardingView: View {
                     .background(Color.white)
                     .cornerRadius(Constants.Button.cornerRadius)
                     
-                    YHButton(title: "Выбрать специальность", action: {})
+                    YHButton(title: "Выбрать специальность", action: onSelectSpecializations)
                     
                     Spacer()
                 }
@@ -58,5 +59,5 @@ extension QuestionsOnboardingView {
 }
 
 #Preview {
-    QuestionsOnboardingView()
+    QuestionsOnboardingView(onSelectSpecializations: {})
 }
