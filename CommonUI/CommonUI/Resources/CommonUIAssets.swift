@@ -6,6 +6,9 @@ public enum CommonUIAssets {
     public static func image(_ name: String) -> Image {
         Image(name, bundle: bundle)
     }
+    
+    public static let homeVCImageTabBarLogo = UIImage(named: "HomeIcon")
+    public static let collectionsVCImageTabBarLogo = UIImage(named: "CollectionsIcon")
 }
 
 private final class BundleToken {}

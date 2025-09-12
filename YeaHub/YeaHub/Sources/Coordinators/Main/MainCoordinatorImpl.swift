@@ -10,6 +10,8 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
     private weak var tabBarController: UITabBarController?
     private let router: Router
 
+    private var childCoordinators: [Coordinator] = []
+
     init(
         router: Router,
         factory: MainFactory
@@ -51,6 +53,9 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         let questionsCoordinator = factory.makeQuestionsOnboardingCoordinator(router: router)
 //        let collectionsCoordinator = factory.makeCollectionsCoordinator(router: router)
 
+        childCoordinators.append(homeCoordinator)
+        childCoordinators.append(questionsCoordinator)
+
         homeCoordinator.start()
         questionsCoordinator.start()
 //        collectionsCoordinator.start()
@@ -71,8 +76,8 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         // Настраиваем табы
         wrappedHomeVC.tabBarItem = UITabBarItem(
             title: "Главная",
-            image: UIImage(systemName: "house"),
-            selectedImage: UIImage(systemName: "house.fill")
+            image: CommonUIAssets.homeVCImageTabBarLogo,
+            tag: 0
         )
 
         // Центральный таб - оставляем пустым, так как у нас кастомная кнопка
@@ -84,8 +89,8 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
 
         wrappedCollectionsVC.tabBarItem = UITabBarItem(
             title: "Коллекции",
-            image: UIImage(systemName: "square.stack.3d.up"),
-            selectedImage: UIImage(systemName: "square.stack.3d.up.fill")
+            image: CommonUIAssets.collectionsVCImageTabBarLogo,
+            tag: 0
         )
 
         tabBarController.viewControllers = [wrappedHomeVC, wrappedQuestionsVC, wrappedCollectionsVC]
