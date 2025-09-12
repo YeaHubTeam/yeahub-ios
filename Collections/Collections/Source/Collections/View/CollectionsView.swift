@@ -10,14 +10,14 @@ struct CollectionsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Constants.defaultInset) {
             Text(Constants.header)
-                .font(.manrope(.semibold, size: 20))
+                .font(Constants.headerFont)
                 .foregroundStyle(Color.black900)
 
             HStack(alignment: .top, spacing: Constants.hStackSpacing) {
-                CommonUIAssets.image("Data Science")
+                CommonUIAssets.image(Constants.image)
 
                 Text(Constants.collectionDescription)
-                    .font(.manrope(.medium, size: 16))
+                    .font(Constants.descriptionFont)
                     .foregroundStyle(Color.black900)
                     .frame(maxWidth: .infinity)
             }
@@ -42,11 +42,16 @@ private extension CollectionsView {
         static let collectionDescription = "Готовьтесь к собеседованию с подборками вопросов из крупных IT-компаний. Узнайте, какие вопросы задают в Сбере, Т-Банке, Яндексе, Авито, Ozon, VK и других компаниях"
         static let buttonTitle = "Выбрать специальность"
 
+        static let headerFont: Font = .manrope(.semibold, size: 20)
+        static let descriptionFont: Font = .manrope(.medium, size: 16)
+
         static let defaultInset: CGFloat = 16
         static let cornerRadius: CGFloat = 12
         static let mainTopPadding: CGFloat = 24
         static let horizontalPadding: CGFloat = 12
         static let hStackSpacing: CGFloat = 12
+
+        static let image: String = "Data Science"
     }
 }
 

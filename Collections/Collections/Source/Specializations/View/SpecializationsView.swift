@@ -20,7 +20,7 @@ struct SpecializationsView: View {
     }
 
     private func getCurrentView() -> some View {
-        return VStack(alignment: .leading, spacing: Constants.headerSpacing) {
+        VStack(alignment: .leading, spacing: Constants.headerSpacing) {
             Text(Constants.header)
                 .font(Constants.headerFont)
                 .foregroundStyle(Constants.headerColor)
