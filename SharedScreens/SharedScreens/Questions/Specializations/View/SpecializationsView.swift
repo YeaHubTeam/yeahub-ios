@@ -32,7 +32,6 @@ struct SpecializationsView: View {
                     ForEach(viewModel.specializations) { specialization in
                         Button {
                             viewModel.passQuestionID(specialization.id)
-                            print(specialization.id)
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: Constants.cornerRadius)
