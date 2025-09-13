@@ -17,8 +17,8 @@ public final class SpecializationsCoordinatorImpl: SpecializationsCoordinator {
     }
 
     public func startQuestionFlow(id: Int) {
-        let factory = QuestionsFactoryImpl(id: id)
-        let coordinator = QuestionsCoordinatorImpl(router: router, factory: factory)
-        coordinator.start()
+//        let factory = QuestionsFactoryImpl(id: id)
+//        let coordinator = QuestionsCoordinatorImpl(router: router, factory: factory)
+//        coordinator.start()
     }
 }
