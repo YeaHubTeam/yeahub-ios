@@ -2,11 +2,13 @@ import CommonUI
 import SwiftUI
 import UIKit
 
-public class SpecializationsViewController: UIViewController {
-    public let viewModel: SpecializationsViewModel
+public class QuestionsListViewController: UIViewController {
+    public let viewModel: QuestionsViewModel
+    private let specializationTitle: String
     
-    public init(viewModel: SpecializationsViewModel) {
+    public init(viewModel: QuestionsViewModel, specializationTitle: String) {
         self.viewModel = viewModel
+        self.specializationTitle = specializationTitle
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,21 +29,20 @@ public class SpecializationsViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        title = "Выбор специальности"
+        title = specializationTitle
         
-        let appearance = UINavigationBarAppearance()
+        navigationController?.navigationBar.tintColor = Constants.chevronColor
+        navigationItem.backButtonDisplayMode = .minimal
         
-        appearance.titleTextAttributes = [
-            .foregroundColor: UIColor(.black900),
-            .font: UIFont.manrope(.medium, size: 16)
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: (Constants.questionColor),
+            .font: Constants.questionFont
         ]
-        
-        navigationController?.navigationBar.tintColor = UIColor(.purple700)
     }
     
     private func setupSwiftUIView() {
-        let specializationsView = SpecializationsView(viewModel: viewModel)
-        let hostingController = UIHostingController(rootView: specializationsView)
+        let questionsListView = QuestionsListView(viewModel: viewModel, specializationTitle: specializationTitle)
+        let hostingController = UIHostingController(rootView: questionsListView)
         
         addChild(hostingController)
         view.addSubview(hostingController.view)
@@ -56,6 +57,17 @@ public class SpecializationsViewController: UIViewController {
             hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        hostingController.view.backgroundColor = .clear
+        hostingController.view.backgroundColor = UIColor.clear
+    }
+}
+
+
+private extension QuestionsListViewController {
+    
+    enum Constants {
+        static let chevronColor = UIColor(Color.purple700)
+        
+        static let questionFont = UIFont.manrope(.medium, size: 16)
+        static let questionColor = UIColor(Color.black900)
     }
 }

@@ -3,6 +3,6 @@ import NavigationKit
 public protocol QuestionsListCoordinator: Coordinator {
     var factory: QuestionsListFactory { get }
     
-    func start()
+    func start(with specializationId: Int, specializationTitle: String)
     func getQuestionsListScreen() -> QuestionsListViewController?
 }

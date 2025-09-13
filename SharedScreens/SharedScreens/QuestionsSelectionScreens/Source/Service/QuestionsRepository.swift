@@ -2,7 +2,7 @@ import Foundation
 import Networking
 
 protocol QuestionsRepositoryProtocol {
-    func fetchQuestions() async throws -> [QuestionsModel]
+    func fetchQuestions(for specializationId: Int) async throws -> [QuestionsModel]
 }
 
 final class QuestionsRepository: QuestionsRepositoryProtocol {
@@ -12,8 +12,8 @@ final class QuestionsRepository: QuestionsRepositoryProtocol {
         self.client = client
     }
 
-    func fetchQuestions() async throws -> [QuestionsModel] {
-        let request = GetQuestionsRequest()
+    func fetchQuestions(for specializationId: Int) async throws -> [QuestionsModel] {
+        let request = GetQuestionsRequest(specializationId: specializationId)
         let response = try await client.dataTask(request)
 
         guard response.statusCode.isValid else {

@@ -7,7 +7,7 @@ struct GetSpecializationsRequest: HttpRequest {
     }
 
     var url: HttpUrl {
-        HttpUrl(string: "https://api.yeatwork.ru/specializations")!
+        return HttpUrl(string: "https://api.yeatwork.ru/specializations")!
     }
 
     var headers: [HttpHeaderKey : String] {

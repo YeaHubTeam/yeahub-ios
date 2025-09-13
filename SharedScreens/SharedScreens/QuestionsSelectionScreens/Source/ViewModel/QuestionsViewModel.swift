@@ -5,14 +5,16 @@ import Networking
 
 public final class QuestionsViewModel: ObservableObject {
     private let repository: QuestionsRepository
+    private let specializationId: Int
 
-    @Published var questions: [Question] = []
+    @Published var questions: [QuestionsModel] = []
     @Published var viewState: LoadingState = .loading(title: "Загрузка…")
 
     private var loadTask: Task<Void, Never>?
 
-    init(repository: QuestionsRepository) {
+    init(repository: QuestionsRepository, specializationId: Int) {
         self.repository = repository
+        self.specializationId = specializationId
     }
 
     func cancelLoading() {
@@ -26,7 +28,7 @@ public final class QuestionsViewModel: ObservableObject {
             viewState = .loading(title: "Загрузка…")
 
             do {
-                let result = try await repository.fetchQuestions()
+                let result = try await repository.fetchQuestions(for: specializationId)
                 try Task.checkCancellation()
                 questions = result
                 viewState = .success
@@ -37,7 +39,8 @@ public final class QuestionsViewModel: ObservableObject {
                 default:
                     viewState = .commonError(title: error.localizedDescription)
                 }
-            } catch {
+            } catch let error {
+                print (type(of: error))
                 viewState = .commonError(title: "Что-то пошло не так")
             }
         }

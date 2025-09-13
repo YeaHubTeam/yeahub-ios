@@ -3,55 +3,63 @@ import SwiftUI
 
 struct QuestionsListView: View {
     @ObservedObject var viewModel: QuestionsViewModel
-
+    let specializationTitle: String
+    
     var body: some View {
-        YHLoader(state: viewModel.viewState) {
-            getCurrentView()
-        }
-        .task {
+        YHLoader(state: viewModel.viewState, refresh: {
             viewModel.loadQuestions()
+        }, successView: {
+            getCurrentView()
+        })
+        .task {
+            if viewModel.questions.isEmpty {
+                viewModel.loadQuestions()
+            }
         }
         .animation(.easeInOut, value: viewModel.viewState)
         .onDisappear {
             viewModel.cancelLoading()
         }
     }
-
+    
     private func getCurrentView() -> some View {
         return VStack(alignment: .leading, spacing: Constants.headerSpacing) {
-            Text(Constants.header)
+            Text("Вопросы \(specializationTitle)")
                 .font(Constants.headerFont)
                 .foregroundStyle(Constants.headerColor)
                 .padding(.horizontal, Constants.headerHorizontalPadding)
                 .padding(.top, Constants.headerTopPadding)
-
+            
             ScrollView {
                 LazyVStack(spacing: Constants.defaultSpacing) {
                     ForEach(viewModel.questions) { question in
-                        ZStack {
-                            RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                                .foregroundStyle(Constants.roundedRectangleColor)
-                                .frame(height: Constants.roundedRectangleHeight)
-                                .padding(.horizontal, Constants.roundedRectangleHorizontalPadding)
-                                .defaultShadow()
-
-                            Text(question.title)
-                                .font(Constants.questionFont)
-                                .foregroundStyle(Constants.questionColor)
+                        Button {
+                            // TODO: Добавить логику обработки нажатия на вопрос
+                            print(question.id)
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: Constants.cornerRadius)
+                                    .foregroundStyle(Constants.roundedRectangleColor)
+                                    .frame(height: Constants.roundedRectangleHeight)
+                                    .padding(.horizontal, Constants.roundedRectangleHorizontalPadding)
+                                    .defaultShadow()
+                                
+                                Text(question.title)
+                                    .font(Constants.questionFont)
+                                    .foregroundStyle(Constants.questionColor) 
+                            }
                         }
                     }
                 }
                 .padding(.vertical, Constants.defaultPadding)
             }
+            .background(Constants.background)
         }
-        .background(Constants.background)
     }
 }
 
 private extension QuestionsListView {
     enum Constants {
-        static let header = "IT-специальность"
-
         static let headerSpacing: CGFloat = 10
         static let headerFont: Font = .manrope(.semibold, size: 20)
         static let headerColor: Color = .black900

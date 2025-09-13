@@ -31,7 +31,8 @@ struct SpecializationsView: View {
                 LazyVStack(spacing: Constants.defaultSpacing) {
                     ForEach(viewModel.specializations) { specialization in
                         Button {
-                            viewModel.passQuestionID(specialization.id)
+                            viewModel.passQuestionID(specialization.id, specialization.title)
+                            
                             print(specialization.id)
                         } label: {
                             ZStack {

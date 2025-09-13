@@ -5,10 +5,10 @@ import Networking
 public final class QuestionsListFactoryImpl: QuestionsListFactory {
     public init() {}
 
-    public func makeQuestionsListScreen() -> QuestionsListViewController {
+    public func makeQuestionsListScreen(specializationId: Int, specializationTitle: String) -> QuestionsListViewController {
         let client = UrlSessionHttpClient()
-        let repositoty = QuestionsRepository(client: client)
-        let viewModel = QuestionsViewModel(repository: repositoty)
-        return QuestionsListViewController(viewModel: viewModel)
+        let repository = QuestionsRepository(client: client)
+        let viewModel = QuestionsViewModel(repository: repository, specializationId: specializationId)
+        return QuestionsListViewController(viewModel: viewModel, specializationTitle: specializationTitle)
     }
 }

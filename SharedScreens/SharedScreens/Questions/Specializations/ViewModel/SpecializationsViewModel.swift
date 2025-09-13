@@ -47,7 +47,7 @@ public final class SpecializationsViewModel: ObservableObject {
         }
     }
 
-    func passQuestionID(_ id: Int) {
-        coordinator.startQuestionFlow(id: id)
+    func passQuestionID(_ id: Int, _ specializationTitle: String) {
+        coordinator.startQuestionFlow(id: id, specializationTitle: specializationTitle)
     }
 }
