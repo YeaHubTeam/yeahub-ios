@@ -35,7 +35,7 @@ public class SpecializationsViewController: UIViewController {
         ]
         
         navigationController?.navigationBar.tintColor = Constants.chevronColor
-        navigationController?.navigationItem.backButtonDisplayMode = .minimal
+        navigationItem.backButtonDisplayMode = .minimal
     }
 
     private func setupSwiftUIView() {
