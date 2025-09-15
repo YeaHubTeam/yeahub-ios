@@ -15,7 +15,7 @@ public final class QuestionDetailViewController: UIViewController {
     
     public override func loadView() {
         let initialView = UIView()
-        initialView.backgroundColor = UIColor.gray
+        initialView.backgroundColor = UIColor(Color.black10)
         view = initialView
     }
 

@@ -73,26 +73,37 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         let wrappedQuestionsVC = wrapWithStatusBarController(questionsVC)
         let wrappedCollectionsVC = wrapWithStatusBarController(collectionsVC)
 
-        // Настраиваем табы
-        wrappedHomeVC.tabBarItem = UITabBarItem(
-            title: "Главная",
-            image: CommonUIAssets.homeVCImageTabBarLogo,
+        let homeNav: UINavigationControllerType
+        if let nav = wrappedHomeVC as? UINavigationController {
+            homeNav = nav
+        } else {
+            homeNav = UINavigationController(rootViewController: wrappedHomeVC)
+        }
+
+        homeNav.tabBarItem = UITabBarItem(
+            title: "Коллекции",
+            image: CommonUIAssets.collectionsVCImageTabBarLogo,
             tag: 0
         )
 
-        // Центральный таб - оставляем пустым, так как у нас кастомная кнопка
-        wrappedQuestionsVC.tabBarItem = UITabBarItem(
-            title: "Вопросы",
-            image: nil,
-            selectedImage: nil
+        let questionsNav: UINavigationControllerType
+        if let nav = wrappedQuestionsVC as? UINavigationController {
+            questionsNav = nav
+        } else {
+            questionsNav = UINavigationController(rootViewController: wrappedQuestionsVC)
+        }
+
+        questionsNav.tabBarItem = UITabBarItem(
+            title: "Коллекции",
+            image: CommonUIAssets.collectionsVCImageTabBarLogo,
+            tag: 0
         )
 
-        wrappedCollectionsVC.tabBarItem = UITabBarItem(
         let collectionsNav: UINavigationControllerType
-        if let nav = collectionsVC as? UINavigationController {
+        if let nav = wrappedCollectionsVC as? UINavigationController {
             collectionsNav = nav
         } else {
-            collectionsNav = UINavigationController(rootViewController: collectionsVC)
+            collectionsNav = UINavigationController(rootViewController: wrappedCollectionsVC)
         }
 
         collectionsNav.tabBarItem = UITabBarItem(
@@ -101,7 +112,6 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
             tag: 0
         )
 
-        tabBarController.viewControllers = [wrappedHomeVC, wrappedQuestionsVC, wrappedCollectionsVC]
         tabBarController.viewControllers = [homeNav, questionsNav, collectionsNav]
     }
 
