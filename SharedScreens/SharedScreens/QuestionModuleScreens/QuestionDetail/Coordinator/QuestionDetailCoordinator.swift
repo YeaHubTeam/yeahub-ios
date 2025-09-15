@@ -1,3 +1,4 @@
-protocol QuestionDetailCoordinator {
-    func start(question: QuestionDetailModel)
+import NavigationKit
+protocol QuestionDetailCoordinator: Coordinator {
+    func start(question: QuestionsModel)
 }

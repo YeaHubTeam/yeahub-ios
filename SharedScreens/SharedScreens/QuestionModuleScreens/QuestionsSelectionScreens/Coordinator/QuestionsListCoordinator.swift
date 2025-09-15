@@ -5,4 +5,5 @@ public protocol QuestionsListCoordinator: Coordinator {
     
     func start(with specializationId: Int, specializationTitle: String)
     func getQuestionsListScreen() -> QuestionsListViewController?
+    func startQuestionDetailFlow(question: QuestionsModel)
 }

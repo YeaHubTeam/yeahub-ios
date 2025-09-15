@@ -1,3 +1,3 @@
 protocol QuestionDetailFactory {
-    func makeQuestionDetailScreen(question: QuestionDetailModel) -> QuestionDetailViewController
+    func makeQuestionDetailScreen(question: QuestionsModel) -> QuestionDetailViewController
 }

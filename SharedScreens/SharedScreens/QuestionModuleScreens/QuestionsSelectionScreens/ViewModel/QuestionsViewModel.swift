@@ -6,15 +6,17 @@ import Networking
 public final class QuestionsViewModel: ObservableObject {
     private let repository: QuestionsRepository
     private let specializationId: Int
+    private let coordinator: QuestionsListCoordinator
 
     @Published var questions: [QuestionsModel] = []
     @Published var viewState: LoadingState = .loading(title: "Загрузка…")
 
     private var loadTask: Task<Void, Never>?
 
-    init(repository: QuestionsRepository, specializationId: Int) {
+    init(repository: QuestionsRepository, specializationId: Int, coordinator: QuestionsListCoordinator) {
         self.repository = repository
         self.specializationId = specializationId
+        self.coordinator = coordinator
     }
 
     func cancelLoading() {
@@ -51,5 +53,9 @@ public final class QuestionsViewModel: ObservableObject {
         if questions.isEmpty {
             loadQuestions()
         }
+    }
+
+    func passQuestionModel(question: QuestionsModel) {
+        coordinator.startQuestionDetailFlow(question: question)
     }
 }

@@ -1,8 +1,8 @@
 import NavigationKit
 
-public func makeQuestionsListCoordinator(router: Router) -> QuestionsListCoordinator {
-    QuestionsListCoordinatorImpl(router: router, factory: QuestionsListFactoryImpl())
-}
+//public func makeQuestionsListCoordinator(router: Router) -> QuestionsListCoordinator {
+//    QuestionsListCoordinatorImpl(router: router, factory: QuestionsListFactoryImpl(router: router))
+//}
 
 public final class QuestionsListCoordinatorImpl: QuestionsListCoordinator {
     public var router: Router
@@ -37,5 +37,11 @@ public final class QuestionsListCoordinatorImpl: QuestionsListCoordinator {
             questionsListScreen = factory.makeQuestionsListScreen(specializationId: currentSpecializationId, specializationTitle: currentSpecializationTitle)
         }
         return questionsListScreen
+    }
+
+    public func startQuestionDetailFlow(question: QuestionsModel) {
+        let factory = QuestionDetailFactoryImpl()
+        let coordinator = QuestionDetailCoordinatorImpl(router: router, factory: factory)
+        coordinator.start(question: question)
     }
 }

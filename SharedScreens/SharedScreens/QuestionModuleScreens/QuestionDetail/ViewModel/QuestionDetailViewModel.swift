@@ -1,9 +1,9 @@
 import Combine
 
 public final class QuestionDetailViewModel: ObservableObject {
-    let question: QuestionDetailModel
+    let question: QuestionsModel
 
-    init(question: QuestionDetailModel) {
+    init(question: QuestionsModel) {
         self.question = question
     }
 }
