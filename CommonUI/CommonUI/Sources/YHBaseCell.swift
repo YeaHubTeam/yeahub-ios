@@ -38,7 +38,7 @@ struct YHBaseCell: View {
                     
                     Spacer()
                     
-                    CommonUIAssets.image(Constants.Icon.arrowIcon)
+                    CommonUIAssets.image(Constants.Icon.arrow)
                         .frame(width: Constants.Size.arrow, height: Constants.Size.arrow)
                 }
                 .frame(maxWidth: .infinity, minHeight: Constants.CellHeight.question, alignment: .leading)
@@ -136,6 +136,6 @@ enum Constants {
     }
     
     enum Icon {
-        static let arrowIcon = "rightArrowIcon"
+        static let arrow = "rightArrowIcon"
     }
 }
