@@ -16,6 +16,7 @@ public class QuestionsOnboardingViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupSwiftUIView()
+        navigationItem.backButtonDisplayMode = .minimal
     }
 
     private func setupSwiftUIView() {

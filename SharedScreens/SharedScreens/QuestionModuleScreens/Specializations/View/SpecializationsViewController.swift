@@ -27,17 +27,15 @@ public class SpecializationsViewController: UIViewController {
     }
 
     private func setupNavigationBar() {
-        title = "Выбор специальности"
+        title = Constants.title
 
-        let appearance = UINavigationBarAppearance()
-
-        appearance.titleTextAttributes = [
-            .foregroundColor: UIColor(.black900),
-            .font: UIFont.manrope(.medium, size: 16)
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: Constants.navigationBarForegroundColor,
+            .font: Constants.navigationBarFont
         ]
-
-        navigationController?.navigationBar.tintColor = UIColor(.purple700)
-
+        
+        navigationController?.navigationBar.tintColor = Constants.chevronColor
+        navigationItem.backButtonDisplayMode = .minimal
     }
 
     private func setupSwiftUIView() {
@@ -58,5 +56,14 @@ public class SpecializationsViewController: UIViewController {
         ])
 
         hostingController.view.backgroundColor = .clear
+    }
+}
+
+private extension SpecializationsViewController {
+    enum Constants {
+        static let title = "Выбор специальности"
+        static let navigationBarFont = UIFont.manrope(.medium, size: 16)
+        static let navigationBarForegroundColor = UIColor(.black900)
+        static let chevronColor = UIColor(.purple700)
     }
 }
