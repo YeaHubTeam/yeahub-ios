@@ -51,19 +51,19 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         // Создаем координаторы
         let homeCoordinator = factory.makeHomeCoordinator(router: router)
         let questionsCoordinator = factory.makeQuestionsOnboardingCoordinator(router: router)
-//        let collectionsCoordinator = factory.makeCollectionsCoordinator(router: router)
+        let collectionsCoordinator = factory.makeCollectionsCoordinator(router: router)
 
         childCoordinators.append(homeCoordinator)
         childCoordinators.append(questionsCoordinator)
+        childCoordinators.append(collectionsCoordinator)
 
         homeCoordinator.start()
         questionsCoordinator.start()
-//        collectionsCoordinator.start()
+        collectionsCoordinator.start()
 
-        let collectionsVC = UIViewController()
         guard let homeVC = homeCoordinator.getHomeScreen()?.toPresent(),
-              let questionsVC = questionsCoordinator.getQuestionsOnboardingScreen()?.toPresent()
-//              let collectionsVC = collectionsCoordinator.toPresent()
+              let questionsVC = questionsCoordinator.getQuestionsOnboardingScreen()?.toPresent(),
+              let collectionsVC = collectionsCoordinator.getCollectionScreen()?.toPresent()
         else {
             return
         }
@@ -88,12 +88,21 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         )
 
         wrappedCollectionsVC.tabBarItem = UITabBarItem(
+        let collectionsNav: UINavigationControllerType
+        if let nav = collectionsVC as? UINavigationController {
+            collectionsNav = nav
+        } else {
+            collectionsNav = UINavigationController(rootViewController: collectionsVC)
+        }
+
+        collectionsNav.tabBarItem = UITabBarItem(
             title: "Коллекции",
             image: CommonUIAssets.collectionsVCImageTabBarLogo,
             tag: 0
         )
 
         tabBarController.viewControllers = [wrappedHomeVC, wrappedQuestionsVC, wrappedCollectionsVC]
+        tabBarController.viewControllers = [homeNav, questionsNav, collectionsNav]
     }
 
     func openFirstTab() {
