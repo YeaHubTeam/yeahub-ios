@@ -74,24 +74,24 @@ struct HomeView: View {
             HStack(spacing: Constants.gridSpacing) {
                 icon(image: firstImage)
                     .background(Color.pureWhite)
-                    .cornerRadius(Constants.Icon.cornerRadius)
+                    .cornerRadius(Constants.iconCornerRadius)
                     .aspectRatio(contentMode: .fill)
                     .defaultShadow()
                 icon(image: secondImage)
                     .background(Color.pureWhite)
-                    .cornerRadius(Constants.Icon.cornerRadius)
+                    .cornerRadius(Constants.iconCornerRadius)
                     .aspectRatio(contentMode: .fill)
                     .defaultShadow()
             }
             HStack(spacing: Constants.gridSpacing) {
                 icon(image: thirdImage)
                     .background(Color.pureWhite)
-                    .cornerRadius(Constants.Icon.cornerRadius)
+                    .cornerRadius(Constants.iconCornerRadius)
                     .aspectRatio(contentMode: .fill)
                     .defaultShadow()
                 icon(image: fourthImage)
                     .background(Color.pureWhite)
-                    .cornerRadius(Constants.Icon.cornerRadius)
+                    .cornerRadius(Constants.iconCornerRadius)
                     .aspectRatio(contentMode: .fill)
                     .defaultShadow()
             }
