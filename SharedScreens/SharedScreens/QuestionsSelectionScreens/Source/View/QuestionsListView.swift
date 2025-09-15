@@ -12,9 +12,7 @@ struct QuestionsListView: View {
             getCurrentView()
         })
         .task {
-            if viewModel.questions.isEmpty {
-                viewModel.loadQuestions()
-            }
+            viewModel.loadQuestionsIfNeeded()
         }
         .animation(.easeInOut, value: viewModel.viewState)
         .onDisappear {
@@ -35,7 +33,7 @@ struct QuestionsListView: View {
                     ForEach(viewModel.questions) { question in
                         Button {
                             // TODO: Добавить логику обработки нажатия на вопрос
-                            print(question.id)
+                            print(question)
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: Constants.cornerRadius)

@@ -45,4 +45,11 @@ public final class QuestionsViewModel: ObservableObject {
             }
         }
     }
+    
+    @MainActor
+    func loadQuestionsIfNeeded() {
+        if questions.isEmpty {
+            loadQuestions()
+        }
+    }
 }
