@@ -122,7 +122,7 @@ enum Constants {
     }
     
     enum Size {
-        static let bullet: CGFloat = 6
+        static let bullet: CGFloat = 8
         static let arrow: CGFloat = 20
     }
     
