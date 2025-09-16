@@ -1,9 +1,5 @@
 import NavigationKit
 
-//public func makeQuestionsListCoordinator(router: Router) -> QuestionsListCoordinator {
-//    QuestionsListCoordinatorImpl(router: router, factory: QuestionsListFactoryImpl(router: router))
-//}
-
 public final class QuestionsListCoordinatorImpl: QuestionsListCoordinator {
     public var router: Router
     public var factory: QuestionsListFactory
