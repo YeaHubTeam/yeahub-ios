@@ -8,7 +8,7 @@ public final class SpecializationsViewModel: ObservableObject {
     private let coordinator: SpecializationsCoordinator
 
     @Published var specializations: [Specialization] = []
-    @Published var viewState: LoadingState = .loading(title: "Загрузка…")
+    @Published var viewState = Constants.loading
 
     private var loadTask: Task<Void, Never>?
 
@@ -25,7 +25,7 @@ public final class SpecializationsViewModel: ObservableObject {
     func loadSpecializations() {
         cancelLoading()
         loadTask = Task {
-            viewState = .loading(title: "Загрузка…")
+            viewState = Constants.loading
 
             do {
                 let result = try await repository.fetchSpecializations()
@@ -35,19 +35,27 @@ public final class SpecializationsViewModel: ObservableObject {
             } catch let error as HttpError {
                 switch error {
                 case .notFound:
-                    viewState = .error404(title: "Специальности не найдены")
+                    viewState = Constants.error404
                 default:
                     viewState = .commonError(title: error.localizedDescription)
                 }
             } catch let error as URLError where error.code == .timedOut {
                 viewState = .requestTimedOut
             } catch {
-                viewState = .commonError(title: "Что-то пошло не так")
+                viewState = Constants.commonError
             }
         }
     }
 
     func passQuestionID(_ id: Int, _ specializationTitle: String) {
         coordinator.startQuestionFlow(id: id, specializationTitle: specializationTitle)
+    }
+}
+
+private extension SpecializationsViewModel {
+    enum Constants {
+        static let loading: LoadingState = .loading(title: "Загрузка…")
+        static let error404: LoadingState = .error404(title: "Специальности не найдены")
+        static let commonError: LoadingState = .commonError(title: "Что-то пошло не так")
     }
 }
