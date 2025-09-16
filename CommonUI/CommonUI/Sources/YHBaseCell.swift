@@ -35,6 +35,11 @@ struct YHBaseCell: View {
                         .multilineTextAlignment(.leading)
                         .lineLimit(2)
                         .truncationMode(.tail)
+                    
+                    Spacer()
+                    
+                    CommonUIAssets.image(Constants.Icon.arrow)
+                        .frame(width: Constants.Size.arrow, height: Constants.Size.arrow)
                 }
                 .frame(maxWidth: .infinity, minHeight: Constants.CellHeight.question, alignment: .leading)
                 .padding(.horizontal, Constants.Padding.horizontal)
@@ -117,7 +122,8 @@ enum Constants {
     }
     
     enum Size {
-        static let bullet: CGFloat = 6
+        static let bullet: CGFloat = 8
+        static let arrow: CGFloat = 20
     }
     
     enum Spacing {
@@ -127,5 +133,9 @@ enum Constants {
     
     enum Opacity {
         static let subtext: CGFloat = 0.7
+    }
+    
+    enum Icon {
+        static let arrow = "rightArrowIcon"
     }
 }
