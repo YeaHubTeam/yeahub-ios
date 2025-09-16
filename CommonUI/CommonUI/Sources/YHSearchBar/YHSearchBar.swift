@@ -7,15 +7,16 @@ import SwiftUI
 
 public struct YHSearchBar: View {
     
-    private let imageName: String
     @Binding var text: String
-    private let placeholder: String
+    
     @FocusState private var isFocused: Bool
-
+    private let imageName: String
+    private let placeholder: String
+   
     public init(
         imageName: String = "magnifer",
         text: Binding<String>,
-        placeholder: String = "Профессия, инструмент",
+        placeholder: String
     ) {
         self.imageName = imageName
         self._text = text
