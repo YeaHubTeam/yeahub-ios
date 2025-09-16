@@ -2,7 +2,7 @@ import CommonUI
 import SwiftUI
 
 struct QuestionDetailView: View {
-    @ObservedObject var viewModel: QuestionDetailViewModel
+    var viewModel: QuestionDetailViewModel
 
     var body: some View {
         ScrollView {

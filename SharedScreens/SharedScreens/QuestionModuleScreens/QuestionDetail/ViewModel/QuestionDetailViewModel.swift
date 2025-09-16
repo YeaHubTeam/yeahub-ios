@@ -1,6 +1,4 @@
-import Combine
-
-public final class QuestionDetailViewModel: ObservableObject {
+public final class QuestionDetailViewModel {
     let question: QuestionsModel
 
     init(question: QuestionsModel) {
