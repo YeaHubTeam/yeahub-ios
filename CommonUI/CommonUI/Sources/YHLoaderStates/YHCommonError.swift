@@ -16,7 +16,7 @@ struct YHCommonError: View {
                     .foregroundColor(.black700)
             }
             
-            YHButton(title: Constants.buttonTitle) {
+            YHButton(state: .primaryEnabled, title: Constants.buttonTitle) {
                 dismiss()
             }
             .frame(width: Constants.buttonWidth, height: Constants.buttonHeight)
