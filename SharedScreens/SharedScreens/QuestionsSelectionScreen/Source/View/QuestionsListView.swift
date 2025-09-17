@@ -32,8 +32,7 @@ struct QuestionsListView: View {
                 LazyVStack(spacing: Constants.defaultSpacing) {
                     ForEach(viewModel.questions) { question in
                         Button {
-                            // TODO: Добавить логику обработки нажатия на вопрос
-                            print(question)
+                            viewModel.startQuestionFlow(for: question)
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: Constants.cornerRadius)

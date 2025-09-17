@@ -6,19 +6,25 @@ import Networking
 public final class QuestionsViewModel: ObservableObject {
     private let repository: QuestionsRepository
     private let specializationId: Int
+    private let coordinator: QuestionsListCoordinator
 
     @Published var questions: [QuestionsModel] = []
     @Published var viewState: LoadingState = .loading(title: "Загрузка…")
 
     private var loadTask: Task<Void, Never>?
 
-    init(repository: QuestionsRepository, specializationId: Int) {
+    init(repository: QuestionsRepository, specializationId: Int, coordinator: QuestionsListCoordinator) {
         self.repository = repository
         self.specializationId = specializationId
+        self.coordinator = coordinator
     }
 
     func cancelLoading() {
         loadTask?.cancel()
+    }
+    
+    func passQuestionModel(for question: QuestionsModel) {
+        coordinator.startQuestionFlow(model: question)
     }
 
     @MainActor

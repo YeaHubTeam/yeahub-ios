@@ -1,9 +1,5 @@
 import NavigationKit
 
-public func makeQuestionsListCoordinator(router: Router) -> QuestionsListCoordinator {
-    QuestionsListCoordinatorImpl(router: router, factory: QuestionsListFactoryImpl())
-}
-
 public final class QuestionsListCoordinatorImpl: QuestionsListCoordinator {
     public var router: Router
     public var factory: QuestionsListFactory
@@ -30,6 +26,12 @@ public final class QuestionsListCoordinatorImpl: QuestionsListCoordinator {
         currentSpecializationTitle = specializationTitle
         questionsListScreen = factory.makeQuestionsListScreen(specializationId: specializationId, specializationTitle: specializationTitle)
         router.push(questionsListScreen, animated: true)
+    }
+    
+    public func startQuestionDetailFlow(model: QuestionsModel) {
+   //     let factory = QuestionsListFactoryImpl()
+     //   let coordinator = QuestionsListCoordinatorImpl(router: router, factory: factory)
+       // coordinator.start(with: id, specializationTitle: specializationTitle)
     }
 
     public func getQuestionsListScreen() -> QuestionsListViewController? {

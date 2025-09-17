@@ -2,22 +2,25 @@ import UIKit
 import SwiftUI
 
 public class QuestionsOnboardingViewController: UIViewController {
+    private let onSelectSpecializations: () -> Void
 
-    public init() {
+    public init(onSelectSpecializations: @escaping () -> Void) {
+        self.onSelectSpecializations = onSelectSpecializations
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupSwiftUIView()
+        navigationItem.backButtonDisplayMode = .minimal
     }
 
     private func setupSwiftUIView() {
-        let questionsOnboardingView = QuestionsOnboardingView()
+        let questionsOnboardingView = QuestionsOnboardingView(onSelectSpecializations: onSelectSpecializations)
         let hostingController = UIHostingController(rootView: questionsOnboardingView)
 
         addChild(hostingController)

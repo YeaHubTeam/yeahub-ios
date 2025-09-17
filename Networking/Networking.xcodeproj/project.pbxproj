@@ -7,23 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6C356F4B2E38BA9100D0D881 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C356F4A2E38BA9100D0D881 /* XCTest.framework */; platformFilter = ios; };
-		6C356F4C2E38BA9100D0D881 /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6C356F4A2E38BA9100D0D881 /* XCTest.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9F6CA0D22E55CEC80024B1F8 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 9F6CA0D12E55CEC80024B1F8 /* Logging */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		6C356F4D2E38BA9100D0D881 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				6C356F4C2E38BA9100D0D881 /* XCTest.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6C356EE02E38B90400D0D881 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C356F4B2E38BA9100D0D881 /* XCTest.framework in Frameworks */,
+				9F6CA0D22E55CEC80024B1F8 /* Logging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +81,6 @@
 				6C356EDC2E38B90400D0D881 /* Sources */,
 				6C356EDD2E38B90400D0D881 /* Frameworks */,
 				6C356EDE2E38B90400D0D881 /* Resources */,
-				6C356F4D2E38BA9100D0D881 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -107,6 +91,7 @@
 			);
 			name = Networking;
 			packageProductDependencies = (
+				9F6CA0D12E55CEC80024B1F8 /* Logging */,
 			);
 			productName = Networking;
 			productReference = 6C356EE02E38B90400D0D881 /* Networking.framework */;
@@ -135,6 +120,9 @@
 			);
 			mainGroup = 6C356ED62E38B90400D0D881;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9F6CA0D02E55CEC80024B1F8 /* XCRemoteSwiftPackageReference "swift-log" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6C356EE12E38B90400D0D881 /* Products */;
 			projectDirPath = "";
@@ -379,6 +367,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F6CA0D02E55CEC80024B1F8 /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F6CA0D12E55CEC80024B1F8 /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F6CA0D02E55CEC80024B1F8 /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6C356ED72E38B90400D0D881 /* Project object */;
 }

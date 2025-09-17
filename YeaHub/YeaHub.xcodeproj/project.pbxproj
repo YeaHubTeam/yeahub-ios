@@ -19,6 +19,8 @@
 		6CA7664B2E37D80C00CC5513 /* NavigationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA766492E37D80C00CC5513 /* NavigationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EDA43BCF2E4006CE00A52079 /* SharedScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA43BCE2E4006CE00A52079 /* SharedScreens.framework */; };
 		EDA43BD02E4006CE00A52079 /* SharedScreens.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDA43BCE2E4006CE00A52079 /* SharedScreens.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FC1BBB02E533FD000CB7125 /* Collections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC1BBAF2E533FD000CB7125 /* Collections.framework */; };
+		9FC1BBB12E533FD000CB7125 /* Collections.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC1BBAF2E533FD000CB7125 /* Collections.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +32,7 @@
 			files = (
 				24AD72A12E23E33000A32E39 /* YeaHubCore.framework in Embed Frameworks */,
 				24AD72A42E23E33400A32E39 /* CommonUI.framework in Embed Frameworks */,
+				9FC1BBB12E533FD000CB7125 /* Collections.framework in Embed Frameworks */,
 				6C2682B42E3743D400FC5783 /* Home.framework in Embed Frameworks */,
 				6CA7664B2E37D80C00CC5513 /* NavigationKit.framework in Embed Frameworks */,
 				6C356E902E38B32700D0D881 /* Questions.framework in Embed Frameworks */,
@@ -48,6 +51,7 @@
 		6C356E8E2E38B32700D0D881 /* Questions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Questions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CA766492E37D80C00CC5513 /* NavigationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NavigationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDA43BCE2E4006CE00A52079 /* SharedScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FC1BBAF2E533FD000CB7125 /* Collections.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Collections.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -78,6 +82,7 @@
 			files = (
 				24AD72A02E23E33000A32E39 /* YeaHubCore.framework in Frameworks */,
 				6CA7664A2E37D80C00CC5513 /* NavigationKit.framework in Frameworks */,
+				9FC1BBB02E533FD000CB7125 /* Collections.framework in Frameworks */,
 				6C2682B32E3743D400FC5783 /* Home.framework in Frameworks */,
 				24AD72A32E23E33400A32E39 /* CommonUI.framework in Frameworks */,
 				6C356E8F2E38B32700D0D881 /* Questions.framework in Frameworks */,
@@ -92,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				EDA43BCE2E4006CE00A52079 /* SharedScreens.framework */,
+				9FC1BBAF2E533FD000CB7125 /* Collections.framework */,
 				6C356E8E2E38B32700D0D881 /* Questions.framework */,
 				6CA766492E37D80C00CC5513 /* NavigationKit.framework */,
 				6C2682B22E3743D400FC5783 /* Home.framework */,
