@@ -32,7 +32,7 @@ struct QuestionsListView: View {
                 LazyVStack(spacing: Constants.defaultSpacing) {
                     ForEach(viewModel.questions) { question in
                         Button {
-                            viewModel.startQuestionFlow(for: question)
+                            viewModel.passQuestionModel(for: question)
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: Constants.cornerRadius)

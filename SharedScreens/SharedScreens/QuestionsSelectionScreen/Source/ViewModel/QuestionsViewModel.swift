@@ -24,7 +24,7 @@ public final class QuestionsViewModel: ObservableObject {
     }
     
     func passQuestionModel(for question: QuestionsModel) {
-        coordinator.startQuestionFlow(model: question)
+        coordinator.startQuestionDetailFlow(model: question)
     }
 
     @MainActor
