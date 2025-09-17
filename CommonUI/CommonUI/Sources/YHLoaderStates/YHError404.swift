@@ -23,7 +23,7 @@ struct YHError404: View {
                     .font(.manrope(.medium, size: Constants.errorTextFontSize))
                     .foregroundColor(.black700)
 
-                YHButton(title: Constants.buttonTitle) {
+                YHButton(state: .primaryEnabled, title: Constants.buttonTitle) {
                     dismiss()
                 }
                 .frame(width: Constants.buttonWidth, height: Constants.buttonHeight)
