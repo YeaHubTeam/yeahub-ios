@@ -19,12 +19,16 @@ public final class StatusBarWrapperViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupNavigationBar()
         addChild(wrappedViewController)
         view.addSubview(wrappedViewController.view)
         wrappedViewController.view.frame = view.bounds
         wrappedViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         wrappedViewController.didMove(toParent: self)
+    }
+
+    private func setupNavigationBar() {
+        navigationItem.backButtonDisplayMode = .minimal
     }
 
     public override var prefersStatusBarHidden: Bool {

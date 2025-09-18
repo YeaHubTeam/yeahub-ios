@@ -18,7 +18,6 @@ public final class CollectionsViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupSwiftUIView()
-        navigationItem.backButtonTitle = ""
     }
 
     private func setupSwiftUIView() {
