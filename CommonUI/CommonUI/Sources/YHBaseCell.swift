@@ -1,16 +1,20 @@
 import SwiftUI
 
-enum YHBaseCellState {
+public enum YHBaseCellState {
     case speciality(title: String, action: () -> Void = {})
     case question(title: String, action: () -> Void = {})
     case questionDescription(title: String, text: String)
     case answer(title: String, text: String)
 }
 
-struct YHBaseCell: View {
+public struct YHBaseCell: View {
     let state: YHBaseCellState
-    
-    var body: some View {
+
+    public init(state: YHBaseCellState) {
+        self.state = state
+    }
+
+    public var body: some View {
         switch state {
         
         case .speciality(let title, let action):
@@ -35,6 +39,11 @@ struct YHBaseCell: View {
                         .multilineTextAlignment(.leading)
                         .lineLimit(2)
                         .truncationMode(.tail)
+                    
+                    Spacer()
+                    
+                    CommonUIAssets.image(Constants.Icon.arrow)
+                        .frame(width: Constants.Size.arrow, height: Constants.Size.arrow)
                 }
                 .frame(maxWidth: .infinity, minHeight: Constants.CellHeight.question, alignment: .leading)
                 .padding(.horizontal, Constants.Padding.horizontal)
@@ -117,7 +126,8 @@ enum Constants {
     }
     
     enum Size {
-        static let bullet: CGFloat = 6
+        static let bullet: CGFloat = 8
+        static let arrow: CGFloat = 20
     }
     
     enum Spacing {
@@ -127,5 +137,9 @@ enum Constants {
     
     enum Opacity {
         static let subtext: CGFloat = 0.7
+    }
+    
+    enum Icon {
+        static let arrow = "rightArrowIcon"
     }
 }
