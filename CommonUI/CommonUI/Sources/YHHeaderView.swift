@@ -15,7 +15,7 @@ public struct YHHeaderView: View {
                 .font(Constants.titleFont)
                 .foregroundStyle(Constants.titleColor)
 
-            if let subtitle = subtitle {
+            if let subtitle {
                 Text(subtitle)
                     .font(Constants.subtitleFont)
                     .foregroundStyle(Constants.subtitleColor)
