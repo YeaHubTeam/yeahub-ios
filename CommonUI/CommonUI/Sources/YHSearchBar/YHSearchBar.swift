@@ -14,11 +14,11 @@ public struct YHSearchBar: View {
     private let placeholder: String
    
     public init(
-        imageName: String = "magnifer",
+        imageName: Images = .magnifer,
         text: Binding<String>,
-        placeholder: String
+        placeholder: String = ""
     ) {
-        self.imageName = imageName
+        self.imageName = imageName.rawValue
         self._text = text
         self.placeholder = placeholder
     }
@@ -53,5 +53,11 @@ private extension YHSearchBar {
         static let hStackSpacing: CGFloat = 8
         static let hStackPadding: CGFloat = 12
         static let textFieldFont: Font = .manrope(.regular, size: 16)
+    }
+}
+
+public extension YHSearchBar {
+    enum Images: String {
+        case magnifer
     }
 }
