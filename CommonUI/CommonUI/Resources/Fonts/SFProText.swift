@@ -49,21 +49,19 @@ public extension UIFont {
     }
 
     static func sFProTextDynamic(_ weight: SFProTextWeight = .regular, style: UIFont.TextStyle) -> UIFont {
-        let baseSize: CGFloat
-
-        switch style {
-        case .largeTitle: baseSize = 34
-        case .title1: baseSize = 28
-        case .title2: baseSize = 22
-        case .title3: baseSize = 20
-        case .headline: baseSize = 17
-        case .body: baseSize = 17
-        case .callout: baseSize = 16
-        case .subheadline: baseSize = 15
-        case .footnote: baseSize = 13
-        case .caption1: baseSize = 12
-        case .caption2: baseSize = 11
-        default: baseSize = 17
+        let baseSize: CGFloat = switch style {
+        case .largeTitle: 34
+        case .title1: 28
+        case .title2: 22
+        case .title3: 20
+        case .headline: 17
+        case .body: 17
+        case .callout: 16
+        case .subheadline: 15
+        case .footnote: 13
+        case .caption1: 12
+        case .caption2: 11
+        default: 17
         }
 
         let font = UIFont.sFProText(weight, size: baseSize)
