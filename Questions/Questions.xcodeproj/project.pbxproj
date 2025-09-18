@@ -11,6 +11,8 @@
 		6C356E892E38AFE300D0D881 /* CommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6C356E872E38AFE300D0D881 /* CommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6C356E8C2E38B25A00D0D881 /* NavigationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C356E8B2E38B25A00D0D881 /* NavigationKit.framework */; };
 		6C356E8D2E38B25A00D0D881 /* NavigationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6C356E8B2E38B25A00D0D881 /* NavigationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9F777A7F2E6F1EF800A102EE /* SharedScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F777A7E2E6F1EF800A102EE /* SharedScreens.framework */; };
+		9F777A802E6F1EF800A102EE /* SharedScreens.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F777A7E2E6F1EF800A102EE /* SharedScreens.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -22,6 +24,7 @@
 			files = (
 				6C356E892E38AFE300D0D881 /* CommonUI.framework in Embed Frameworks */,
 				6C356E8D2E38B25A00D0D881 /* NavigationKit.framework in Embed Frameworks */,
+				9F777A802E6F1EF800A102EE /* SharedScreens.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -32,6 +35,7 @@
 		6C356E872E38AFE300D0D881 /* CommonUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommonUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C356E8B2E38B25A00D0D881 /* NavigationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NavigationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C4A54642E389F040060F61D /* Questions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Questions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F777A7E2E6F1EF800A102EE /* SharedScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -49,6 +53,7 @@
 			files = (
 				6C356E882E38AFE300D0D881 /* CommonUI.framework in Frameworks */,
 				6C356E8C2E38B25A00D0D881 /* NavigationKit.framework in Frameworks */,
+				9F777A7F2E6F1EF800A102EE /* SharedScreens.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +63,7 @@
 		6C356E862E38AFE300D0D881 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9F777A7E2E6F1EF800A102EE /* SharedScreens.framework */,
 				6C356E8B2E38B25A00D0D881 /* NavigationKit.framework */,
 				6C356E872E38AFE300D0D881 /* CommonUI.framework */,
 			);

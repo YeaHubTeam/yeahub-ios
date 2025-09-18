@@ -21,6 +21,9 @@ public enum HttpError: LocalizedError {
     /// Upload request does not have data to send
     case missingUploadData
 
+    /// The requested resource was not found (HTTP 404)
+    case notFound(HttpResponse)
+
     /// Unknown error
     case unknown(Error)
 
@@ -39,6 +42,8 @@ public enum HttpError: LocalizedError {
             return "Invalid header value"
         case .missingUploadData:
             return "Missing upload data"
+        case .notFound(_):
+            return "Resource not found (404)"
         case .unknown(let error):
             return error.localizedDescription
         }

@@ -51,19 +51,19 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         // Создаем координаторы
         let homeCoordinator = factory.makeHomeCoordinator(router: router)
         let questionsCoordinator = factory.makeQuestionsOnboardingCoordinator(router: router)
-//        let collectionsCoordinator = factory.makeCollectionsCoordinator(router: router)
+        let collectionsCoordinator = factory.makeCollectionsCoordinator(router: router)
 
         childCoordinators.append(homeCoordinator)
         childCoordinators.append(questionsCoordinator)
+        childCoordinators.append(collectionsCoordinator)
 
         homeCoordinator.start()
         questionsCoordinator.start()
-//        collectionsCoordinator.start()
+        collectionsCoordinator.start()
 
-        let collectionsVC = UIViewController()
         guard let homeVC = homeCoordinator.getHomeScreen()?.toPresent(),
-              let questionsVC = questionsCoordinator.getQuestionsOnboardingScreen()?.toPresent()
-//              let collectionsVC = collectionsCoordinator.toPresent()
+              let questionsVC = questionsCoordinator.getQuestionsOnboardingScreen()?.toPresent(),
+              let collectionsVC = collectionsCoordinator.getCollectionScreen()?.toPresent()
         else {
             return
         }
@@ -73,27 +73,46 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         let wrappedQuestionsVC = wrapWithStatusBarController(questionsVC)
         let wrappedCollectionsVC = wrapWithStatusBarController(collectionsVC)
 
-        // Настраиваем табы
-        wrappedHomeVC.tabBarItem = UITabBarItem(
-            title: "Главная",
-            image: CommonUIAssets.homeVCImageTabBarLogo,
-            tag: 0
-        )
+        let homeNav: UINavigationControllerType
+        if let nav = wrappedHomeVC as? UINavigationController {
+            homeNav = nav
+        } else {
+            homeNav = UINavigationController(rootViewController: wrappedHomeVC)
+        }
 
-        // Центральный таб - оставляем пустым, так как у нас кастомная кнопка
-        wrappedQuestionsVC.tabBarItem = UITabBarItem(
-            title: "Вопросы",
-            image: nil,
-            selectedImage: nil
-        )
-
-        wrappedCollectionsVC.tabBarItem = UITabBarItem(
+        homeNav.tabBarItem = UITabBarItem(
             title: "Коллекции",
             image: CommonUIAssets.collectionsVCImageTabBarLogo,
             tag: 0
         )
 
-        tabBarController.viewControllers = [wrappedHomeVC, wrappedQuestionsVC, wrappedCollectionsVC]
+        let questionsNav: UINavigationControllerType
+        if let nav = wrappedQuestionsVC as? UINavigationController {
+            questionsNav = nav
+        } else {
+            questionsNav = UINavigationController(rootViewController: wrappedQuestionsVC)
+        }
+
+        questionsNav.tabBarItem = UITabBarItem(
+            title: "Коллекции",
+            image: CommonUIAssets.collectionsVCImageTabBarLogo,
+            tag: 0
+        )
+
+        let collectionsNav: UINavigationControllerType
+        if let nav = wrappedCollectionsVC as? UINavigationController {
+            collectionsNav = nav
+        } else {
+            collectionsNav = UINavigationController(rootViewController: wrappedCollectionsVC)
+        }
+
+        collectionsNav.tabBarItem = UITabBarItem(
+            title: "Коллекции",
+            image: CommonUIAssets.collectionsVCImageTabBarLogo,
+            tag: 0
+        )
+
+        tabBarController.viewControllers = [homeNav, questionsNav, collectionsNav]
     }
 
     func openFirstTab() {
