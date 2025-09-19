@@ -100,13 +100,13 @@ public struct YHButton: View {
     
     private func handleButtonAction() {
         action()
-        withAnimation(.easeInOut(duration: 0.01)) {
+        
+        withAnimation(.easeInOut(duration: Constants.animationDuration)) {
             isPressed = true
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            withAnimation {
-                isPressed = false
-            }
+        
+        withAnimation(.easeInOut(duration: Constants.animationDuration).delay(Constants.animationDelay)) {
+            isPressed = false
         }
     }
 }
@@ -115,5 +115,7 @@ private extension YHButton {
     enum Constants {
         static let cornerRadius: CGFloat = 12
         static let lineWidth: CGFloat = 1
+        static let animationDuration: Double = 0.3
+        static let animationDelay: Double = 0.1
     }
 }
