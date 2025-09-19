@@ -16,7 +16,11 @@ public struct YHButton: View {
 
     @State private var isPressed: Bool = false
 
-    public init(state: YHButtonState, title: String, action: @escaping () -> Void) {
+    public init(
+        state: YHButtonState,
+        title: String,
+        action: @escaping () -> Void
+    ) {
         self.state = state
         self.title = title
         self.action = action
