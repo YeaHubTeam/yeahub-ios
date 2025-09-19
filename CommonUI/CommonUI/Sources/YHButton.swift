@@ -37,7 +37,7 @@ public struct YHButton: View {
                     .frame(maxWidth: .infinity)
                     .background(Color.purple700)
                     .cornerRadius(Constants.cornerRadius)
-                    .scaleEffect(isPressed ? 0.99 : 1.0)
+                    .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
             }
             
         case .primaryDisabled:
@@ -49,7 +49,7 @@ public struct YHButton: View {
                     .frame(maxWidth: .infinity)
                     .background(Color.black100)
                     .cornerRadius(Constants.cornerRadius)
-                    .scaleEffect(isPressed ? 0.99 : 1.0)
+                    .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
             }
             .disabled(true)
             
@@ -65,7 +65,7 @@ public struct YHButton: View {
                             .stroke(Color.purple700, lineWidth: Constants.lineWidth)
                     )
                     .cornerRadius(Constants.cornerRadius)
-                    .scaleEffect(isPressed ? 0.99 : 1.0)
+                    .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
             }
             
         case .secondaryDisabled:
@@ -80,7 +80,7 @@ public struct YHButton: View {
                             .stroke(Color.black100, lineWidth: Constants.lineWidth)
                     )
                     .cornerRadius(Constants.cornerRadius)
-                    .scaleEffect(isPressed ? 0.99 : 1.0)
+                    .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
             }
             .disabled(true)
             
@@ -93,7 +93,7 @@ public struct YHButton: View {
                     .frame(maxWidth: .infinity)
                     .background(Color.red100)
                     .cornerRadius(Constants.cornerRadius)
-                    .scaleEffect(isPressed ? 0.99 : 1.0)
+                    .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
             }
         }
     }
@@ -117,5 +117,7 @@ private extension YHButton {
         static let lineWidth: CGFloat = 1
         static let animationDuration: Double = 0.3
         static let animationDelay: Double = 0.1
+        static let pressedScale: CGFloat = 0.99
+        static let normalScale: CGFloat = 1.0
     }
 }
