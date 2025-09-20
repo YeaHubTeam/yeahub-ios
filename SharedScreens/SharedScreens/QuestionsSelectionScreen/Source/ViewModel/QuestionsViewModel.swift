@@ -9,7 +9,7 @@ public final class QuestionsViewModel: ObservableObject {
     private let coordinator: QuestionsListCoordinator
 
     @Published var questions: [QuestionsModel] = []
-    @Published var viewState: LoadingState = .loading(title: "Загрузка…")
+    @Published var viewState: LoadingState = Constants.loading
 
     private var loadTask: Task<Void, Never>?
 
@@ -31,7 +31,7 @@ public final class QuestionsViewModel: ObservableObject {
     func loadQuestions() {
         cancelLoading()
         loadTask = Task {
-            viewState = .loading(title: "Загрузка…")
+            viewState = Constants.loading
 
             do {
                 let result = try await repository.fetchQuestions(for: specializationId)
@@ -41,13 +41,12 @@ public final class QuestionsViewModel: ObservableObject {
             } catch let error as HttpError {
                 switch error {
                 case .notFound:
-                    viewState = .error404(title: "Вопросы не найдены")
+                    viewState = Constants.error404
                 default:
                     viewState = .commonError(title: error.localizedDescription)
                 }
             } catch let error {
-                print (type(of: error))
-                viewState = .commonError(title: "Что-то пошло не так")
+                viewState = Constants.commonError
             }
         }
     }
@@ -57,5 +56,13 @@ public final class QuestionsViewModel: ObservableObject {
         if questions.isEmpty {
             loadQuestions()
         }
+    }
+}
+
+private extension QuestionsViewModel {
+    enum Constants {
+        static let loading: LoadingState = .loading(title: "Загрузка…")
+        static let error404: LoadingState = .error404(title: "Вопросы не найдены")
+        static let commonError: LoadingState = .commonError(title: "Что-то пошло не так")
     }
 }

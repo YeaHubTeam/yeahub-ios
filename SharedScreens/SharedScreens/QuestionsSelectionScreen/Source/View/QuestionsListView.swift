@@ -22,7 +22,7 @@ struct QuestionsListView: View {
     
     private func getCurrentView() -> some View {
         return VStack(alignment: .leading, spacing: Constants.headerSpacing) {
-            Text("Вопросы \(specializationTitle)")
+            Text("\(Constants.questionsTitle) \(specializationTitle)")
                 .font(Constants.headerFont)
                 .foregroundStyle(Constants.headerColor)
                 .padding(.horizontal, Constants.headerHorizontalPadding)
@@ -74,5 +74,7 @@ private extension QuestionsListView {
 
         static let questionFont: Font = .manrope(.medium, size: 16)
         static let questionColor: Color = .black900
+        
+        static let questionsTitle: String = "Вопросы"
     }
 }
