@@ -30,7 +30,7 @@ struct QuestionsOnboardingView: View {
                     .background(Color.white)
                     .cornerRadius(Constants.Button.cornerRadius)
                     
-                    YHButton(state: .primaryEnabled, title: "Выбрать специальность", action: {})
+                    YHButton(title: "Выбрать специальность", action: {})
                     
                     Spacer()
                 }
