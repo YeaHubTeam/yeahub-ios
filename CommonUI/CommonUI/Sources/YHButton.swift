@@ -10,15 +10,15 @@ public enum YHButtonState {
 
 public struct YHButton: View {
 
-    let state: YHButtonState
     let title: String
+    let state: YHButtonState
     let action: () -> Void
 
     @State private var isPressed: Bool = false
 
     public init(
-        state: YHButtonState,
         title: String,
+        state: YHButtonState = .primaryEnabled,
         action: @escaping () -> Void
     ) {
         self.state = state
