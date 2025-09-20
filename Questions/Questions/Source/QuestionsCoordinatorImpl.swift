@@ -1,5 +1,6 @@
 import NavigationKit
 import UIKit
+import SharedScreens
 
 public func makeQuestionsOnboardingCoordinator(
     router: Router
@@ -27,7 +28,9 @@ public class QuestionsOnboardingCoordinatorImpl: QuestionsOnboardingCoordinator 
     }
 
     public func start() {
-        questionsOnboardingScreen = factory.makeQuestionsOnboardingScreen()
+        questionsOnboardingScreen = factory.makeQuestionsOnboardingScreen(onSelectSpecializations: { [weak self] in
+            self?.startSpecializationsFlow()
+        })
     }
 
     public func getQuestionsOnboardingScreen() -> QuestionsOnboardingViewController? {
@@ -35,5 +38,11 @@ public class QuestionsOnboardingCoordinatorImpl: QuestionsOnboardingCoordinator 
             start()
         }
         return questionsOnboardingScreen
+    }
+
+    private func startSpecializationsFlow() {
+        let specializationsFactory = SpecializationsFactoryImpl(router: router)
+        let coordinator = SpecializationsCoordinatorImpl(router: router, factory: specializationsFactory)
+        coordinator.start()
     }
 }

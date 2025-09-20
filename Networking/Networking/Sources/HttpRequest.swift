@@ -25,6 +25,7 @@ extension HttpRequest {
     /// Converts a HttpRequest to a URLRequest
     public var urlRequest: URLRequest {
         var request = URLRequest(url: url.url)
+        request.timeoutInterval = 30
         request.httpMethod = method.rawValue.uppercased()
         request.httpBody = body
         for (key, value) in headers {

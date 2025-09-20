@@ -6,8 +6,32 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9FFA2EFA2E76D7EF0024D0ED /* CommonUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFA2EF92E76D7EF0024D0ED /* CommonUI.framework */; };
+		9FFA2EFB2E76D7EF0024D0ED /* CommonUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFA2EF92E76D7EF0024D0ED /* CommonUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9FFA2F022E7704360024D0ED /* NavigationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFA2F012E7704360024D0ED /* NavigationKit.framework */; };
+		9FFA2F032E7704360024D0ED /* NavigationKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFA2F012E7704360024D0ED /* NavigationKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9FFA2EFC2E76D7EF0024D0ED /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9FFA2EFB2E76D7EF0024D0ED /* CommonUI.framework in Embed Frameworks */,
+				9FFA2F032E7704360024D0ED /* NavigationKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6C4A544B2E389E5F0060F61D /* SharedScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FFA2EF92E76D7EF0024D0ED /* CommonUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CommonUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FFA2F012E7704360024D0ED /* NavigationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NavigationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +47,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FFA2EFA2E76D7EF0024D0ED /* CommonUI.framework in Frameworks */,
+				9FFA2F022E7704360024D0ED /* NavigationKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				6C4A544D2E389E5F0060F61D /* SharedScreens */,
+				9FFA2EF82E76D7EF0024D0ED /* Frameworks */,
 				6C4A544C2E389E5F0060F61D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +70,15 @@
 				6C4A544B2E389E5F0060F61D /* SharedScreens.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9FFA2EF82E76D7EF0024D0ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9FFA2F012E7704360024D0ED /* NavigationKit.framework */,
+				9FFA2EF92E76D7EF0024D0ED /* CommonUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -66,6 +102,7 @@
 				6C4A54472E389E5F0060F61D /* Sources */,
 				6C4A54482E389E5F0060F61D /* Frameworks */,
 				6C4A54492E389E5F0060F61D /* Resources */,
+				9FFA2EFC2E76D7EF0024D0ED /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -1,16 +1,20 @@
 import SwiftUI
 
-enum YHBaseCellState {
+public enum YHBaseCellState {
     case speciality(title: String, action: () -> Void = {})
     case question(title: String, action: () -> Void = {})
     case questionDescription(title: String, text: String)
     case answer(title: String, text: String)
 }
 
-struct YHBaseCell: View {
+public struct YHBaseCell: View {
     let state: YHBaseCellState
-    
-    var body: some View {
+
+    public init(state: YHBaseCellState) {
+        self.state = state
+    }
+
+    public var body: some View {
         switch state {
         
         case .speciality(let title, let action):
