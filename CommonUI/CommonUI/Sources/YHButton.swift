@@ -29,73 +29,55 @@ public struct YHButton: View {
     public var body: some View {
         switch state {
         case .primaryEnabled:
-            Button(action: handleButtonAction) {
-                Text(title)
-                    .font(.manrope(.semibold))
-                    .foregroundColor(.pureWhite)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.purple700)
-                    .cornerRadius(Constants.cornerRadius)
-                    .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
-            }
+            YHButtonStyle(
+                textColor: .pureWhite,
+                backgroundColor: .purple700)
             
         case .primaryDisabled:
-            Button(action: handleButtonAction) {
-                Text(title)
-                    .font(.manrope(.semibold))
-                    .foregroundColor(.pureWhite)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.black100)
-                    .cornerRadius(Constants.cornerRadius)
-                    .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
-            }
-            .disabled(true)
+            YHButtonStyle(
+                textColor: .pureWhite,
+                backgroundColor: .black100,
+                isDisabled: true)
             
         case .secondaryEnabled:
-            Button(action: handleButtonAction) {
-                Text(title)
-                    .font(.manrope(.semibold))
-                    .foregroundColor(.purple700)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                            .stroke(Color.purple700, lineWidth: Constants.lineWidth)
-                    )
-                    .cornerRadius(Constants.cornerRadius)
-                    .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
-            }
+            YHButtonStyle(
+                textColor: .purple700,
+                borderColor: .purple700)
             
         case .secondaryDisabled:
-            Button(action: handleButtonAction) {
-                Text(title)
-                    .font(.manrope(.semibold))
-                    .foregroundColor(.black100)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                            .stroke(Color.black100, lineWidth: Constants.lineWidth)
-                    )
-                    .cornerRadius(Constants.cornerRadius)
-                    .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
-            }
-            .disabled(true)
+            YHButtonStyle(
+                textColor: .black100,
+                borderColor: .black100,
+                isDisabled: true)
             
         case .cancel:
-            Button(action: handleButtonAction) {
-                Text(title)
-                    .font(.manrope(.semibold))
-                    .foregroundColor(.red600)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.red100)
-                    .cornerRadius(Constants.cornerRadius)
-                    .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
-            }
+            YHButtonStyle(
+                textColor: .red600,
+                backgroundColor: .red100)
         }
+    }
+    
+    private func YHButtonStyle(
+        textColor: Color,
+        backgroundColor: Color = .clear,
+        borderColor: Color = .clear,
+        isDisabled: Bool = false
+    ) -> some View {
+        Button(action: handleButtonAction) {
+            Text(title)
+                .font(.manrope(.semibold))
+                .foregroundColor(textColor)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(backgroundColor)
+                .overlay(
+                    RoundedRectangle(cornerRadius: Constants.cornerRadius)
+                        .stroke(borderColor, lineWidth: borderColor == .clear ? 0 : Constants.lineWidth)
+                )
+                .cornerRadius(Constants.cornerRadius)
+                .scaleEffect(isPressed ? Constants.pressedScale : Constants.normalScale)
+        }
+        .disabled(isDisabled)
     }
     
     private func handleButtonAction() {
