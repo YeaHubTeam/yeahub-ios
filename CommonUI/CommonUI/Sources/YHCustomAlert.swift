@@ -48,7 +48,7 @@ struct YHCustomAlert: View {
             }
             .frame(
                 width: Constants.bodyWidth,
-                height: Constants.bodyWidth
+                height: Constants.bodyHeight
             )
             .background(alertBackground)
             .overlay(closeButton, alignment: .topTrailing)
