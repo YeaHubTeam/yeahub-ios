@@ -29,35 +29,35 @@ public struct YHButton: View {
     public var body: some View {
         switch state {
         case .primaryEnabled:
-            YHButtonStyle(
+            YHStyledButton(
                 textColor: .pureWhite,
                 backgroundColor: .purple700)
             
         case .primaryDisabled:
-            YHButtonStyle(
+            YHStyledButton(
                 textColor: .pureWhite,
                 backgroundColor: .black100,
                 isDisabled: true)
             
         case .secondaryEnabled:
-            YHButtonStyle(
+            YHStyledButton(
                 textColor: .purple700,
                 borderColor: .purple700)
             
         case .secondaryDisabled:
-            YHButtonStyle(
+            YHStyledButton(
                 textColor: .black100,
                 borderColor: .black100,
                 isDisabled: true)
             
         case .cancel:
-            YHButtonStyle(
+            YHStyledButton(
                 textColor: .red600,
                 backgroundColor: .red100)
         }
     }
     
-    private func YHButtonStyle(
+    private func YHStyledButton(
         textColor: Color,
         backgroundColor: Color = .clear,
         borderColor: Color = .clear,
