@@ -10,38 +10,40 @@ public final class SpecializationsViewModel: ObservableObject {
     @Published var specializations: [Specialization] = []
     @Published var viewState = Constants.loading
 
-    private var loadTask: Task<Void, Never>?
-
     init(repository: SpecializationsRepositoryProtocol, coordinator: SpecializationsCoordinator) {
         self.repository = repository
         self.coordinator = coordinator
     }
 
-    func cancelLoading() {
-        loadTask?.cancel()
-    }
-
-    @MainActor
-    func loadSpecializations() {
-        cancelLoading()
-        loadTask = Task {
-            viewState = Constants.loading
-
-            do {
-                let result = try await repository.fetchSpecializations()
-                try Task.checkCancellation()
+    func loadSpecializations() async {
+        guard specializations.isEmpty else {
+            return
+        }
+        
+        do {
+            let result = try await repository.fetchSpecializations()
+            try Task.checkCancellation()
+            await MainActor.run {
                 specializations = result
                 viewState = .success
-            } catch let error as HttpError {
-                switch error {
-                case .notFound:
+            }
+        } catch let error as HttpError {
+            switch error {
+            case .notFound:
+                await MainActor.run {
                     viewState = Constants.error404
-                default:
+                }
+            default:
+                await MainActor.run {
                     viewState = .commonError(title: error.localizedDescription)
                 }
-            } catch let error as URLError where error.code == .timedOut {
+            }
+        } catch let error as URLError where error.code == .timedOut {
+            await MainActor.run {
                 viewState = .requestTimedOut
-            } catch {
+            }
+        } catch {
+            await MainActor.run {
                 viewState = Constants.commonError
             }
         }
