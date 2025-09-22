@@ -6,21 +6,18 @@ struct SpecializationsView: View {
 
     var body: some View {
         YHLoader(state: viewModel.viewState, refresh: {
-            viewModel.loadSpecializations()
+            viewModel.isNeedToLoad()
         }, successView: {
             getCurrentView()
         })
         .task {
-            viewModel.loadSpecializations()
+            viewModel.isNeedToLoad()
         }
         .animation(.easeInOut, value: viewModel.viewState)
-        .onDisappear {
-            viewModel.cancelLoading()
-        }
     }
 
     private func getCurrentView() -> some View {
-        return VStack(alignment: .leading, spacing: Constants.headerSpacing) {
+        VStack(alignment: .leading, spacing: Constants.headerSpacing) {
             Text(Constants.header)
                 .font(Constants.headerFont)
                 .foregroundStyle(Constants.headerColor)

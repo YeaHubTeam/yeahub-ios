@@ -9,38 +9,43 @@ public final class SpecializationsViewModel: ObservableObject {
     @Published var specializations: [Specialization] = []
     @Published var viewState: LoadingState = .loading(title: "Загрузка…")
 
-    private var loadTask: Task<Void, Never>?
-
     init(repository: SpecializationsRepositoryProtocol) {
         self.repository = repository
     }
 
-    func cancelLoading() {
-        loadTask?.cancel()
-    }
-
-    @MainActor
-    func loadSpecializations() {
-        cancelLoading()
-        loadTask = Task {
-            viewState = .loading(title: "Загрузка…")
-
-            do {
-                let result = try await repository.fetchSpecializations()
-                try Task.checkCancellation()
+    func loadSpecializations() async {
+        do {
+            let result = try await repository.fetchSpecializations()
+            await MainActor.run {
                 specializations = result
                 viewState = .success
-            } catch let error as HttpError {
-                switch error {
-                case .notFound:
+            }
+        } catch let error as HttpError {
+            switch error {
+            case .notFound:
+                await MainActor.run {
                     viewState = .error404(title: "Специальности не найдены")
-                default:
+                }
+            default:
+                await MainActor.run {
                     viewState = .commonError(title: error.localizedDescription)
                 }
-            } catch let error as URLError where error.code == .timedOut {
+            }
+        } catch let error as URLError where error.code == .timedOut {
+            await MainActor.run {
                 viewState = .requestTimedOut
-            } catch {
+            }
+        } catch {
+            await MainActor.run {
                 viewState = .commonError(title: "Что-то пошло не так")
+            }
+        }
+    }
+
+    func isNeedToLoad() {
+        if specializations.isEmpty {
+            Task {
+                await loadSpecializations()
             }
         }
     }
