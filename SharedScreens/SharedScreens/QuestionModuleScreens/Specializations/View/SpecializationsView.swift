@@ -6,17 +6,16 @@ struct SpecializationsView: View {
 
     var body: some View {
         YHLoader(state: viewModel.viewState, refresh: {
-            viewModel.loadSpecializations()
+            Task {
+                await viewModel.loadSpecializations()
+            }
         }, successView: {
             getCurrentView()
         })
         .task {
-            viewModel.loadSpecializations()
+            await viewModel.loadSpecializations()
         }
         .animation(.easeInOut, value: viewModel.viewState)
-        .onDisappear {
-            viewModel.cancelLoading()
-        }
     }
 
     private func getCurrentView() -> some View {
