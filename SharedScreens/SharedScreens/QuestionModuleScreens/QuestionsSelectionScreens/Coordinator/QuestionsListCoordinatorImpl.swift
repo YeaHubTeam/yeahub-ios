@@ -18,7 +18,6 @@ public final class QuestionsListCoordinatorImpl: QuestionsListCoordinator {
 
     public func start(with specializationId: Int, specializationTitle: String) {
         guard specializationId > 0 && !specializationTitle.isEmpty else {
-            print("Warning: invalid specializationId or specializationTitle")
             return
         }
         
