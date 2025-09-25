@@ -1,72 +1,139 @@
 import SwiftUI
 
-struct YHCustomAlert: View {
+public struct YHCustomAlert: View {
     
-    var title: String
-    var message: String
-    var buttonTitle: String
+    public enum AlertType {
+        case `default`(
+            title: String,
+            message: String,
+            button: AlertButtonStyle
+        )
+        case emailConfirmationAlert(
+            title: String,
+            message: String,
+            icon: Image,
+            button: AlertButtonStyle
+        )
+        case custom(
+            title: String,
+            message: String,
+            icon: Image?,
+            primaryButton: AlertButtonStyle,
+            secondaryButton: AlertButtonStyle?
+        )
+    }
     
-    var onButtonTap: () -> Void
-    var onClose: () -> Void
+    public struct AlertButtonStyle {
+        public let title: String
+        public let style: StyleButton
+        public let action: () -> Void
+        
+        public enum StyleButton {
+            case primary, secondary
+        }
+        
+        public init(
+            title: String,
+            style: StyleButton = .primary,
+            action: @escaping () -> Void
+        ) {
+            self.title = title
+            self.style = style
+            self.action = action
+        }
+    }
     
-    var body: some View {
+    private let alert: AlertType
+    private let onClose: () -> Void
+    
+    public init(alert: AlertType, onClose: @escaping () -> Void) {
+        self.alert = alert
+        self.onClose = onClose
+    }
+    
+    private var content: (
+        title: String,
+        message: String,
+        icon: Image?,
+        buttons: [AlertButtonStyle]
+    ) {
+        switch alert {
+        case let .default(title, message, button):
+            (title, message, nil, [button])
+        case let .emailConfirmationAlert(title, message, icon, button):
+            (title, message, icon, [button])
+        case let .custom(title, message, icon, primary, secondary):
+            (title, message, icon, [primary, secondary].compactMap { $0 })
+        }
+    }
+    
+    private func alertButtonStyle(_ button: AlertButtonStyle) -> some View {
+        Button(button.title, action: button.action)
+            .font(Constants.buttonTypography)
+            .foregroundStyle(Color.purple700)
+    }
+    
+    public var body: some View {
         ZStack {
-            Color.black300
+            Color.black300.opacity(0.5)
                 .ignoresSafeArea()
             
-            VStack(spacing: Constants.vStackSpace) {
-                Image(.alertMessageIcon)
-                    .clipped()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(
-                        width: Constants.iconMessageWidth,
-                        height: Constants.iconMessageHeight
-                    )
-                    .padding(.top, Constants.iconMessagePadding)
+            VStack {
+                Group {
+                    content.icon.map { icon in
+                        icon
+                            .clipped()
+                            .scaledToFit()
+                            .frame(
+                                width: Constants.iconMessageWidth,
+                                height: Constants.iconMessageHeight
+                            )
+                            .padding(.top, Constants.iconMessagePadding)
+                    }
+                }
                 
-                Text(title)
-                    .font(.title3)
+                Text(content.title)
+                    .font(Constants.titleTypography)
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-                    .lineLimit(2)
+                    .padding(.top, Constants.titleHorizontalPadding)
+                    .padding(.horizontal, Constants.titleHorizontalPadding)
                 
-                Text(message)
+                Text(content.message)
                     .foregroundStyle(Color.black700)
                     .font(Constants.messageTypography)
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, Constants.massageHorizontalPadding)
+                    .padding(.top, Constants.messageVerticalPadding)
+                    .padding(.horizontal, Constants.messageHorizontalPadding)
                 
-                Spacer(minLength: 0)
-                
-                Button(action: onButtonTap) {
-                    Text(buttonTitle)
-                        .font(Constants.buttonTypography)
-                        .foregroundStyle(.purple)
-                        .frame(maxWidth: .infinity)
+                HStack(spacing: Constants.buttonMarginSpacing) {
+                    ForEach(content.buttons, id: \.title) { buttonOne in
+                        alertButtonStyle(buttonOne)
+                    }
                 }
-                .padding(.bottom, Constants.buttonPadding)
+                .padding(.top, Constants.buttonTopMargin)
+                .padding(.bottom, Constants.buttonBottomMargin)
+                
             }
-            .frame(
-                width: Constants.bodyWidth,
-                height: Constants.bodyHeight
-            )
+            .padding(.top, Constants.topContentPadding)
+            .padding(.horizontal, Constants.containerPadding)
             .background(alertBackground)
             .overlay(closeButton, alignment: .topTrailing)
+            .frame(maxWidth: Constants.maxWidth)
         }
     }
     
     private var alertBackground: some View {
         RoundedRectangle(
-            cornerRadius: Constants.cornetRadius,
+            cornerRadius: Constants.cornerRadius,
             style: .continuous
         )
-        .strokeBorder(Color.purple700, lineWidth: 1)
-        .background(
+        .fill(Color.pureWhite)
+        .overlay(
             RoundedRectangle(
-                cornerRadius: Constants.cornetRadius,
+                cornerRadius: Constants.cornerRadius,
                 style: .continuous
             )
-            .fill(Color.pureWhite)
+            .stroke(Color.purple700, lineWidth: 1)
         )
     }
     
@@ -80,22 +147,39 @@ struct YHCustomAlert: View {
 
 private extension YHCustomAlert {
     enum Constants {
-        static let bodyWidth: CGFloat = 346
-        static let bodyHeight: CGFloat = 358
-        static let cornetRadius: CGFloat = 20
-        static let borderWidth: CGFloat = 1
-        static let vStackSpace: CGFloat = 16
+        static let maxWidth: CGFloat = 358
+        static let containerPadding: CGFloat = 16
+        
+        static let cornerRadius: CGFloat = 20
         
         static let iconMessageWidth: CGFloat = 87
         static let iconMessageHeight: CGFloat = 70
         static let iconMessagePadding: CGFloat = 28
         
-        static let massageHorizontalPadding: CGFloat = 35
-        static let buttonPadding: CGFloat = 50
+        static let titleHorizontalPadding: CGFloat = 16
+        static let messageHorizontalPadding: CGFloat = 24
+        static let messageVerticalPadding: CGFloat = 8
+        
+        static let buttonVerticalPadding: CGFloat = 16
+        static let buttonTopMargin: CGFloat = 36
+        static let buttonBottomMargin: CGFloat = 32
+        static let buttonMarginSpacing: CGFloat = 16
+        
+        static let topContentPadding: CGFloat = 44
         static let closeButtonPadding: CGFloat = 12
         
-        static let titleTypography: Font = .manrope(.regular, size: 20)
-        static let messageTypography: Font = .manrope(.regular, size: 14)
-        static let buttonTypography: Font = .manrope(.regular, size: 15)
+        static let titleTypography: Font = .manrope(.medium, size: 20)
+        static let messageTypography: Font = .sFProText(.regular, size: 14)
+        static let buttonTypography: Font = .sFProText(.regular, size: 14)
+    }
+}
+
+private extension YHCustomAlert.AlertButtonStyle {
+    static func actionButton(_ title: String, action: @escaping () -> Void) -> Self {
+        .init(
+            title: title,
+            style: .primary,
+            action: action
+        )
     }
 }
