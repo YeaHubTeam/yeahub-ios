@@ -25,7 +25,7 @@ extension HttpRequest {
     /// Converts a HttpRequest to a URLRequest
     public var urlRequest: URLRequest {
         var request = URLRequest(url: url.url)
-        request.timeoutInterval = 30
+        request.timeoutInterval = Constants.timeoutInterval
         request.httpMethod = method.rawValue.uppercased()
         request.httpBody = body
         for (key, value) in headers {
@@ -33,4 +33,8 @@ extension HttpRequest {
         }
         return request
     }
+}
+
+fileprivate enum Constants {
+    static let timeoutInterval: Double = 30
 }

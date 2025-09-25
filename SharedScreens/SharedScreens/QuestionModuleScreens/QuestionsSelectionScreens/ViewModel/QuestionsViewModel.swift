@@ -42,7 +42,6 @@ public final class QuestionsViewModel: ObservableObject {
                     viewState = .commonError(title: error.localizedDescription)
                 }
             } catch let error {
-                print (type(of: error))
                 viewState = .commonError(title: "Что-то пошло не так")
             }
         }
