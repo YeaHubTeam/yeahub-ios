@@ -1,68 +1,59 @@
 import SwiftUI
 
-public enum YHButtonState {
-    case primaryEnabled
-    case primaryDisabled
-    case secondaryEnabled
-    case secondaryDisabled
-    case cancel
-}
-
 public struct YHButton: View {
-
+    
+    public enum ButtonState {
+        case primaryEnabled
+        case primaryDisabled
+        case secondaryEnabled
+        case secondaryDisabled
+        case cancel
+    }
+    
     let title: String
-    let state: YHButtonState
+    let state: ButtonState
     let action: () -> Void
-
+    
     @State private var isPressed: Bool = false
-
-    public init(
-        title: String,
-        state: YHButtonState = .primaryEnabled,
-        action: @escaping () -> Void
-    ) {
+    
+    public init(title: String,
+                state: ButtonState = .primaryEnabled,
+                action: @escaping () -> Void) {
         self.state = state
         self.title = title
         self.action = action
     }
-
+    
     public var body: some View {
         switch state {
         case .primaryEnabled:
-            YHStyledButton(
-                textColor: .pureWhite,
-                backgroundColor: .purple700)
+            YHStyledButton(textColor: .pureWhite,
+                           backgroundColor: .purple700)
             
         case .primaryDisabled:
-            YHStyledButton(
-                textColor: .pureWhite,
-                backgroundColor: .black100,
-                isDisabled: true)
+            YHStyledButton(textColor: .pureWhite,
+                           backgroundColor: .black100,
+                           isDisabled: true)
             
         case .secondaryEnabled:
-            YHStyledButton(
-                textColor: .purple700,
-                borderColor: .purple700)
+            YHStyledButton(textColor: .purple700,
+                           borderColor: .purple700)
             
         case .secondaryDisabled:
-            YHStyledButton(
-                textColor: .black100,
-                borderColor: .black100,
-                isDisabled: true)
+            YHStyledButton(textColor: .black100,
+                           borderColor: .black100,
+                           isDisabled: true)
             
         case .cancel:
-            YHStyledButton(
-                textColor: .red600,
-                backgroundColor: .red100)
+            YHStyledButton(textColor: .red600,
+                           backgroundColor: .red100)
         }
     }
     
-    private func YHStyledButton(
-        textColor: Color,
-        backgroundColor: Color = .clear,
-        borderColor: Color = .clear,
-        isDisabled: Bool = false
-    ) -> some View {
+    private func YHStyledButton(textColor: Color,
+                                backgroundColor: Color = .clear,
+                                borderColor: Color = .clear,
+                                isDisabled: Bool = false) -> some View {
         Button(action: handleButtonAction) {
             Text(title)
                 .font(.manrope(.semibold))
