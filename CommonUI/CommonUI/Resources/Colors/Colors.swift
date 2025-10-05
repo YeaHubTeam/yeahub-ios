@@ -8,6 +8,7 @@ public extension Color {
     static let black900 = Color(hex: "#191919")
     static let black800 = Color(hex: "#303030")
     static let black700 = Color(hex: "#474747")
+    static let black600 = Color(hex: "#5E5E5E")
     static let black300 = Color(hex: "#A3A3A3")
     static let black50 = Color(hex: "#E8E8E8")
     static let black25 = Color(hex: "#F4F4F4")
