@@ -16,10 +16,8 @@ enum YHBubbleStyle {
     var textColor: Color {
         switch self {
         case .textOnly:
-//                .blue
                 .black700
         case .withIconTitle:
-//                .red
                 .black600
         }
     }
