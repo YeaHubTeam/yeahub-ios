@@ -75,7 +75,7 @@ public struct YHTextField: View {
     }
     
     private func performToggle() {
-            isSecure.toggle()
+        isSecure.toggle()
     }
 }
 
