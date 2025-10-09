@@ -9,12 +9,15 @@ public extension Color {
     static let black800 = Color(hex: "#303030")
     static let black700 = Color(hex: "#474747")
     static let black300 = Color(hex: "#A3A3A3")
+    static let black100 = Color(hex: "#D1D1D1")
     static let black50 = Color(hex: "#808080")
     static let black25 = Color(hex: "#F4F4F4")
     static let black10 = Color(hex: "#F5F5F5")
     static let pureWhite = Color(hex: "#FFFFFF")
     static let gray700 = Color(hex: "#6A6376")
     static let textBlack = Color(hex: "#141414")
+    static let red600 = Color(hex: "#F3164E")
+    static let red100 = Color(hex: "#FDD8E1")
 
     // MARK: - Адаптивные цвета (инверсия для темной темы)
 
