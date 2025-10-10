@@ -30,13 +30,13 @@ struct YHBubbleCollectionLayout: Layout {
             }
             let size = cache[index]
             
-            if width + size.width > maxWidth {
+            if width + size.width > maxWidth, width > 0 {
                 width = 0
                 height += lineHeight + spacing
                 lineHeight = 0
             }
             
-            width += size.width + spacing
+            width += size.width + (width > 0 ? spacing : 0)
             lineHeight = max(lineHeight, size.height)
         }
         
@@ -60,7 +60,7 @@ struct YHBubbleCollectionLayout: Layout {
         for (index, subview) in subviews.enumerated() {
             let size = cache[index]
             
-            if x + size.width > bounds.width {
+            if x + size.width > bounds.maxX, x > bounds.minX {
                 x = bounds.minX
                 y += lineHeight + spacing
                 lineHeight = 0
