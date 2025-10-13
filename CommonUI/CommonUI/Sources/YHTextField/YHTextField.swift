@@ -68,7 +68,7 @@ private extension YHTextField {
     }
 }
 
-public extension YHTextField {
+private extension YHTextField {
     enum Images: String {
         case eye = "eyeIcon"
         case eyeSlash = "eyeSlashIcon"
