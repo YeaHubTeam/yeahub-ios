@@ -2,24 +2,24 @@ import SwiftUI
 
 public struct YHTextField: View {
     
-    @Binding var password: String
+    @Binding var text: String
     @FocusState private var isFocused: Bool
     @State private var isSecure: Bool = true
     
     private let placeholder: String
     
     public init(
-        password: Binding<String>,
+        text: Binding<String>,
         placeholder: String = ""
     ) {
-        self._password = password
+        self._text = text
         self.placeholder = placeholder
     }
     
     public var body: some View {
         HStack(spacing: Constants.hStackSpacing) {
             ZStack {
-                SecureField(placeholder, text: $password)
+                SecureField(placeholder, text: $text)
                     .focused($isFocused)
                     .font(Constants.textFieldFont)
                     .foregroundColor(isFocused ? Color.black900 : Color.black300)
@@ -27,7 +27,7 @@ public struct YHTextField: View {
                     .submitLabel(.done)
                     .opacity(isSecure ? 1.0 : 0.0)
                 
-                TextField(placeholder, text: $password)
+                TextField(placeholder, text: $text)
                     .focused($isFocused)
                     .font(Constants.textFieldFont)
                     .foregroundColor(isFocused ? Color.black900 : Color.black300)
