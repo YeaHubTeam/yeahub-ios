@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct YHPasswordTextField: View {
+public struct YHTextField: View {
     
     @Binding var password: String
     @FocusState private var isFocused: Bool
@@ -58,7 +58,7 @@ public struct YHPasswordTextField: View {
     }
 }
 
-private extension YHPasswordTextField {
+private extension YHTextField {
     enum Constants {
         static let cornerRadius: CGFloat = 12
         static let height: CGFloat = 48
@@ -68,7 +68,7 @@ private extension YHPasswordTextField {
     }
 }
 
-public extension YHPasswordTextField {
+public extension YHTextField {
     enum Images: String {
         case eye = "eyeIcon"
         case eyeSlash = "eyeSlashIcon"
