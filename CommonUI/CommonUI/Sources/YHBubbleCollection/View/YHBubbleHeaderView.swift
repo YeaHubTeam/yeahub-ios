@@ -11,8 +11,15 @@ struct YHBubbleCollectionHeader: View {
                     .font(Font.sFProText(.medium, size: 16))
                     .foregroundStyle(Color.black600)
             }
-            .padding(.horizontal, 16)
-            .padding(8)
+            .padding(.horizontal, Constants.titleHorizontalPadding)
+            .padding(Constants.titleVerticalPadding)
         }
+    }
+}
+
+private extension YHBubbleCollectionHeader {
+    enum Constants {
+        static let titleHorizontalPadding: CGFloat = 16
+        static let titleVerticalPadding: CGFloat = 8
     }
 }

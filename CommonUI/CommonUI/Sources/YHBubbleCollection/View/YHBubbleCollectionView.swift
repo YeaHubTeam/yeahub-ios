@@ -7,7 +7,7 @@ struct YHBubbleCollectionBody: View {
     
     var body: some View {
         VStack {
-            YHBubbleCollectionLayout(spacing: 12) {
+            YHBubbleCollectionLayout(spacing: Constants.bubbleSpacing) {
                 ForEach(categories) { tag in
                     YHBubbleTagCell(
                         icon: tag.icon?.image,
@@ -19,7 +19,7 @@ struct YHBubbleCollectionBody: View {
                     }
                 }
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, Constants.contentHorizontalPadding)
             .background(Color.black25)
         }
     }
@@ -32,5 +32,12 @@ struct YHBubbleCollectionBody: View {
                 selected.insert(tag.id)
             }
         }
+    }
+}
+
+private extension YHBubbleCollectionBody {
+    enum Constants {
+        static let bubbleSpacing: CGFloat = 12
+        static let contentHorizontalPadding: CGFloat = 16
     }
 }
