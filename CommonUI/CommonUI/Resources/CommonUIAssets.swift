@@ -8,7 +8,9 @@ public enum CommonUIAssets {
     }
     
     public static let homeVCImageTabBarLogo = UIImage(named: "HomeIcon")
+    public static let questionsVCImageTabBarLogo = UIImage(named: "QuestionIcon")
     public static let collectionsVCImageTabBarLogo = UIImage(named: "CollectionsIcon")
+    
 }
 
 private final class BundleToken {}
