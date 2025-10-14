@@ -6,7 +6,6 @@ final class YHTabBarController: UITabBarController {
 
     private let floatingButton = FloatingTabButton()
     private let buttonLabel = UILabel()
-    
     private var shouldUseCustomButton: Bool {
         if #available(iOS 26.0, *) {
             return false
@@ -185,7 +184,6 @@ extension YHTabBarController: UITabBarControllerDelegate {
         if #available(iOS 26.0, *) {
             return true
         }
-        
         if let index = viewControllers?.firstIndex(of: viewController) {
             if index == 1 {
                 return false
