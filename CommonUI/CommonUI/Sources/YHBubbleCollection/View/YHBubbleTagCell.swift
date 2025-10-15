@@ -10,7 +10,7 @@ struct YHBubbleTagCell: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: Constants.verticalPadding) {
-                if style.showIcon, let icon = icon {
+                if style.showIcon, let icon {
                     icon
                         .resizable()
                         .scaledToFit()

@@ -5,7 +5,7 @@ struct YHBubbleCollectionHeader: View {
     let style: YHBubbleStyle
     
     var body: some View {
-        if let title = title {
+        if let title {
             HStack {
                 Text(title)
                     .font(Font.sFProText(.medium, size: 16))

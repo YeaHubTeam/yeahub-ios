@@ -13,7 +13,7 @@ public struct YHBubbleCollection: View {
         self._selected = selected
     }
     
-    var content: (
+    private var content: (
         title: String?,
         textColor: Color,
         categories: [TagItem],

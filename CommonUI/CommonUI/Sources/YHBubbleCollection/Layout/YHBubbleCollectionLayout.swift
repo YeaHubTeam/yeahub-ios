@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct YHBubbleCollectionLayout: Layout {
-    var spacing: CGFloat = 12
+    var spacing: CGFloat 
     var maxItemWidth: CGFloat? = nil
     
     func makeCache(subviews: Subviews) -> [CGSize] {
