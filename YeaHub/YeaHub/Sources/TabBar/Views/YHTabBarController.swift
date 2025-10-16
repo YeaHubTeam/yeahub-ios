@@ -17,6 +17,8 @@ final class YHTabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideOriginalCenterTabItem()
+        updateQuestionsLabelTextlColor()
+        updateFloatingButtonSelection()
     }
 
     override func viewDidLayoutSubviews() {
@@ -33,6 +35,9 @@ final class YHTabBarController: UITabBarController {
         setupTabBarAppearance()
 
         delegate = self
+        
+        updateQuestionsLabelTextlColor()
+        updateFloatingButtonSelection()
     }
 
     private func setupFloatingButton() {
@@ -44,7 +49,7 @@ final class YHTabBarController: UITabBarController {
         buttonLabel.text = "Вопросы"
         buttonLabel.font = UIFont.manrope(.medium, size: Constants.buttonFontSize)
         buttonLabel.textAlignment = .center
-        buttonLabel.textColor = UIColor(Color.purple700)
+        updateQuestionsLabelTextlColor()
         buttonLabel.sizeToFit()
         view.addSubview(buttonLabel)
     }
@@ -116,11 +121,24 @@ final class YHTabBarController: UITabBarController {
         tabBar.tintAdjustmentMode = .normal
     }
 
+    private func updateQuestionsLabelTextlColor() {
+        if selectedIndex == 1 {
+            buttonLabel.textColor = UIColor(Color.purple700)
+        } else {
+            buttonLabel.textColor = UIColor.secondaryLabel
+        }
+    }
+
+    private func updateFloatingButtonSelection() {
+        floatingButton.isSelected = (selectedIndex == 1)
+    }
+
     // MARK: Handlers
 
     @objc private func floatingButtonTapped() {
-        selectedIndex = 1 // Индекс таба "Вопросы"
-        floatingButton.isSelected = true
+        selectedIndex = 1
+        updateFloatingButtonSelection()
+        updateQuestionsLabelTextlColor()
 
         UIView.animate(withDuration: 0.3,
                        delay: 0,
@@ -166,12 +184,15 @@ extension YHTabBarController: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         setNeedsStatusBarAppearanceUpdate()
+        updateFloatingButtonSelection()
+        updateQuestionsLabelTextlColor()
     }
 
     func tabBarController(_ tabBarController: UITabBarController,
                           shouldSelect viewController: UIViewController) -> Bool {
-        if let index = viewControllers?.firstIndex(of: viewController), index != 1 {
-            floatingButton.isSelected = false
+        if let index = viewControllers?.firstIndex(of: viewController) {
+            floatingButton.isSelected = (index == 1)
+            buttonLabel.textColor = (index == 1) ? UIColor(Color.purple700) : UIColor.secondaryLabel
         }
         return true
     }
