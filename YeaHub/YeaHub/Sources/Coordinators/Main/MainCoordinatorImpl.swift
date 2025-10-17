@@ -81,8 +81,8 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         }
 
         homeNav.tabBarItem = UITabBarItem(
-            title: "Коллекции",
-            image: CommonUIAssets.collectionsVCImageTabBarLogo,
+            title: "Главная",
+            image: CommonUIAssets.homeVCImageTabBarLogo,
             tag: 0
         )
 
@@ -94,9 +94,9 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         }
 
         questionsNav.tabBarItem = UITabBarItem(
-            title: "Коллекции",
-            image: CommonUIAssets.collectionsVCImageTabBarLogo,
-            tag: 0
+            title: "Вопросы",
+            image: CommonUIAssets.questionsVCImageTabBarLogo,
+            tag: 1
         )
 
         let collectionsNav: UINavigationControllerType
@@ -109,7 +109,7 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         collectionsNav.tabBarItem = UITabBarItem(
             title: "Коллекции",
             image: CommonUIAssets.collectionsVCImageTabBarLogo,
-            tag: 0
+            tag: 2
         )
 
         tabBarController.viewControllers = [homeNav, questionsNav, collectionsNav]
