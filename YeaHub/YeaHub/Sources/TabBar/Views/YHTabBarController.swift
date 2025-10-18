@@ -17,7 +17,7 @@ final class YHTabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideOriginalCenterTabItem()
-        updateQuestionsLabelTextlColor()
+        updateQuestionsLabelTextColor()
         updateFloatingButtonSelection()
     }
 
@@ -35,8 +35,7 @@ final class YHTabBarController: UITabBarController {
         setupTabBarAppearance()
 
         delegate = self
-        
-        updateQuestionsLabelTextlColor()
+    
         updateFloatingButtonSelection()
     }
 
@@ -49,7 +48,7 @@ final class YHTabBarController: UITabBarController {
         buttonLabel.text = "Вопросы"
         buttonLabel.font = UIFont.manrope(.medium, size: Constants.buttonFontSize)
         buttonLabel.textAlignment = .center
-        updateQuestionsLabelTextlColor()
+        updateQuestionsLabelTextColor()
         buttonLabel.sizeToFit()
         view.addSubview(buttonLabel)
     }
@@ -121,7 +120,7 @@ final class YHTabBarController: UITabBarController {
         tabBar.tintAdjustmentMode = .normal
     }
 
-    private func updateQuestionsLabelTextlColor() {
+    private func updateQuestionsLabelTextColor() {
         if selectedIndex == 1 {
             buttonLabel.textColor = UIColor(Color.purple700)
         } else {
@@ -138,7 +137,7 @@ final class YHTabBarController: UITabBarController {
     @objc private func floatingButtonTapped() {
         selectedIndex = 1
         updateFloatingButtonSelection()
-        updateQuestionsLabelTextlColor()
+        updateQuestionsLabelTextColor()
 
         UIView.animate(withDuration: 0.3,
                        delay: 0,
@@ -185,7 +184,7 @@ extension YHTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         setNeedsStatusBarAppearanceUpdate()
         updateFloatingButtonSelection()
-        updateQuestionsLabelTextlColor()
+        updateQuestionsLabelTextColor()
     }
 
     func tabBarController(_ tabBarController: UITabBarController,
