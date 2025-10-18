@@ -15,9 +15,22 @@ public final class CollectionsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override public var prefersStatusBarHidden: Bool {
+        true
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupSwiftUIView()
+        navigationItem.backButtonDisplayMode = .minimal
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
     }
 
     private func setupSwiftUIView() {
@@ -31,7 +44,7 @@ public final class CollectionsViewController: UIViewController {
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            hostingController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
             hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)

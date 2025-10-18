@@ -10,12 +10,26 @@ public class HomeViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
+    override public var prefersStatusBarHidden: Bool {
+        true
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupSwiftUIView()
+        navigationItem.backButtonDisplayMode = .minimal
     }
 
+    public override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+        
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     private func setupSwiftUIView() {
         let homeView = HomeView()
         let hostingController = UIHostingController(rootView: homeView)

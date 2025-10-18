@@ -34,19 +34,6 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         router.setRoot(tabBarController, animated: true)
     }
 
-    private func wrapWithStatusBarController(_ viewController: UIViewController) -> UIViewController {
-        if let hostingController = viewController as? UIHostingController<AnyView> {
-            return StatusBarHostingController(
-                rootView: hostingController.rootView,
-                hideStatusBar: true
-            )
-        }
-        return StatusBarWrapperViewController(
-            wrappedViewController: viewController,
-            hideStatusBar: true
-        )
-    }
-
     private func configureTabs(for tabBarController: UITabBarController) {
         // Создаем координаторы
         let homeCoordinator = factory.makeHomeCoordinator(router: router)
@@ -68,17 +55,13 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
             return
         }
 
-        // Простая обертка - все контроллеры со скрытым статус баром
-        let wrappedHomeVC = wrapWithStatusBarController(homeVC)
-        let wrappedQuestionsVC = wrapWithStatusBarController(questionsVC)
-        let wrappedCollectionsVC = wrapWithStatusBarController(collectionsVC)
-
         let homeNav: UINavigationControllerType
-        if let nav = wrappedHomeVC as? UINavigationController {
-            homeNav = nav
-        } else {
-            homeNav = UINavigationController(rootViewController: wrappedHomeVC)
-        }
+        let questionsNav: UINavigationControllerType
+        let collectionsNav: UINavigationControllerType
+
+        homeNav = NavControllerWithHiddenStatusBar(rootViewController: homeVC)
+        questionsNav = NavControllerWithHiddenStatusBar(rootViewController: questionsVC)
+        collectionsNav = NavControllerWithHiddenStatusBar(rootViewController: collectionsVC)
 
         homeNav.tabBarItem = UITabBarItem(
             title: "Главная",
@@ -86,25 +69,11 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
             tag: 0
         )
 
-        let questionsNav: UINavigationControllerType
-        if let nav = wrappedQuestionsVC as? UINavigationController {
-            questionsNav = nav
-        } else {
-            questionsNav = UINavigationController(rootViewController: wrappedQuestionsVC)
-        }
-
         questionsNav.tabBarItem = UITabBarItem(
             title: "Вопросы",
             image: CommonUIAssets.questionsVCImageTabBarLogo,
             tag: 1
         )
-
-        let collectionsNav: UINavigationControllerType
-        if let nav = wrappedCollectionsVC as? UINavigationController {
-            collectionsNav = nav
-        } else {
-            collectionsNav = UINavigationController(rootViewController: wrappedCollectionsVC)
-        }
 
         collectionsNav.tabBarItem = UITabBarItem(
             title: "Коллекции",
