@@ -6,6 +6,12 @@ final class YHTabBarController: UITabBarController {
 
     private let floatingButton = FloatingTabButton()
     private let buttonLabel = UILabel()
+    private var shouldUseCustomButton: Bool {
+        if #available(iOS 26.0, *) {
+            return false
+        }
+        return true
+    }
 
     // MARK: Life Cycle
 
@@ -23,17 +29,20 @@ final class YHTabBarController: UITabBarController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        positionFloatingButton()
-        positionButtonLabel()
+        if shouldUseCustomButton {
+            positionFloatingButton()
+            positionButtonLabel()
+        }
     }
 
     // MARK: Private methods
 
     private func setupUI() {
-        setupFloatingButton()
-        setupButtonLabel()
+        if shouldUseCustomButton {
+            setupFloatingButton()
+            setupButtonLabel()
+        }
         setupTabBarAppearance()
-
         delegate = self
     
         updateFloatingButtonSelection()
