@@ -47,6 +47,7 @@ struct SpecializationsView: View {
                     }
                 }
                 .padding(.vertical, Constants.defaultPadding)
+                .padding(.bottom, Constants.buttomScrollViewPadding)
             }
         }
         .background(Constants.background)
@@ -66,6 +67,8 @@ private extension SpecializationsView {
         static let defaultSpacing: CGFloat = 8
         static let defaultPadding: CGFloat = 16
         static let background: Color = .black10
+        
+        static let buttomScrollViewPadding: CGFloat = 24
 
         static let cornerRadius: CGFloat = 8
         static let roundedRectangleColor: Color = .white

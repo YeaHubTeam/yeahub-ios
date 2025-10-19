@@ -12,6 +12,7 @@ struct QuestionDetailView: View {
 
             YHBaseCell(state: .answer(title: Constants.longAnswerTitle, text: viewModel.question.longAnswer ?? ""))
         }
+        .padding(.bottom, Constants.buttomScrollViewPadding)
     }
 }
 
@@ -19,6 +20,8 @@ private extension QuestionDetailView {
     enum Constants {
         static let shortAnswerTitle = "Краткий ответ"
         static let longAnswerTitle = "Развернутый ответ"
+        
+        static let buttomScrollViewPadding: CGFloat = 32
     }
 }
 
