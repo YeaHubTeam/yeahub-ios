@@ -49,6 +49,7 @@ struct QuestionsListView: View {
                     }
                 }
                 .padding(.vertical, Constants.defaultPadding)
+                .padding(.bottom, Constants.buttomScrollViewPadding)
             }
             .background(Constants.background)
         }
@@ -62,6 +63,8 @@ private extension QuestionsListView {
         static let headerColor: Color = .black900
         static let headerHorizontalPadding: CGFloat = 16
         static let headerTopPadding: CGFloat = 24
+        
+        static let buttomScrollViewPadding: CGFloat = 24
 
         static let defaultSpacing: CGFloat = 8
         static let defaultPadding: CGFloat = 16
