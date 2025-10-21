@@ -3,16 +3,16 @@ import SwiftUI
 
 public class HomeViewController: UIViewController {
 
+    override public var prefersStatusBarHidden: Bool {
+        true
+    }
+    
     public init() {
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-    
-    override public var prefersStatusBarHidden: Bool {
-        true
     }
     
     public override func viewDidLoad() {

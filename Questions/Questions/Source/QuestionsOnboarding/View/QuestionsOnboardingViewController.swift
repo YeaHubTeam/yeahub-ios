@@ -3,6 +3,10 @@ import SwiftUI
 
 public class QuestionsOnboardingViewController: UIViewController {
     private let onSelectSpecializations: () -> Void
+    
+    override public var prefersStatusBarHidden: Bool {
+        true
+    }
 
     public init(onSelectSpecializations: @escaping () -> Void) {
         self.onSelectSpecializations = onSelectSpecializations
@@ -11,10 +15,6 @@ public class QuestionsOnboardingViewController: UIViewController {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override public var prefersStatusBarHidden: Bool {
-        true
     }
 
     public override func viewDidLoad() {

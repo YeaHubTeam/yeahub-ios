@@ -4,6 +4,10 @@ import UIKit
 public final class CollectionsViewController: UIViewController {
     public let viewModel: CollectionsViewModel
     private let onSelectSpecializations: () -> Void
+    
+    override public var prefersStatusBarHidden: Bool {
+        true
+    }
 
     public init(viewModel: CollectionsViewModel, onSelectSpecializations: @escaping () -> Void) {
         self.viewModel = viewModel
@@ -13,10 +17,6 @@ public final class CollectionsViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override public var prefersStatusBarHidden: Bool {
-        true
     }
     
     public override func viewDidLoad() {
