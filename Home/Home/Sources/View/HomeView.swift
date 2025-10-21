@@ -7,7 +7,10 @@ struct HomeView: View {
         case frameworks
         case companies
     }
-    
+
+    var onQuestionsSelected: () -> Void
+    var onCollectionsSelected: () -> Void
+
     var body: some View {
         ZStack {
             Color.black10
@@ -20,6 +23,7 @@ struct HomeView: View {
                     title: "База вопросов",
                     description: "Большая база вопросов по 50+ востребованных технологий: JavaScript, React, Python, SQL и другие"
                 )
+                .onTapGesture(perform: onQuestionsSelected)
                 .defaultShadow()
                 
                 button(
@@ -27,6 +31,7 @@ struct HomeView: View {
                     title: "Коллекции",
                     description: "Актуальные и востребованные вопросы с реальных технических собеседований"
                 )
+                .onTapGesture(perform: onCollectionsSelected)
                 .defaultShadow()
                 
                 Spacer()
@@ -152,5 +157,5 @@ extension HomeView {
 }
 
 #Preview {
-    HomeView()
+    HomeView(onQuestionsSelected: {}, onCollectionsSelected: {})
 }

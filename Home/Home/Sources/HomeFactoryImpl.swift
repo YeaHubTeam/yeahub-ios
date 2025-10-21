@@ -8,7 +8,13 @@ public class HomeFactoryImpl: HomeFactory {
         HomeCoordinatorImpl(router: router, factory: self)
     }
 
-    public func makeHomeScreen() -> HomeViewController {
-        HomeViewController()
+    public func makeHomeScreen(
+        onQuestionsSelected: @escaping () -> Void,
+        onCollectionsSelected: @escaping () -> Void
+    ) -> HomeViewController {
+        HomeViewController(
+            onQuestionsSelected: onQuestionsSelected,
+            onCollectionsSelected: onCollectionsSelected
+        )
     }
 }
