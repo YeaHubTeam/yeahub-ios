@@ -3,6 +3,10 @@ import SwiftUI
 
 public class QuestionsOnboardingViewController: UIViewController {
     private let onSelectSpecializations: () -> Void
+    
+    override public var prefersStatusBarHidden: Bool {
+        true
+    }
 
     public init(onSelectSpecializations: @escaping () -> Void) {
         self.onSelectSpecializations = onSelectSpecializations
@@ -17,6 +21,14 @@ public class QuestionsOnboardingViewController: UIViewController {
         super.viewDidLoad()
         setupSwiftUIView()
         navigationItem.backButtonDisplayMode = .minimal
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
     }
 
     private func setupSwiftUIView() {
