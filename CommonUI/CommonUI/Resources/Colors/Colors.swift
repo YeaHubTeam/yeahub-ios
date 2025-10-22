@@ -40,23 +40,3 @@ public extension Color {
     }
 
 }
-
-// MARK: - Конвертация для UIKit
-
-extension UIColor {
-
-    convenience init(_ color: Color) {
-        self.init(color, dynamicProvider: nil)
-    }
-
-    convenience init(_ color: Color, dynamicProvider: ((UITraitCollection) -> UIColor)? = nil) {
-        if let dynamicProvider {
-            self.init { trait in
-                dynamicProvider(trait)
-            }
-        } else {
-            self.init(color)
-        }
-    }
-
-}
