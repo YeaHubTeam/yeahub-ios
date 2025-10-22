@@ -112,12 +112,12 @@ struct HomeView: View {
                 VStack(alignment: .leading, spacing: Constants.buttonVerticalInset) {
                     Text(title)
                         .foregroundStyle(Color.black900)
-                        .font(.manrope(.medium, size: 20))
+                        .font(.manrope(.medium, size: Constants.titleFontSize))
                     
-                    HStack(alignment: .bottom, spacing: 4) {
+                    HStack(alignment: .bottom, spacing: Constants.hStackSpacing) {
                         Text(description)
                             .foregroundStyle(Color.black900)
-                            .font(.manrope(.medium, size: 16))
+                            .font(.manrope(.medium, size: Constants.descriptionFontSize))
                             .frame(maxWidth: Constants.buttonDescriptionMaxWidth, alignment: .leading)
                         
                         CommonUIAssets.image(Constants.rightArrowIcon)
@@ -156,6 +156,11 @@ extension HomeView {
         static let rightArrowIcon = "rightArrowIcon"
         static let arrowIconWidth: CGFloat = 20
         static let arrowIconHeight: CGFloat = 20
+        
+        static let titleFontSize: CGFloat = 20
+        static let descriptionFontSize: CGFloat = 16
+
+        static let hStackSpacing: CGFloat = 4
     }
 }
 
