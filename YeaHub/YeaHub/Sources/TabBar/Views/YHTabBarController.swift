@@ -22,7 +22,9 @@ final class YHTabBarController: UITabBarController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hideOriginalCenterTabItem()
+        if shouldUseCustomButton {
+            hideOriginalCenterTabItem()
+        }
         updateQuestionsLabelTextColor()
         updateFloatingButtonSelection()
     }
