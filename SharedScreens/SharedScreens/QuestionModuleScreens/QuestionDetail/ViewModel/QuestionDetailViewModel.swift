@@ -14,11 +14,8 @@ public final class QuestionDetailViewModel {
     var formattedLongAnswer: String {
         parseHTML(question.longAnswer)
     }
-}
-
-private extension QuestionDetailViewModel {
     
-    func parseHTML(_ html: String?) -> String {
+    private func parseHTML(_ html: String?) -> String {
         guard let html = html, !html.isEmpty else {
             return ""
         }
