@@ -27,20 +27,24 @@ public struct YHButtonFooter: View {
     
     public var body: some View {
         HStack(spacing: Constants.spacing) {
-            if let left = leftButton {
-                YHButton(title: left.title,
-                         state: left.state,
-                         action: left.action)
+            if let leftButton {
+                YHButton(
+                    title: leftButton.title,
+                    state: leftButton.state,
+                    action: leftButton.action
+                )
                     .frame(maxWidth: .infinity)
             } else {
                 Spacer()
                     .frame(maxWidth: .infinity)
             }
             
-            if let right = rightButton {
-                YHButton(title: right.title,
-                         state: right.state,
-                         action: right.action)
+            if let rightButton {
+                YHButton(
+                    title: rightButton.title,
+                    state: rightButton.state,
+                    action: rightButton.action
+                )
                     .frame(maxWidth: .infinity)
             } else if leftButton != nil {
                 Spacer()
