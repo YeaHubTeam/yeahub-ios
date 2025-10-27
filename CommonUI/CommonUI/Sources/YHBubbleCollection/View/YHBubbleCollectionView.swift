@@ -3,7 +3,7 @@ import SwiftUI
 struct YHBubbleCollectionBody: View {
     let categories: [TagItem]
     let style: YHBubbleStyle
-    @Binding var selected: Set<UUID>
+    @Binding var selected: Set<Int>
     
     var body: some View {
         VStack {
