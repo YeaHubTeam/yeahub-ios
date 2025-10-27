@@ -17,6 +17,7 @@ public extension Color {
     static let pureWhite = Color(hex: "#FFFFFF")
     static let gray700 = Color(hex: "#6A6376")
     static let textBlack = Color(hex: "#141414")
+    static let red700 = Color(hex: "#D50B3E")
     static let red600 = Color(hex: "#F3164E")
     static let red100 = Color(hex: "#FDD8E1")
 
