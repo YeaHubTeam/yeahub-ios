@@ -1,3 +1,3 @@
-protocol SpecializationsRepositoryProtocol {
+public protocol SpecializationsRepositoryProtocol {
     func fetchSpecializations() async throws -> [Specialization]
 }

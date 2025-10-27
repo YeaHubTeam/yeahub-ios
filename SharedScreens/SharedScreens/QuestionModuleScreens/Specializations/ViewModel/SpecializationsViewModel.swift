@@ -6,25 +6,44 @@ import Networking
 public final class SpecializationsViewModel: ObservableObject {
     private let repository: SpecializationsRepositoryProtocol
     private let coordinator: SpecializationsCoordinator
-
-    @Published var specializations: [Specialization] = []
-    @Published var viewState = Constants.loading
-
-    init(repository: SpecializationsRepositoryProtocol, coordinator: SpecializationsCoordinator) {
+    
+    @Published public var taggedItems: [(tag: TagItem, specialization: Specialization)] = []
+    @Published public var viewState = Constants.loading
+    @Published public var searchText: String = ""
+    
+    public init(
+        repository: SpecializationsRepositoryProtocol,
+        coordinator: SpecializationsCoordinator
+    ) {
         self.repository = repository
         self.coordinator = coordinator
     }
-
-    func loadSpecializations() async {
-        guard specializations.isEmpty else {
-            return
+    
+    var filterTaggedItems: [(tag: TagItem, specialization: Specialization)] {
+        let filter = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard
+            !filter.isEmpty
+        else {
+            return taggedItems
         }
         
+        let lowercased = filter.lowercased()
+        return taggedItems.filter {
+            $0.specialization.title.lowercased().contains(lowercased) || $0.specialization.description.lowercased().contains(lowercased)
+        }
+    }
+    
+    public func loadSpecializations() async {
+        guard
+            taggedItems.isEmpty
+        else {
+            return
+        }
         do {
             let result = try await repository.fetchSpecializations()
             try Task.checkCancellation()
             await MainActor.run {
-                specializations = result
+                mapSpecializationsToTags(result)
                 viewState = .success
             }
         } catch let error as HttpError {
@@ -48,9 +67,16 @@ public final class SpecializationsViewModel: ObservableObject {
             }
         }
     }
-
-    func passQuestionID(_ id: Int, _ specializationTitle: String) {
-        coordinator.startQuestionFlow(id: id, specializationTitle: specializationTitle)
+    
+    public func passSpecialization(_ specialization: Specialization) {
+        coordinator.startQuestionFlow(id: specialization.id, specializationTitle: specialization.title)
+    }
+    
+    private func mapSpecializationsToTags(_ specializations: [Specialization]) {
+        taggedItems = specializations.map { specialization in
+            let tag = TagItem(id: specialization.id, title: specialization.title, icon: nil)
+            return (tag: tag, specialization: specialization)
+        }
     }
 }
 

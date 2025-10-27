@@ -28,9 +28,9 @@ struct SpecializationsView: View {
 
             ScrollView {
                 LazyVStack(spacing: Constants.defaultSpacing) {
-                    ForEach(viewModel.specializations) { specialization in
+                    ForEach(viewModel.filterTaggedItems, id: \.specialization.id) { item in
                         Button {
-                            viewModel.passQuestionID(specialization.id, specialization.title)
+                            viewModel.passSpecialization(item.specialization)
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: Constants.cornerRadius)
@@ -39,7 +39,7 @@ struct SpecializationsView: View {
                                     .padding(.horizontal, Constants.roundedRectangleHorizontalPadding)
                                     .defaultShadow()
 
-                                Text(specialization.title)
+                                Text(item.specialization.title)
                                     .font(Constants.specializationFont)
                                     .foregroundStyle(Constants.specializationColor)
                             }

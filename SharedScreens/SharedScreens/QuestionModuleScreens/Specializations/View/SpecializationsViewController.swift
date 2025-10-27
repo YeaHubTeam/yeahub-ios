@@ -39,7 +39,7 @@ public class SpecializationsViewController: UIViewController {
     }
 
     private func setupSwiftUIView() {
-        let specializationsView = SpecializationsView(viewModel: viewModel)
+        let specializationsView = SpecializationsView(viewModel: self.viewModel)
         let hostingController = UIHostingController(rootView: specializationsView)
 
         addChild(hostingController)
