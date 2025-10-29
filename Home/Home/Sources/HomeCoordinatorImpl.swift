@@ -27,7 +27,14 @@ public class HomeCoordinatorImpl: HomeCoordinator {
     }
 
     public func start() {
-        homeScreen = factory.makeHomeScreen()
+        homeScreen = factory.makeHomeScreen(
+            onQuestionsSelected: { [weak self] in
+                self?.goToQuestionsTab()
+            },
+            onCollectionsSelected: { [weak self] in
+                self?.goToCollectionsTab()
+            }
+        )
     }
 
     public func getHomeScreen() -> HomeViewController? {
@@ -35,5 +42,17 @@ public class HomeCoordinatorImpl: HomeCoordinator {
             start()
         }
         return homeScreen
+    }
+
+    public func goToQuestionsTab() {
+        if let tabBarController = router.window?.rootViewController as? UITabBarController {
+            tabBarController.selectedIndex = 1
+        }
+    }
+
+    public func goToCollectionsTab() {
+        if let tabBarController = router.window?.rootViewController as? UITabBarController {
+            tabBarController.selectedIndex = 2
+        }
     }
 }
