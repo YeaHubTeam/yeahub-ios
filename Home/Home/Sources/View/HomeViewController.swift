@@ -2,16 +2,25 @@ import UIKit
 import SwiftUI
 
 public class HomeViewController: UIViewController {
+    private let onQuestionsSelected: () -> Void
+    private let onCollectionsSelected: () -> Void
 
     override public var prefersStatusBarHidden: Bool {
         true
     }
     
-    public init() {
+    public init(
+        onQuestionsSelected: @escaping () -> Void,
+        onCollectionsSelected: @escaping () -> Void
+    ) {
+        self.onQuestionsSelected = onQuestionsSelected
+        self.onCollectionsSelected = onCollectionsSelected
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
+        self.onQuestionsSelected = {}
+        self.onCollectionsSelected = {}
         super.init(coder: coder)
     }
     
@@ -31,7 +40,10 @@ public class HomeViewController: UIViewController {
     }
     
     private func setupSwiftUIView() {
-        let homeView = HomeView()
+        let homeView = HomeView(
+            onQuestionsSelected: onQuestionsSelected,
+            onCollectionsSelected: onCollectionsSelected
+        )
         let hostingController = UIHostingController(rootView: homeView)
 
         addChild(hostingController)
