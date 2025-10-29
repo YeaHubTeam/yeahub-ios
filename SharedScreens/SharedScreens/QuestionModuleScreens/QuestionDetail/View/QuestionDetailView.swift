@@ -8,9 +8,9 @@ struct QuestionDetailView: View {
         ScrollView {
             YHBaseCell(state: .questionDescription(title: viewModel.question.title, text: viewModel.question.description ?? ""))
 
-            YHBaseCell(state: .answer(title: Constants.shortAnswerTitle, text: viewModel.question.shortAnswer ?? ""))
+            YHBaseCell(state: .answer(title: Constants.shortAnswerTitle, text: viewModel.formattedShortAnswer))
 
-            YHBaseCell(state: .answer(title: Constants.longAnswerTitle, text: viewModel.question.longAnswer ?? ""))
+            YHBaseCell(state: .answer(title: Constants.longAnswerTitle, text: viewModel.formattedLongAnswer))
         }
         .padding(.bottom, Constants.buttomScrollViewPadding)
     }
