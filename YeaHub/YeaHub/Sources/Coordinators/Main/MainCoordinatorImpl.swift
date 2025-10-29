@@ -99,12 +99,4 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         
         tabBarController.viewControllers = viewControllers
     }
-    
-    func openFirstTab() {
-        if #available(iOS 26, *) {
-            tabBarController?.selectedIndex = 0
-        } else {
-            tabBarController?.selectedIndex = 0
-        }
-    }
 }
