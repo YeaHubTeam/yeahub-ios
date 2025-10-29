@@ -7,4 +7,6 @@ public protocol HomeCoordinator: Coordinator {
 
     func start()
     func getHomeScreen() -> HomeViewController?
+    func goToQuestionsTab()
+    func goToCollectionsTab()
 }
