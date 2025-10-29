@@ -67,14 +67,18 @@ public final class SpecializationsViewModel: ObservableObject {
             }
         }
     }
-    
-    public func passSpecialization(_ specialization: Specialization) {
-        coordinator.startQuestionFlow(id: specialization.id, specializationTitle: specialization.title)
+
+    public func passSpecializations(_ specializations: [Specialization]) {
+        coordinator.startQuestionFlow(specializations: specializations)
     }
     
     private func mapSpecializationsToTags(_ specializations: [Specialization]) {
         taggedItems = specializations.map { specialization in
-            let tag = TagItem(id: specialization.id, title: specialization.title, icon: nil)
+            let tag = TagItem(
+                id: specialization.id,
+                title: specialization.title,
+                icon: nil
+            )
             return (tag: tag, specialization: specialization)
         }
     }

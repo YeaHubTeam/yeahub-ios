@@ -1,4 +1,3 @@
-
 import NavigationKit
 
 public final class SpecializationsCoordinatorImpl: SpecializationsCoordinator {
@@ -16,9 +15,15 @@ public final class SpecializationsCoordinatorImpl: SpecializationsCoordinator {
         router.push(specializationsScreen, animated: true)
     }
 
-    public func startQuestionFlow(id: Int, specializationTitle: String) {
+    public func startQuestionFlow(specializations: [Specialization]) {
+        guard
+            let tapSpecial = specializations.first
+        else {
+            return
+        }
+
         let factory = QuestionsListFactoryImpl(router: router)
         let coordinator = QuestionsListCoordinatorImpl(router: router, factory: factory)
-        coordinator.start(with: id, specializationTitle: specializationTitle)
+        coordinator.start(with: tapSpecial.id, specializationTitle: tapSpecial.title)
     }
 }

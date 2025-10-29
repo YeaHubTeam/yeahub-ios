@@ -30,7 +30,7 @@ struct SpecializationsView: View {
                 LazyVStack(spacing: Constants.defaultSpacing) {
                     ForEach(viewModel.filterTaggedItems, id: \.specialization.id) { item in
                         Button {
-                            viewModel.passSpecialization(item.specialization)
+                            viewModel.passSpecializations([item.specialization])
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: Constants.cornerRadius)
