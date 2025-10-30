@@ -4,10 +4,12 @@ public final class QuestionsListCoordinatorImpl: QuestionsListCoordinator {
     public var router: Router
     public var factory: QuestionsListFactory
     private var questionsListScreen: QuestionsListViewController?
-    private var currentSpecializationId: Int = 0
-    private var currentSpecializationTitle: String = ""
+    private var currentSpecializations: [Specialization] = []
 
-    public init(router: Router, factory: QuestionsListFactory) {
+    public init(
+        router: Router,
+        factory: QuestionsListFactory
+    ) {
         self.router = router
         self.factory = factory
     }
@@ -16,20 +18,21 @@ public final class QuestionsListCoordinatorImpl: QuestionsListCoordinator {
         assertionFailure("Use start(with specializationId:specializationTitle:) method instead")
     }
 
-    public func start(with specializationId: Int, specializationTitle: String) {
-        guard specializationId > 0 && !specializationTitle.isEmpty else {
+    public func start(with specializations: [Specialization]) {
+        guard
+            !specializations.isEmpty
+        else {
             return
         }
-        
-        currentSpecializationId = specializationId
-        currentSpecializationTitle = specializationTitle
-        questionsListScreen = factory.makeQuestionsListScreen(specializationId: specializationId, specializationTitle: specializationTitle)
+        currentSpecializations = specializations
+        questionsListScreen = factory.makeQuestionsListScreen(specializations: specializations)
         router.push(questionsListScreen, animated: true)
     }
 
+
     public func getQuestionsListScreen() -> QuestionsListViewController? {
-        if questionsListScreen == nil && currentSpecializationId > 0 && !currentSpecializationTitle.isEmpty {
-            questionsListScreen = factory.makeQuestionsListScreen(specializationId: currentSpecializationId, specializationTitle: currentSpecializationTitle)
+        if questionsListScreen == nil && !currentSpecializations.isEmpty {
+            questionsListScreen = factory.makeQuestionsListScreen(specializations: currentSpecializations)
         }
         return questionsListScreen
     }

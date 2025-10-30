@@ -5,34 +5,46 @@ import Networking
 
 public final class QuestionsViewModel: ObservableObject {
     private let repository: QuestionsRepository
-    private let specializationId: Int
+    private let specializations: [Specialization]
     private let coordinator: QuestionsListCoordinator
-
-    @Published var questions: [QuestionsModel] = []
+    
+    @Published var questionsSpecialization: [Int: [QuestionsModel]] = [:]
     @Published var viewState = Constants.loading
-
+    
     private var loadTask: Task<Void, Never>?
-
-    init(repository: QuestionsRepository, specializationId: Int, coordinator: QuestionsListCoordinator) {
+    
+    
+    init(
+        repository: QuestionsRepository,
+        specializations: [Specialization],
+        coordinator: QuestionsListCoordinator
+    ) {
         self.repository = repository
-        self.specializationId = specializationId
+        self.specializations = specializations
         self.coordinator = coordinator
     }
-
+    
+    public var selectedSpecializations: [Specialization] {
+        specializations
+    }
+    
     func cancelLoading() {
         loadTask?.cancel()
     }
-
+    
     @MainActor
     func loadQuestions() {
         cancelLoading()
         loadTask = Task {
             viewState = Constants.loading
-
             do {
-                let result = try await repository.fetchQuestions(for: specializationId)
-                try Task.checkCancellation()
-                questions = result
+                var loadedQuestion: [Int: [QuestionsModel]] = [:]
+                for specialization in specializations {
+                    let result = try await repository.fetchQuestions(for: specialization.id)
+                    try Task.checkCancellation()
+                    loadedQuestion[specialization.id] = result
+                }
+                questionsSpecialization = loadedQuestion
                 viewState = .success
             } catch let error as HttpError {
                 switch error {
@@ -49,11 +61,11 @@ public final class QuestionsViewModel: ObservableObject {
     
     @MainActor
     func loadQuestionsIfNeeded() {
-        if questions.isEmpty {
+        if questionsSpecialization.isEmpty {
             loadQuestions()
         }
     }
-
+    
     func passQuestionModel(question: QuestionsModel) {
         coordinator.startQuestionDetailFlow(question: question)
     }
