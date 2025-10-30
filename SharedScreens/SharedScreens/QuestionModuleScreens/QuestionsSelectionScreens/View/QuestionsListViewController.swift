@@ -41,7 +41,7 @@ public class QuestionsListViewController: UIViewController {
     }
     
     private func setupSwiftUIView() {
-        let questionsListView = QuestionsListView(viewModel: viewModel, specializationTitle: specializationTitle)
+        let questionsListView = QuestionsListView(viewModel: viewModel, specializationTitle: viewModel.selectedSpecializations)
         let hostingController = UIHostingController(rootView: questionsListView)
         
         addChild(hostingController)
