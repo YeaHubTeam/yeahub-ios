@@ -4,6 +4,7 @@ struct YHBubbleCollectionBody: View {
     let categories: [TagItem]
     let style: YHBubbleStyle
     @Binding var selected: Set<Int>
+    let selectionMode: YHBubbleSelectionMode
     
     var body: some View {
         VStack {
@@ -26,10 +27,19 @@ struct YHBubbleCollectionBody: View {
     
     private func toggle(_ tag: TagItem) {
         withAnimation(.easeInOut(duration: 0.1)) {
-            if selected.contains(tag.id) {
-                selected.remove(tag.id)
-            } else {
-                selected.insert(tag.id)
+            switch selectionMode {
+            case .single:
+                if selected.contains(tag.id) {
+                    selected.remove(tag.id)
+                } else {
+                    selected = [tag.id]
+                }
+            case .multiple:
+                if selected.contains(tag.id) {
+                    selected.remove(tag.id)
+                } else {
+                    selected.insert(tag.id)
+                }
             }
         }
     }
