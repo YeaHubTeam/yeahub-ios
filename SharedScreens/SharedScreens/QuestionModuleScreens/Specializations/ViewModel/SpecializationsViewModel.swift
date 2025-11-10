@@ -38,6 +38,16 @@ public final class SpecializationsViewModel: ObservableObject {
         }
     }
     
+    var filteredTags: [TagItem] {
+        filterTaggedItems.map { $0.tag }
+    }
+    
+    var selectedSpecializationsList: [Specialization] {
+        taggedItems
+            .filter { selectedSpecialization.contains($0.tag.id) }
+            .map { $0.specialization }
+    }
+    
     private func mapSpecializationsToTags(_ specializations: [Specialization]) {
         let deleteWord = "Developer"
         

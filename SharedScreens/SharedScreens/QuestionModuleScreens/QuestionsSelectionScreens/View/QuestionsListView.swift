@@ -3,7 +3,6 @@ import SwiftUI
 
 struct QuestionsListView: View {
     @ObservedObject var viewModel: QuestionsViewModel
-    let specializationTitle: [Specialization]
     
     var body: some View {
         YHLoader(state: viewModel.viewState, refresh: {
@@ -22,7 +21,7 @@ struct QuestionsListView: View {
     
     private func getCurrentView() -> some View {
         return VStack(alignment: .leading, spacing: Constants.headerSpacing) {
-            Text("Вопросы \(specializationTitle.map { $0.title }.joined(separator: ", "))")
+            Text("Вопросы \(viewModel.specializationTitle)")
                 .font(Constants.headerFont)
                 .foregroundStyle(Constants.headerColor)
                 .padding(.horizontal, Constants.headerHorizontalPadding)
@@ -30,7 +29,7 @@ struct QuestionsListView: View {
             
             ScrollView {
                 LazyVStack(spacing: Constants.defaultSpacing) {
-                    ForEach(allQuestions) { question in
+                    ForEach(viewModel.allQuestions) { question in
                         Button {
                             viewModel.passQuestionModel(question: question)
                         } label: {
@@ -52,13 +51,6 @@ struct QuestionsListView: View {
                 .padding(.bottom, Constants.buttomScrollViewPadding)
             }
             .background(Constants.background)
-        }
-    }
-    
-    private var allQuestions: [QuestionsModel] {
-        let idAllQuestions = Set(specializationTitle.map { $0.id })
-        return idAllQuestions.flatMap { id in
-            viewModel.questionsSpecialization[id] ?? []
         }
     }
 }

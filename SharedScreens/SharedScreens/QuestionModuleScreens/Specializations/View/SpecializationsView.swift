@@ -35,7 +35,7 @@ struct SpecializationsView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: Constants.bubbleSpacing) {
                     YHBubbleCollection(
-                        collection: .textOnly(categories: viewModel.filterTaggedItems.map { $0.tag }),
+                        collection: .textOnly(categories: viewModel.filteredTags),
                         selected: $viewModel.selectedSpecialization,
                         selectionMode: .single
                     )
@@ -47,10 +47,7 @@ struct SpecializationsView: View {
                 title: Constants.findButtonTitle,
                 state: viewModel.hasSelectedSpecialization ? .primaryEnabled : .primaryDisabled
             ) {
-                let selected = viewModel.taggedItems
-                    .filter { viewModel.selectedSpecialization.contains($0.tag.id) }
-                    .map { $0.specialization }
-                viewModel.passSpecializations(selected)
+                viewModel.passSpecializations(viewModel.selectedSpecializationsList)
             }
             .padding(.horizontal, Constants.buttonHorizontalPadding)
             .padding(.bottom, Constants.buttonBottomPadding)
