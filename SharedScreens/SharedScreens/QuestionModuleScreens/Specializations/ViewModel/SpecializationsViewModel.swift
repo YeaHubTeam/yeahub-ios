@@ -31,11 +31,25 @@ public final class SpecializationsViewModel: ObservableObject {
         else {
             return taggedItems
         }
+    }
+    
+    private func mapSpecializationsToTags(_ specializations: [Specialization]) {
+        let deleteWord = "Developer"
         
         let lowercased = filter.lowercased()
         return taggedItems.filter {
             $0.specialization.title.lowercased().contains(lowercased) || $0.specialization.description.lowercased().contains(lowercased)
         }
+    }
+    
+    var filteredTags: [TagItem] {
+        filterTaggedItems.map { $0.tag }
+    }
+    
+    var selectedSpecializationsList: [Specialization] {
+        taggedItems
+            .filter { selectedSpecialization.contains($0.tag.id) }
+            .map { $0.specialization }
     }
     
     private func mapSpecializationsToTags(_ specializations: [Specialization]) {

@@ -28,6 +28,16 @@ public final class QuestionsViewModel: ObservableObject {
         specializations
     }
     
+    public var specializationTitle: String {
+        specializations.map { $0.title }.joined(separator: ", ")
+    }
+    
+    public var allQuestions: [QuestionsModel] {
+        let idAllQuestions = Set(specializations.map { $0.id })
+        return idAllQuestions.flatMap { id in
+            questionsSpecialization[id] ?? []
+        }
+    }
     func cancelLoading() {
         loadTask?.cancel()
     }

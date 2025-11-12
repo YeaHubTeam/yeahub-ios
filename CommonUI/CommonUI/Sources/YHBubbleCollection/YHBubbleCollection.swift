@@ -1,16 +1,24 @@
 import SwiftUI
 
+public enum YHBubbleSelectionMode {
+    case single
+    case multiple
+}
+
 public struct YHBubbleCollection: View {
     
     public let collection: YHBubbleTagConfiguration
     @Binding public var selected: Set<Int>
+    public let selectionMode: YHBubbleSelectionMode
     
     public init(
         collection: YHBubbleTagConfiguration,
-        selected: Binding<Set<Int>> = .constant([])
+        selected: Binding<Set<Int>> = .constant([]),
+        selectionMode: YHBubbleSelectionMode = .multiple
     ) {
         self.collection = collection
         self._selected = selected
+        self.selectionMode = selectionMode
     }
     
     private var content: (
@@ -40,7 +48,8 @@ public struct YHBubbleCollection: View {
             YHBubbleCollectionBody(
                 categories: data.categories,
                 style: data.style,
-                selected: $selected
+                selected: $selected,
+                selectionMode: selectionMode
             )
             .foregroundStyle(data.textColor)
         }
