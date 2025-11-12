@@ -38,7 +38,6 @@ public final class QuestionsViewModel: ObservableObject {
             questionsSpecialization[id] ?? []
         }
     }
-    
     func cancelLoading() {
         loadTask?.cancel()
     }

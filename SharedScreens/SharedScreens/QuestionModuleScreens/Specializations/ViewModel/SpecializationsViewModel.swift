@@ -31,6 +31,10 @@ public final class SpecializationsViewModel: ObservableObject {
         else {
             return taggedItems
         }
+    }
+    
+    private func mapSpecializationsToTags(_ specializations: [Specialization]) {
+        let deleteWord = "Developer"
         
         let lowercased = filter.lowercased()
         return taggedItems.filter {

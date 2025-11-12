@@ -1,26 +1,20 @@
 import UIKit
 import SwiftUI
 
-public class HomeViewController: UIViewController {
-    private let onQuestionsSelected: () -> Void
-    private let onCollectionsSelected: () -> Void
+public class ProfileViewController: UIViewController {
 
     override public var prefersStatusBarHidden: Bool {
         true
     }
     
-    public init(
-        onQuestionsSelected: @escaping () -> Void,
-        onCollectionsSelected: @escaping () -> Void
-    ) {
-        self.onQuestionsSelected = onQuestionsSelected
-        self.onCollectionsSelected = onCollectionsSelected
-        super.init(nibName: nil, bundle: nil)
+    public init() {
+        super.init(
+            nibName: nil,
+            bundle: nil
+        )
     }
 
     required init?(coder: NSCoder) {
-        self.onQuestionsSelected = {}
-        self.onCollectionsSelected = {}
         super.init(coder: coder)
     }
     
@@ -32,7 +26,6 @@ public class HomeViewController: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
-        
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
@@ -40,11 +33,8 @@ public class HomeViewController: UIViewController {
     }
     
     private func setupSwiftUIView() {
-        let homeView = HomeView(
-            onQuestionsSelected: onQuestionsSelected,
-            onCollectionsSelected: onCollectionsSelected
-        )
-        let hostingController = UIHostingController(rootView: homeView)
+        let profileView = ProfileView()
+        let hostingController = UIHostingController(rootView: profileView)
 
         addChild(hostingController)
         view.addSubview(hostingController.view)
@@ -58,6 +48,6 @@ public class HomeViewController: UIViewController {
             hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        hostingController.view.backgroundColor = .clear
+        hostingController.view.backgroundColor = .white
     }
 }

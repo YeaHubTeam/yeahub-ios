@@ -7,7 +7,10 @@ struct HomeView: View {
         case frameworks
         case companies
     }
-    
+
+    var onQuestionsSelected: () -> Void
+    var onCollectionsSelected: () -> Void
+
     var body: some View {
         ZStack {
             Color.black10
@@ -18,14 +21,16 @@ struct HomeView: View {
                 button(
                     type: .frameworks,
                     title: "База вопросов",
-                    description: "Большая база вопросов по 50+ востребованных технологий: JavaScript, React, Python, SQL и другие"
+                    description: "Большая база вопросов по 50+ востребованных технологий: JavaScript, React, Python, SQL и другие",
+                    action: onQuestionsSelected
                 )
                 .defaultShadow()
                 
                 button(
                     type: .companies,
                     title: "Коллекции",
-                    description: "Актуальные и востребованные вопросы с реальных технических собеседований"
+                    description: "Актуальные и востребованные вопросы с реальных технических собеседований",
+                    action: onCollectionsSelected
                 )
                 .defaultShadow()
                 
@@ -97,32 +102,35 @@ struct HomeView: View {
     private func button(
         type: ImagesType,
         title: String,
-        description: String
+        description: String,
+        action: @escaping () -> Void
     ) -> some View {
-        HStack(alignment: .top, spacing: Constants.buttonHorizontalInset) {
-            imagesGrid(type: type)
-            
-            VStack(alignment: .leading, spacing: Constants.buttonVerticalInset) {
-                Text(title)
-                    .foregroundStyle(Color.black900)
-                    .font(.manrope(.medium, size: 20))
+        Button(action: action) {
+            HStack(alignment: .top, spacing: Constants.buttonHorizontalInset) {
+                imagesGrid(type: type)
                 
-                HStack(alignment: .bottom, spacing: 4) {
-                    Text(description)
+                VStack(alignment: .leading, spacing: Constants.buttonVerticalInset) {
+                    Text(title)
                         .foregroundStyle(Color.black900)
-                        .font(.manrope(.medium, size: 16))
-                        .frame(maxWidth: Constants.buttonDescriptionMaxWidth, alignment: .leading)
-                        .foregroundColor(.secondary)
+                        .font(.manrope(.medium, size: Constants.titleFontSize))
                     
-                    CommonUIAssets.image(Constants.rightArrowIcon)
-                        .frame(width: Constants.arrowIconWidth, height: Constants.arrowIconHeight)
+                    HStack(alignment: .bottom, spacing: Constants.hStackSpacing) {
+                        Text(description)
+                            .foregroundStyle(Color.black900)
+                            .font(.manrope(.medium, size: Constants.descriptionFontSize))
+                            .frame(maxWidth: Constants.buttonDescriptionMaxWidth, alignment: .leading)
+                        
+                        CommonUIAssets.image(Constants.rightArrowIcon)
+                            .frame(width: Constants.arrowIconWidth, height: Constants.arrowIconHeight)
+                    }
                 }
             }
+            .padding(.horizontal, Constants.buttonHorizontalInset)
+            .padding(.vertical, Constants.defaultInset)
+            .background(Color.white)
+            .cornerRadius(Constants.buttonCornerRadius)
         }
-        .padding(.horizontal, Constants.buttonHorizontalInset)
-        .padding(.vertical, Constants.defaultInset)
-        .background(Color.white)
-        .cornerRadius(Constants.buttonCornerRadius)
+        .buttonStyle(.plain)
     }
 }
 
@@ -148,9 +156,14 @@ extension HomeView {
         static let rightArrowIcon = "rightArrowIcon"
         static let arrowIconWidth: CGFloat = 20
         static let arrowIconHeight: CGFloat = 20
+        
+        static let titleFontSize: CGFloat = 20
+        static let descriptionFontSize: CGFloat = 16
+
+        static let hStackSpacing: CGFloat = 4
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(onQuestionsSelected: {}, onCollectionsSelected: {})
 }
