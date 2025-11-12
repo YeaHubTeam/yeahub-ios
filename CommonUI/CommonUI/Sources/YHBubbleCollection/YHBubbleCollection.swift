@@ -3,11 +3,11 @@ import SwiftUI
 public struct YHBubbleCollection: View {
     
     public let collection: YHBubbleTagConfiguration
-    @Binding public var selected: Set<UUID>
+    @Binding public var selected: Set<Int>
     
     public init(
         collection: YHBubbleTagConfiguration,
-        selected: Binding<Set<UUID>> = .constant([])
+        selected: Binding<Set<Int>> = .constant([])
     ) {
         self.collection = collection
         self._selected = selected

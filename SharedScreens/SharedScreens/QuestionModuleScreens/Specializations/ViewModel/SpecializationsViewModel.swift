@@ -6,25 +6,75 @@ import Networking
 public final class SpecializationsViewModel: ObservableObject {
     private let repository: SpecializationsRepositoryProtocol
     private let coordinator: SpecializationsCoordinator
-
-    @Published var specializations: [Specialization] = []
-    @Published var viewState = Constants.loading
-
-    init(repository: SpecializationsRepositoryProtocol, coordinator: SpecializationsCoordinator) {
+    
+    @Published public var taggedItems: [(tag: TagItem, specialization: Specialization)] = []
+    @Published public var selectedSpecialization: Set<Int> = []
+    @Published public var viewState = Constants.loading
+    @Published public var searchText: String = ""
+    
+    public init(
+        repository: SpecializationsRepositoryProtocol,
+        coordinator: SpecializationsCoordinator
+    ) {
         self.repository = repository
         self.coordinator = coordinator
     }
-
-    func loadSpecializations() async {
-        guard specializations.isEmpty else {
-            return
+    
+    public var hasSelectedSpecialization: Bool {
+        !selectedSpecialization.isEmpty
+    }
+    
+    var filterTaggedItems: [(tag: TagItem, specialization: Specialization)] {
+        let filter = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard
+            !filter.isEmpty
+        else {
+            return taggedItems
         }
         
+        let lowercased = filter.lowercased()
+        return taggedItems.filter {
+            $0.specialization.title.lowercased().contains(lowercased) || $0.specialization.description.lowercased().contains(lowercased)
+        }
+    }
+    
+    private func mapSpecializationsToTags(_ specializations: [Specialization]) {
+        let deleteWord = "Developer"
+        
+        taggedItems = specializations.map { specialization in
+            var processedTitle = specialization.title
+                .replacingOccurrences(of: deleteWord, with: "", options: .caseInsensitive)
+                .replacingOccurrences(of: " +", with: " ", options: .regularExpression)
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if processedTitle.isEmpty {
+                processedTitle = specialization.title
+            }
+            
+            let tag = TagItem(
+                id: specialization.id,
+                title: processedTitle,
+                icon: nil
+            )
+            return (tag: tag, specialization: specialization)
+        }
+    }
+    
+    public func passSpecializations(_ specializations: [Specialization]) {
+        coordinator.startQuestionFlow(specializations: specializations)
+    }
+    
+    public func loadSpecializations() async {
+        guard
+            taggedItems.isEmpty
+        else {
+            return
+        }
         do {
             let result = try await repository.fetchSpecializations()
             try Task.checkCancellation()
             await MainActor.run {
-                specializations = result
+                mapSpecializationsToTags(result)
                 viewState = .success
             }
         } catch let error as HttpError {
@@ -47,10 +97,6 @@ public final class SpecializationsViewModel: ObservableObject {
                 viewState = Constants.commonError
             }
         }
-    }
-
-    func passQuestionID(_ id: Int, _ specializationTitle: String) {
-        coordinator.startQuestionFlow(id: id, specializationTitle: specializationTitle)
     }
 }
 
