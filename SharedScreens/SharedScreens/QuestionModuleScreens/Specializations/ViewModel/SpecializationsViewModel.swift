@@ -26,19 +26,14 @@ public final class SpecializationsViewModel: ObservableObject {
     
     var filterTaggedItems: [(tag: TagItem, specialization: Specialization)] {
         let filter = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard
-            !filter.isEmpty
-        else {
+        guard !filter.isEmpty else {
             return taggedItems
         }
-    }
-    
-    private func mapSpecializationsToTags(_ specializations: [Specialization]) {
-        let deleteWord = "Developer"
         
         let lowercased = filter.lowercased()
         return taggedItems.filter {
-            $0.specialization.title.lowercased().contains(lowercased) || $0.specialization.description.lowercased().contains(lowercased)
+            $0.specialization.title.lowercased().contains(lowercased) ||
+            $0.specialization.description.lowercased().contains(lowercased)
         }
     }
     
