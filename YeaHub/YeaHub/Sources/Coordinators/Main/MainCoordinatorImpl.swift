@@ -78,6 +78,8 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
         )
         
         var viewControllers: [UIViewController] = []
+
+        viewControllers.append(contentsOf: [homeNav, questionsNav, collectionsNav])
         
         if #available(iOS 26, *) {
             let profileCoordinator = factory.makeProfileCoordinator(router: router)
@@ -94,8 +96,6 @@ class MainCoordinatorImpl: BaseCoordinator, MainCoordinator {
                 viewControllers.append(profileNav)
             }
         }
-        
-        viewControllers.append(contentsOf: [homeNav, questionsNav, collectionsNav])
         
         tabBarController.viewControllers = viewControllers
     }
