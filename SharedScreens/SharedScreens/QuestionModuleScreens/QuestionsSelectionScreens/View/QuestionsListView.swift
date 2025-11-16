@@ -53,13 +53,6 @@ struct QuestionsListView: View {
             .background(Constants.background)
         }
     }
-    
-    private var allQuestions: [QuestionsModel] {
-        let idAllQuestions = Set(specializationTitle.map { $0.id })
-        return idAllQuestions.flatMap { id in
-            viewModel.questionsSpecialization[id] ?? []
-        }
-    }
 }
 
 private extension QuestionsListView {
